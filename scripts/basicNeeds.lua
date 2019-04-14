@@ -11,14 +11,12 @@ basicNeedsLogic = function(oldPlayerName, pid, tic, val1, val2, val3, val4)
 				tes3mp.SendMessage(pid, message)
 				basicNeeds[tic](pid)
 			else
-				statVal = tonumber(Players[pid].data.stats[val4])
-				Players[pid].data.playerNeeds[val1] = 100
+    			Players[pid].data.playerNeeds[val1] = 100
 				message = "You are " .. val3 .. ".\n"
 				tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(pid) .. " is " .. val3)
 				tes3mp.SendMessage(pid, message)
 				if Players[pid].data.playerNeedsDebuffs[val3] == false then
     				Players[pid].data.playerNeedsDebuffs[val3] = true
-    				Players[pid].data.stat[val4] = statVal * 0.5
 			    end
 			    basicNeeds[tic](pid)
 			end
@@ -33,14 +31,14 @@ local basicNeeds = {}
 
 	function basicNeeds.hungerTic(pid)
 		playerName = tostring(Players[pid].name)
-		hungerTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sissss", playerName, pid, "hungerTic", "hunger", "hungry", "starving", "healthBase")
+		hungerTime = tes3mp.CreateTimerEx("basicNeedsLogic", 12000, "sisssss", playerName, pid, "hungerTic", "hunger", "hungry", "starving", "healthBase")
 		tes3mp.LogMessage(enumerations.log.INFO, "Running hunger timer for player " .. logicHandler.GetChatName(pid) .. ".")
 		tes3mp.StartTimer(hungerTime)
 	end
 	
 	function basicNeeds.thirstTic(pid)
 		playerName = tostring(Players[pid].name)
-		thirstTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sissss", playerName, pid, "thirstTic", "thirst", "thirsty", "dehydrated", "magicaBase")
+		thirstTime = tes3mp.CreateTimerEx("basicNeedsLogic", 12000, "sisssss", playerName, pid, "thirstTic", "thirst", "thirsty", "dehydrated", "magickaBase")
 		tes3mp.LogMessage(enumerations.log.INFO, "Running thirst timer for player " .. logicHandler.GetChatName(pid) .. ".")
 		tes3mp.StartTimer(thirstTime)
 	end
@@ -48,7 +46,7 @@ local basicNeeds = {}
     -- Not initialized on login, function not complete
 	function basicNeeds.fatigueTic(pid)
 		playerName = tostring(Players[pid].name)
-		fatigueTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sissss", playerName, pid, "fatigueTic", "fatigue", "tired", "exhausted", "fatigueBase")
+		fatigueTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sisssss", playerName, pid, "fatigueTic", "fatigue", "tired", "exhausted", "fatigueBase")
 		tes3mp.LogMessage(enumerations.log.INFO, "Running fatigue timer for player " .. logicHandler.GetChatName(pid) .. ".")
 		tes3mp.StartTimer(thirstTime)
 	end
@@ -77,9 +75,7 @@ local basicNeeds = {}
 		if drinkVal >=0 then
 			Players[pid].data.playerNeeds.thirst = drinkVal
 			if Players[pid].data.playerNeedsDebuffs.dehydrated == true then
-				manaPool = tonumber(Players[pid].data.stats.magicaBase)
 				Players[pid]:Message("You are no longer dehydrated.")
-				Players[pid].data.stats.magicaBase = manaPool * 2
 				Players[pid].data.playerNeedsDebuffs.dehydrated = false
 			end
 		else
@@ -94,9 +90,7 @@ local basicNeeds = {}
 		if foodVal >=0 then
 			Players[pid].data.playerNeeds.hunger = foodVal
 			if Players[pid].data.playerNeedsDebuffs.starving == true then
-				healthPool = tonumber(Players[pid].data.stats.healthBase)
 				Players[pid]:Message("You are no longer starving.")
-				Players[pid].data.stats.healthBase = healthPool * 2
 				Players[pid].data.playerNeedsDebuffs.starving = false
 			end
 		else
