@@ -86,6 +86,11 @@ function BasePlayer:__init(pid, playerName)
         ipAddresses = {},
         recordLinks = {},
         customVariables = {},
+		playerNeedsDebuffs = {
+			startving = false,
+			dehydrated = false,
+			exausted = false
+		},
 		playerNeeds = {
 			hunger = 0,
 			thirst = 0,
@@ -127,12 +132,21 @@ function BasePlayer:__init(pid, playerName)
 end
 
 function BasePlayer:initNeeds()
-	if self.data.playerNeeds == nil or self.data.playerNeeds.hunger == nil or self.data.playerNeeds.thirst == nil or self.data.playerNeeds.fatigue == nil then
+	if self.data.playerNeeds == nil then
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'playerNeeds', repairing now. ")
 		self.data.playerNeeds = {
 			hunger = 0,
 			thirst = 0,
 			fatigue = 0
+		}
+		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. "'s playerdata was repaired. ")
+	end
+	if self.data.playerNeedsDebuffs == nil then
+		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'playerNeedsDebuffs', repairing now. ")
+		playerNeedsDebuffs = {
+			startving = false,
+			dehydrated = false,
+			exausted = false
 		}
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. "'s playerdata was repaired. ")
 	end
@@ -167,7 +181,7 @@ function BasePlayer:FinishLogin()
     self.loggedIn = true
     if self.hasAccount ~= false then -- load account
         self:SaveIpAddress()
-
+		self:initNeeds()
         self:LoadSettings()
         self:LoadCharacter()
         self:LoadClass()
@@ -251,7 +265,6 @@ function BasePlayer:FinishLogin()
         end
 
         WorldInstance:LoadKills(self.pid)
-		self:initNeeds()
         self:LoadSpecialStates()
 
         if config.shareMapExploration == true then

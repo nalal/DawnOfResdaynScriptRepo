@@ -484,7 +484,7 @@ eventHandler.OnPlayerItemUse = function(pid)
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
         local itemRefId = tes3mp.GetUsedItemRefId(pid)
         tes3mp.LogMessage(enumerations.log.INFO, logicHandler.GetChatName(pid) .. " used inventory item " .. itemRefId)
-
+		basicNeeds.ingest(pid, itemRefId)
         -- Unilateral use of items is disabled on clients, so we need to send
         -- this packet back to the player before they can use the item
         tes3mp.SendItemUse(pid)
