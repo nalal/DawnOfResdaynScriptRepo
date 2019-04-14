@@ -1,0 +1,137 @@
+{
+  "general":{
+    "currentGeneratedNum":36
+  },
+  "permanentRecords":{
+    "Ngoth_bow":{
+      "baseId":"Steel Longbow",
+      "name":"Ngoths Bow",
+      "model":"Steel Longbow"
+    },
+    "N'goth's Steel Bow":{
+      "baseId":"steel longbow"
+    },
+    "N'goths Bow":{
+      "baseId":"steel longbow",
+      "name":"Ngoths bow",
+      "value":80,
+      "weight":10
+    }
+  },
+  "generatedRecords":{
+    "$custom_weapon_33":{
+      "baseId":"steel dai-katana",
+      "name":"Slavdim's Frozen Katana",
+      "enchantmentCharge":300,
+      "enchantmentId":"$custom_enchantment_125"
+    },
+    "$custom_weapon_34":{
+      "baseId":"steel katana",
+      "name":"Steel Katana",
+      "enchantmentCharge":30,
+      "enchantmentId":"$custom_enchantment_135"
+    },
+    "$custom_weapon_14":{
+      "baseId":"Steel Longbow",
+      "name":"Ngoth's Bow"
+    },
+    "$custom_weapon_7":{
+      "baseId":"ebony scimitar",
+      "name":"Withering Blade",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_4"
+    },
+    "$custom_weapon_5":{
+      "baseId":"ebony mace",
+      "name":"Ebony Mace of Enduring Flame",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_2"
+    },
+    "$custom_weapon_35":{
+      "baseId":"t_dae_regular_saber_01",
+      "name":"Saber of the Soulbinder",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_154"
+    },
+    "$custom_weapon_6":{
+      "baseId":"ebony scimitar",
+      "name":"Withering Blade",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_3"
+    },
+    "$custom_weapon_15":{
+      "baseId":"ebony shortsword",
+      "name":"Gethian Darkblade",
+      "value":1000,
+      "enchantmentId":"Nerevar_blade"
+    },
+    "$custom_weapon_13":{
+      "baseId":"steel dai-katana",
+      "name":"Dai-katana of Ultra Instinct",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_38"
+    }
+  },
+  "recordLinks":{
+    "$custom_weapon_33":{
+      "players":["Slavdim Dalken"]
+    },
+    "$custom_weapon_1":{
+      "players":["DM Malic"],
+      "cells":["Balmora, Clagius Clanler: Outfitter"]
+    },
+    "$custom_weapon_14":{
+      "players":[],
+      "cells":["Ald-ruhn, Venim Manor Right Wing"]
+    },
+    "$custom_weapon_7":{
+      "players":[],
+      "cells":["Vivec, Temple Apartments"]
+    },
+    "$custom_weapon_35":{
+      "players":["Schel"]
+    },
+    "$custom_weapon_3":{
+      "players":["DM Malic"],
+      "cells":[]
+    },
+    "$custom_weapon_4":{
+      "players":["DM Malic"],
+      "cells":[]
+    },
+    "$custom_weapon_1 2":{
+      "cells":["44, -11"]
+    },
+    "$custom_weapon_32":{
+      "players":["Naris-Kinslayer"]
+    },
+    "$custom_weapon_36":{
+      "players":["Naris-Kinslayer"]
+    },
+    "$custom_weapon_34":{
+      "players":[],
+      "cells":["Balmora, Guild of Mages"]
+    },
+    "$custom_weapon_5":{
+      "players":[],
+      "cells":["Vivec, Temple Apartments"]
+    },
+    "$custom_weapon_15":{
+      "players":[null,"Drekna Oreyn","Ordis","Saint Geth","Rothis Llethyn"],
+      "cells":["Geth Palace Throne room"]
+    },
+    "$custom_weapon_6":{
+      "players":[],
+      "cells":["Vivec, Temple Apartments"]
+    },
+    "$custom_weapon_3 2":{
+      "cells":["Balmora, Clagius Clanler: Outfitter"]
+    },
+    "$custom_weapon_13":{
+      "players":["Schel"]
+    },
+    "$custom_weapon_16":{
+      "players":["Dranos R'ain"]
+    }
+  }
+}

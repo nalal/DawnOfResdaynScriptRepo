@@ -1,0 +1,643 @@
+{
+  "general":{
+    "currentGeneratedNum":71
+  },
+  "permanentRecords":[],
+  "generatedRecords":{
+    "$custom_clothing_52":{
+      "baseId":"t_com_et_glover_02",
+      "name":"Perfect Right Glove",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_132"
+    },
+    "$custom_clothing_27":{
+      "baseId":"exquisite_belt_01",
+      "name":"Belt of the Seraph",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_60"
+    },
+    "$custom_clothing_15":{
+      "baseId":"extravagant_glove_left_01",
+      "name":"Left Glove of Ultra Instinct",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_34"
+    },
+    "$custom_clothing_66":{
+      "baseId":"exquisite_amulet_01",
+      "name":"Amulet of the Limit Breaker",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_162"
+    },
+    "$custom_clothing_54":{
+      "baseId":"exquisite_ring_02",
+      "name":"Ring of the Demigod",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_134"
+    },
+    "$custom_clothing_17":{
+      "baseId":"exquisite_amulet_01",
+      "name":"Exquisite Amulet",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_36"
+    },
+    "$custom_clothing_41":{
+      "baseId":"exquisite_ring_01",
+      "name":"Ring of the Titan",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_101"
+    },
+    "$custom_clothing_55":{
+      "baseId":"common_ring_02",
+      "name":"Scratch Healer",
+      "enchantmentCharge":10,
+      "enchantmentId":"$custom_enchantment_150"
+    },
+    "$custom_clothing_8":{
+      "baseId":"exquisite_belt_01",
+      "name":"Belt of Smooth Landing",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_24"
+    },
+    "$custom_clothing_25":{
+      "baseId":"extravagant_glove_right_01",
+      "name":"Right Glove of Grip",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_58"
+    },
+    "$custom_clothing_43":{
+      "baseId":"extravagant_pants_01",
+      "name":"Extravagant Pants",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_113"
+    },
+    "$custom_clothing_48":{
+      "baseId":"exquisite_amulet_01",
+      "name":"Exquisite Amulet",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_121"
+    },
+    "$custom_clothing_2":{
+      "baseId":"exquisite_belt_01",
+      "name":"Belt of Icarian Landing",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_1"
+    },
+    "$custom_clothing_70":{
+      "baseId":"exquisite_amulet_01",
+      "name":"Amulet of the Perfectionist",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_166"
+    },
+    "$custom_clothing_56":{
+      "baseId":"common_ring_03",
+      "name":"Diseased Rabbit's Foot",
+      "enchantmentCharge":10,
+      "enchantmentId":"$custom_enchantment_151"
+    },
+    "$custom_clothing_33":{
+      "baseId":"exquisite_belt_01",
+      "name":"Belt of the Seraph",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_76"
+    },
+    "$custom_clothing_42":{
+      "baseId":"expensive_ring_01",
+      "name":"Almsivi Intervention Ring",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_108"
+    },
+    "$custom_clothing_57":{
+      "baseId":"exquisite_ring_01",
+      "name":"Engraved Ring of Regeneration",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_152"
+    },
+    "$custom_clothing_40":{
+      "baseId":"exquisite_skirt_01",
+      "name":"Exquisite Skirt",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_100"
+    },
+    "$custom_clothing_29":{
+      "baseId":"exquisite_shirt_01",
+      "name":"Tunic of Swift Judgement",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_62"
+    },
+    "$custom_clothing_44":{
+      "baseId":"expensive_robe_02",
+      "name":"Expensive Robe",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_117"
+    },
+    "$custom_clothing_32":{
+      "baseId":"exquisite_ring_01",
+      "name":"Ring of Invisibility",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_69"
+    },
+    "$custom_clothing_60":{
+      "baseId":"exquisite_robe_01",
+      "name":"Robe of the Ancestors",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_156"
+    },
+    "$custom_clothing_71":{
+      "baseId":"exquisite_skirt_01",
+      "name":"Skirt of the Samurai",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_167"
+    },
+    "$custom_clothing_19":{
+      "baseId":"exquisite_belt_01",
+      "name":"Belt of the Limit Breaker",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_50"
+    },
+    "$custom_clothing_31":{
+      "baseId":"exquisite_pants_01",
+      "name":"Pants of the Powers",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_64"
+    },
+    "$custom_clothing_20":{
+      "baseId":"exquisite_pants_01",
+      "name":"Leggings of the Limit Breaker",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_51"
+    },
+    "$custom_clothing_3":{
+      "name":"Yusazami's Cloak",
+      "subtype":4,
+      "value":30,
+      "weight":1,
+      "icon":"A\\TX_cloak_of_Mykul.tga",
+      "model":"a\\a_cloakwo_04.NIF",
+      "parts":[{
+          "partType":1,
+          "malePart":"a_ahood_04"
+        }]
+    },
+    "$custom_clothing_1":{
+      "name":"Sarys' Stone",
+      "value":10000,
+      "weight":0.5,
+      "icon":"c\\C_ring_wind.tga",
+      "model":"c\\C_art_Ring_wind.nif",
+      "enchantmentId":"helseth_ring_en"
+    },
+    "$custom_clothing_63":{
+      "baseId":"exquisite_ring_01",
+      "name":"Ring of the Demigod",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_159"
+    },
+    "$custom_clothing_45":{
+      "baseId":"t_de_et_shirt_01",
+      "name":"Extravagant Shirt",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_118"
+    },
+    "$custom_clothing_10":{
+      "baseId":"exquisite_ring_01",
+      "name":"Ring of Warding",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_26"
+    },
+    "$custom_clothing_61":{
+      "baseId":"exquisite_skirt_01",
+      "name":"Skirt of the Samurai",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_157"
+    },
+    "$custom_clothing_49":{
+      "baseId":"extravagant_glove_left_01",
+      "name":"Glove of the Water Breather",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_122"
+    },
+    "$custom_clothing_47":{
+      "baseId":"exquisite_ring_01",
+      "name":"Ring of Constant Healing",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_120"
+    },
+    "$custom_clothing_46":{
+      "baseId":"exquisite_ring_01",
+      "name":"Exquisite Ring",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_119"
+    },
+    "$custom_clothing_21":{
+      "baseId":"exquisite_skirt_01",
+      "name":"Skirt of the Limit Breaker",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_52"
+    },
+    "$custom_clothing_68":{
+      "baseId":"exquisite_pants_01",
+      "name":"Pants of the Powers",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_164"
+    },
+    "$custom_clothing_9":{
+      "baseId":"exquisite_shoes_01",
+      "name":"Slippers of Ultra Instinct",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_25"
+    },
+    "$custom_clothing_12":{
+      "baseId":"exquisite_ring_01",
+      "name":"Ring of Ultra Instinct",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_28"
+    },
+    "$custom_clothing_23":{
+      "baseId":"exquisite_ring_01",
+      "name":"Ring of the Limit Breaker",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_55"
+    },
+    "$custom_clothing_11":{
+      "baseId":"exquisite_belt_01",
+      "name":"Belt of Ultra Instinct",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_27"
+    },
+    "$custom_clothing_62":{
+      "baseId":"t_de_ex_robe_01",
+      "name":"Robe of the Rising Sun",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_158"
+    },
+    "$custom_clothing_50":{
+      "baseId":"extravagant_glove_left_01",
+      "name":"Glove of the Water Breather",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_123"
+    },
+    "$custom_clothing_64":{
+      "baseId":"exquisite_ring_01",
+      "name":"Ring of the Limit Breaker",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_160"
+    },
+    "$custom_clothing_13":{
+      "baseId":"exquisite_skirt_01",
+      "name":"Skirt of Ultra Instinct",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_32"
+    },
+    "$custom_clothing_22":{
+      "baseId":"exquisite_amulet_01",
+      "name":"Amulet of the Limit Breaker",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_54"
+    },
+    "$custom_clothing_4":{
+      "name":"Yusa's cloak and hood",
+      "subtype":1,
+      "value":30,
+      "weight":2,
+      "icon":"A\\TX_cloak_of_Mykul.tga",
+      "model":"a\\a_cloakwo_04.NIF",
+      "parts":[{
+          "partType":1,
+          "malePart":"a_ahood_04",
+          "femalePart":"a_ahood_04"
+        },{
+          "partType":2,
+          "malePart":"a_acape_04",
+          "femalePart":"a_acape_04"
+        }]
+    },
+    "$custom_clothing_18":{
+      "baseId":"exquisite_belt_01",
+      "name":"Belt of Ultra Instinct",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_37"
+    },
+    "$custom_clothing_16":{
+      "baseId":"extravagant_glove_right_01",
+      "name":"Right Glove of Ultra Instinct",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_35"
+    },
+    "$custom_clothing_24":{
+      "baseId":"exquisite_amulet_01",
+      "name":"Chain of the Infernal Pet",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_57"
+    },
+    "$custom_clothing_7":{
+      "baseId":"exquisite_pants_01",
+      "name":"Leggings of Ultra Instinct",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_23"
+    },
+    "$custom_clothing_28":{
+      "baseId":"exquisite_ring_01",
+      "name":"Ring of the Swift Bastard",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_61"
+    },
+    "$custom_clothing_51":{
+      "baseId":"extravagant_glove_right_01",
+      "name":"Extravagant Right Glove",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_124"
+    },
+    "$custom_clothing_59":{
+      "baseId":"t_de_et_robe_01",
+      "name":"Robes of the Nightseer",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_155"
+    },
+    "$custom_clothing_14":{
+      "baseId":"exquisite_shirt_01",
+      "name":"Exquisite Shirt",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_33"
+    },
+    "$custom_clothing_65":{
+      "baseId":"exquisite_belt_01",
+      "name":"Belt of the Perfectionist",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_161"
+    },
+    "$custom_clothing_53":{
+      "baseId":"t_com_et_glovel_02",
+      "name":"Perfect Left Glove",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_133"
+    },
+    "$custom_clothing_58":{
+      "baseId":"exquisite_amulet_01",
+      "name":"Amulet of Regeneration",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_153"
+    },
+    "$custom_clothing_69":{
+      "baseId":"exquisite_shirt_01",
+      "name":"Tunic of the Titan",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_165"
+    },
+    "$custom_clothing_67":{
+      "baseId":"exquisite_ring_01",
+      "name":"Ring of the Limit Breaker",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_163"
+    },
+    "$custom_clothing_26":{
+      "baseId":"extravagant_glove_left_01",
+      "name":"Left Glove of Grip",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_59"
+    },
+    "$custom_clothing_30":{
+      "baseId":"exquisite_shirt_01",
+      "name":"Tunic of the Titan",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_63"
+    }
+  },
+  "recordLinks":{
+    "$custom_clothing_52":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_27":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_30":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_66":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_54":{
+      "players":["Naris-Kinslayer"],
+      "cells":["0, 0"]
+    },
+    "$custom_clothing_17":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_clothing_41":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_clothing_43":{
+      "players":["Ordis"],
+      "cells":["Old Ebonheart, Joaline Frey's House"]
+    },
+    "$custom_clothing_31":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_8":{
+      "players":["Braros"],
+      "cells":[]
+    },
+    "$custom_clothing_33":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_clothing_42":{
+      "players":["Ulyna Vlesyl"],
+      "cells":[]
+    },
+    "$custom_clothing_29":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_clothing_44":{
+      "players":["Ordis"]
+    },
+    "$custom_clothing_32":{
+      "players":["Galos Othril"]
+    },
+    "$custom_clothing_56":{
+      "players":["Slavdim Dalken"]
+    },
+    "$custom_clothing_19":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_34":{
+      "cells":["Vivec, Guild of Mages"]
+    },
+    "$custom_clothing_20":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_3":{
+      "players":["DM Greenjoe"],
+      "cells":["-6, -4"]
+    },
+    "$custom_clothing_45":{
+      "players":["Ordis"]
+    },
+    "$custom_clothing_10":{
+      "players":["Midiri"],
+      "cells":[]
+    },
+    "$custom_clothing_35":{
+      "cells":["Vivec, Guild of Mages"]
+    },
+    "$custom_clothing_21":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_9":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_46":{
+      "players":["Ordis"]
+    },
+    "$custom_clothing_11":{
+      "players":["Aridur Salingire"],
+      "cells":[]
+    },
+    "$custom_clothing_36":{
+      "cells":["Vivec, Guild of Mages"]
+    },
+    "$custom_clothing_22":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_24":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_12":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_4":{
+      "players":[null,"Yusazami","Drissida-la","Drissida-La"],
+      "cells":[null,"Mournhold"]
+    },
+    "$custom_clothing_14":{
+      "players":["Schel"],
+      "cells":[]
+    },
+    "$custom_clothing_25":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_15":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_26":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_16":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_70":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_clothing_69":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_clothing_2":{
+      "players":["Galos Othril"],
+      "cells":[]
+    },
+    "$custom_clothing_60":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_71":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_61":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_47":{
+      "players":["Ordis"]
+    },
+    "$custom_clothing_59":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_68":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_clothing_37":{
+      "cells":["Vivec, Guild of Mages"]
+    },
+    "$custom_clothing_49":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_clothing_23":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_clothing_62":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_clothing_50":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_18":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_clothing_13":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_clothing_64":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_58":{
+      "players":["Galos Othril"]
+    },
+    "$custom_clothing_48":{
+      "players":["Ordis"]
+    },
+    "$custom_clothing_67":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_28":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_clothing_7":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_clothing_4 1":{
+      "cells":["Balmora, Vori's House","Mournhold"]
+    },
+    "$custom_clothing_51":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_63":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_1":{
+      "players":["Galos Othril"],
+      "cells":[]
+    },
+    "$custom_clothing_65":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_53":{
+      "players":["Schel"]
+    },
+    "$custom_clothing_39":{
+      "cells":["Vivec, Guild of Mages"]
+    },
+    "$custom_clothing_38":{
+      "cells":["Vivec, Guild of Mages"]
+    },
+    "$custom_clothing_40":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_clothing_57":{
+      "players":["Galos Othril"]
+    },
+    "$custom_clothing_55":{
+      "players":["Slavdim Dalken"]
+    }
+  }
+}

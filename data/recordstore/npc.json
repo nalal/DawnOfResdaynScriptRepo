@@ -1,0 +1,71 @@
+{
+  "general":{
+    "currentGeneratedNum":7
+  },
+  "permanentRecords":[],
+  "generatedRecords":{
+    "$custom_npc_3":{
+      "baseId":"ordinator wander",
+      "name":"Ordinator Davor",
+      "gender":0,
+      "hair":"WAR_zDE_fHr10f",
+      "head":"WARDEfz2a_TAT_Red",
+      "inventoryBaseId":"elam andas"
+    },
+    "$custom_npc_4":{
+      "baseId":"s'bakha",
+      "hair":"b_n_khajiit_m_hair_03",
+      "head":"b_n_khajiit_m_head_01"
+    },
+    "$custom_npc_7":{
+      "autoCalc":1
+    },
+    "$custom_npc_5":{
+      "baseId":"s'bakha",
+      "hair":"b_n_khajiit_m_hair03",
+      "head":"b_n_khajiit_m_head_03"
+    },
+    "$custom_npc_1":{
+      "baseId":"ordinator wander",
+      "gender":0,
+      "hair":"WAR_zDE_fHr10f",
+      "head":"WARDEfz2a_TAT_Red"
+    },
+    "$custom_npc_6":{
+      "baseId":"s'bakha",
+      "name":"Do'Zaymarah",
+      "hair":"b_n_khajiit_m_hair03",
+      "head":"b_n_khajiit_m_head_02"
+    },
+    "$custom_npc_2":{
+      "baseId":"ordinator wander",
+      "name":"Officer Davor",
+      "gender":0,
+      "hair":"WAR_zDE_fHr10f",
+      "head":"WARDEfz2a_TAT_Red"
+    }
+  },
+  "recordLinks":{
+    "$custom_npc_3":{
+      "cells":["Vivec, St. Olms Waistworks","-3, -2"]
+    },
+    "$custom_npc_4":{
+      "cells":["15, 6"]
+    },
+    "$custom_npc_3 1":{
+      "cells":["Vivec, St. Olms Waistworks"]
+    },
+    "$custom_npc_5":{
+      "cells":["15, 5","Caldera Mine"]
+    },
+    "$custom_npc_1":{
+      "cells":["Vivec, St. Olms Waistworks"]
+    },
+    "$custom_npc_2":{
+      "cells":["Vivec, St. Olms Waistworks","-3, -2"]
+    },
+    "$custom_npc_6":{
+      "cells":["15, 6","Caldera Mine"]
+    }
+  }
+}

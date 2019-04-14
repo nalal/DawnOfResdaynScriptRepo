@@ -1,0 +1,411 @@
+{
+  "general":{
+    "currentGeneratedNum":57
+  },
+  "permanentRecords":{
+    "geth_right_bracer":{
+      "baseId":"slave_bracer_right",
+      "name":"Geth's Right Prison Bracer",
+      "value":5,
+      "weight":5
+    },
+    "Geth's_left_bracer":{
+      "baseId":"slave_left_bracer",
+      "name":"Geth's Left Prison Bracer",
+      "value":5,
+      "weight":5
+    },
+    "champions_helm":{
+      "baseId":"bs_KAS_Ebony_Open_Helm",
+      "name":"Champions Helm",
+      "value":100,
+      "weight":1,
+      "enchantmentId":"0",
+      "armorRating":1000
+    },
+    "geth_left_bracer":{
+      "baseId":"slave_bracer_left",
+      "name":"Geth's Left Prison Bracer",
+      "value":5,
+      "weight":5
+    }
+  },
+  "generatedRecords":{
+    "$custom_armor_57":{
+      "baseId":"dwemer_greaves",
+      "name":"Dwemer Greaves",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_131"
+    },
+    "$custom_armor_44":{
+      "baseId":"t_de_necrom_helm_01",
+      "name":"Necrom Helm of Strength",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_107"
+    },
+    "$custom_armor_37":{
+      "baseId":"daedric_pauldron_left",
+      "name":"Daedric Left Pauldron of Fatigue",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_98"
+    },
+    "$custom_armor_56":{
+      "baseId":"dwemer_boots",
+      "name":"Dwemer Boots of the Assassin Killer",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_130"
+    },
+    "$custom_armor_55":{
+      "baseId":"t_dwe_scavenged_helm_01",
+      "name":"Scavenged Dwemer Helm of the Golden One",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_129"
+    },
+    "$custom_armor_12":[],
+    "$custom_armor_11":{
+      "baseId":"champions_helm",
+      "name":"champions helm"
+    },
+    "$custom_armor_24":{
+      "baseId":"ebony_bracer_left",
+      "name":"Left Bracer of Laughter",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_47"
+    },
+    "$custom_armor_36":{
+      "baseId":"daedric_pauldron_right",
+      "name":"Daedric Right Pauldron of Fatigue",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_97"
+    },
+    "$custom_armor_42":{
+      "baseId":"t_de_necrom_helm_01",
+      "name":"Necrom Helm of Regeneration",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_105"
+    },
+    "$custom_armor_41":{
+      "baseId":"dnk_qor_cuirass",
+      "name":"Artificer's Folly",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_104"
+    },
+    "$custom_armor_54":{
+      "baseId":"t_dwe_scavenged_pauldronr_01",
+      "name":"Scavenged Dwemer Right Pauldron",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_128"
+    },
+    "$custom_armor_53":{
+      "baseId":"t_dwe_scavenged_pauldronl_01",
+      "name":"Scavenged Dwemer Left Pauldron of the Glowing One",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_127"
+    },
+    "$custom_armor_21":{
+      "baseId":"Septim_helmet",
+      "name":"Septim Helmet",
+      "value":10000,
+      "weight":1,
+      "model":"bs_kas_ebony_open_helm",
+      "health":1000
+    },
+    "$custom_armor_34":{
+      "baseId":"daedric_gauntlet_right",
+      "name":"Daedric Right Gauntlet of Strength",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_95"
+    },
+    "$custom_armor_40":{
+      "baseId":"dnk_qor_p_right",
+      "name":"Enchanter's Right Pauldron",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_103"
+    },
+    "$custom_armor_33":{
+      "baseId":"daedric_greaves",
+      "name":"Daedric Greaves of Fatigue",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_94"
+    },
+    "$custom_armor_52":{
+      "baseId":"t_dwe_scavenged_cuirass_01",
+      "name":"Scavenged Dwemer Cuirass of the Mighty One",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_126"
+    },
+    "$custom_armor_51":{
+      "baseId":"daedric_pauldron_right",
+      "name":"Daedric Right Pauldron",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_116"
+    },
+    "$custom_armor_49":{
+      "baseId":"daedric_greaves",
+      "name":"Daedric Greaves",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_114"
+    },
+    "$custom_armor_18":{
+      "baseId":"ash_bonemold_war_pauldron_r",
+      "name":"Redoran Right War Pauldron",
+      "enchantmentCharge":30,
+      "enchantmentId":"$custom_enchantment_40"
+    },
+    "$custom_armor_1":{
+      "name":"Yusa's cloak",
+      "subtype":1,
+      "value":30,
+      "weight":1,
+      "icon":"A\\TX_cloak_of_Mykul.tga",
+      "model":"a\\a_cloakwo_04.NIF",
+      "health":50,
+      "armorRating":0,
+      "parts":[{
+          "partType":0,
+          "malePart":"a_ahood_04",
+          "femalePart":"a_ahood_04"
+        }]
+    },
+    "$custom_armor_32":{
+      "baseId":"daedric_boots",
+      "name":"Daedric Boots of Strength",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_93"
+    },
+    "$custom_armor_31":{
+      "baseId":"1ba_hood_",
+      "name":"Cliff Racer Hood",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_68"
+    },
+    "$custom_armor_48":{
+      "baseId":"daedric_gauntlet_right",
+      "name":"Daedric Right Gauntlet",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_112"
+    },
+    "$custom_armor_47":{
+      "baseId":"daedric_gauntlet_left",
+      "name":"Daedric Left Gauntlet",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_111"
+    },
+    "$custom_armor_17":{
+      "baseId":"ash_bonemold_war_pauldron_l",
+      "name":"Redoran Left War Pauldron",
+      "enchantmentCharge":30,
+      "enchantmentId":"$custom_enchantment_39"
+    },
+    "$custom_armor_23":{
+      "baseId":"ebony_bracer_right",
+      "name":"Right Bracer of Love",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_46"
+    },
+    "$custom_armor_39":{
+      "baseId":"dnk_qor_p_left",
+      "name":"Enchanter's Left Pauldron",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_102"
+    },
+    "$custom_armor_28":{
+      "baseId":"morag_tong_helm",
+      "name":"Mask of the Assassin Slayer",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_65"
+    },
+    "$custom_armor_20":{
+      "baseId":"ash_bonemold_war_cuirass",
+      "name":"Redoran War Cuirass",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_42"
+    },
+    "$custom_armor_19":{
+      "baseId":"ash_bonemold_war_helm",
+      "name":"Redoran Founder's War Helm",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_41"
+    },
+    "$custom_armor_46":{
+      "baseId":"daedric_boots",
+      "name":"Daedric Boots",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_110"
+    },
+    "$custom_armor_50":{
+      "baseId":"daedric_pauldron_left",
+      "name":"Daedric Left Pauldron",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_115"
+    },
+    "$custom_armor_45":{
+      "baseId":"daedric_cuirass",
+      "name":"Daedric Cuirass",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_109"
+    },
+    "$custom_armor_35":{
+      "baseId":"daedric_gauntlet_left",
+      "name":"Daedric Left Gauntlet of Strength",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_96"
+    },
+    "$custom_armor_38":{
+      "baseId":"daedric_cuirass",
+      "name":"Daedric Cuirass of Strength",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_99"
+    }
+  },
+  "recordLinks":{
+    "$custom_armor_57":{
+      "players":[],
+      "cells":["Vivec, St. Delyn Waist South-Two"]
+    },
+    "$custom_armor_26":{
+      "players":[],
+      "cells":["Vivec, St. Delyn Waist South-Two"]
+    },
+    "$custom_armor_25":{
+      "players":[],
+      "cells":["Vivec, St. Delyn Waist South-Two"]
+    },
+    "$custom_armor_38":{
+      "players":[],
+      "cells":["Vivec, St. Delyn Waist South-Two"]
+    },
+    "$custom_armor_37":{
+      "players":["Schel"],
+      "cells":[]
+    },
+    "$custom_armor_56":{
+      "players":[],
+      "cells":["Vivec, St. Delyn Waist South-Two"]
+    },
+    "$custom_armor_55":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_armor_24":{
+      "players":[],
+      "cells":["Vivec, St. Delyn Waist South-Two"]
+    },
+    "$custom_armor_36":{
+      "players":["Schel"],
+      "cells":[]
+    },
+    "$custom_armor_42":{
+      "players":["Schel"]
+    },
+    "$custom_armor_41":{
+      "players":["Schel"]
+    },
+    "$custom_armor_54":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_armor_53":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_armor_22":{
+      "players":[],
+      "cells":["Vivec, St. Delyn Waist South-Two"]
+    },
+    "$custom_armor_21":{
+      "cells":["Old Ebonheart, Anjzhirra's Rare Goods"]
+    },
+    "$custom_armor_34":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_armor_40":{
+      "players":["Schel"]
+    },
+    "$custom_armor_33":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_armor_52":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_armor_51":{
+      "players":[],
+      "cells":["6, -7"]
+    },
+    "$custom_armor_49":{
+      "players":[],
+      "cells":["6, -7"]
+    },
+    "$custom_armor_20":{
+      "players":["Schel"]
+    },
+    "$custom_armor_17":{
+      "players":["Schel"]
+    },
+    "$custom_armor_32":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_armor_31":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_armor_50":{
+      "players":[],
+      "cells":["6, -7"]
+    },
+    "$custom_armor_47":{
+      "players":[],
+      "cells":["6, -7"]
+    },
+    "$custom_armor_48":{
+      "players":[],
+      "cells":["6, -7"]
+    },
+    "$custom_armor_23":{
+      "players":[],
+      "cells":["Vivec, St. Delyn Waist South-Two"]
+    },
+    "$custom_armor_45":{
+      "players":[],
+      "cells":["6, -7"]
+    },
+    "$custom_armor_1":{
+      "players":[],
+      "cells":["-6, -4"]
+    },
+    "$custom_armor_18":{
+      "players":["Schel"]
+    },
+    "$custom_armor_28":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_armor_19":{
+      "players":["Schel"]
+    },
+    "$custom_armor_27":{
+      "players":["Dranos R'ain"]
+    },
+    "$custom_armor_46":{
+      "players":[],
+      "cells":["6, -7"]
+    },
+    "$custom_armor_43":{
+      "cells":["Vivec, Guild of Mages"]
+    },
+    "$custom_armor_39":{
+      "players":["Schel"]
+    },
+    "$custom_armor_35":{
+      "players":["Dranos R'ain"],
+      "cells":[]
+    },
+    "$custom_armor_44":{
+      "players":["Schel"]
+    }
+  }
+}

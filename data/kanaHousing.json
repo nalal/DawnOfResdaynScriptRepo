@@ -1,0 +1,1715 @@
+{
+  "cells":{
+    "Ald-ruhn, Venim Manor Bedrooms":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "house":"Ald-Ruhn, Venim Manor Master Bedroom",
+      "name":"Ald-ruhn, Venim Manor Bedrooms",
+      "requiresResets":false
+    },
+    "Old Ebonheart, Merxia Vendicci's Manor":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "house":"Old Ebonheart, Governor's Mansion",
+      "name":"Old Ebonheart, Merxia Vendicci's Manor",
+      "requiresResets":false
+    },
+    "Ald-ruhn, Sarethi Guard Quarters":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "house":"Ald-Ruhn, Sarethi Manor",
+      "name":"Ald-ruhn, Sarethi Guard Quarters",
+      "requiresResets":false
+    },
+    "Vivec, St. Olms Upper North-Two":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St Olms Upper North Two",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Upper North-Two",
+      "requiresResets":false
+    },
+    "Ald-ruhn, Sarethi Manor":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "house":"Ald-Ruhn, Sarethi Manor",
+      "name":"Ald-ruhn, Sarethi Manor",
+      "requiresResets":false
+    },
+    "Geth, Bolvyn Falas' House":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "house":"Geth, Bolvyn Falas' House",
+      "name":"Geth, Bolvyn Falas' House",
+      "requiresResets":false
+    },
+    "Vivec, St. Olms Waist North-One":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St. Olms Waist North One",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Waist North-One",
+      "requiresResets":false
+    },
+    "Vivec, St. Olms Waist South-Two":{
+      "ownedContainers":true,
+      "requiredAccess":true,
+      "house":"St Olms. Waist South Two",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Waist South-Two",
+      "requiresResets":true
+    },
+    "Vivec, St. Olms Yngling Manor":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St. Olms Yngling Manor",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Yngling Manor",
+      "requiresResets":false
+    },
+    "Caldera, Governor's Hall":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "house":"Caldera Governors Mansion",
+      "name":"Caldera, Governor's Hall",
+      "requiresResets":false
+    },
+    "Old Ebonheart, Cyrtus Clagno's House":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"Old Ebonheart, Cyrtus Clagno's House",
+      "resetInfo":[],
+      "name":"Old Ebonheart, Cyrtus Clagno's House",
+      "requiresResets":false
+    },
+    "Vivec, St. Olms Canal South-One":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St. Olms Canal South One",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Canal South-One",
+      "requiresResets":false
+    },
+    "Vivec, Indoril Plaza":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "name":"Vivec, Indoril Plaza",
+      "requiresResets":false
+    },
+    "Old Ebonheart, Ruma Soanix's Manor":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"Old Ebonheart, Ruma Soanix's Manor",
+      "resetInfo":[],
+      "name":"Old Ebonheart, Ruma Soanix's Manor",
+      "requiresResets":false
+    },
+    "Balmora, Dorisa Darvel: Bookseller":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "house":"Trove of Tomes",
+      "name":"Balmora, Dorisa Darvel: Bookseller",
+      "requiresResets":true
+    },
+    "Ald-ruhn, Ald Skar Inn":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"Ald-Ruhn, Ald Skar Inn",
+      "resetInfo":[],
+      "name":"Ald-ruhn, Ald Skar Inn",
+      "requiresResets":false
+    },
+    "Vivec, St. Delyn Waist North-One":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St Delyn Waist North One",
+      "resetInfo":[],
+      "name":"Vivec, St. Delyn Waist North-One",
+      "requiresResets":false
+    },
+    "Vivec, Saren Manor":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "house":"Vivec, Saren Manor",
+      "name":"Vivec, Saren Manor",
+      "requiresResets":false
+    },
+    "Vivec, St. Delyn Waist South-One":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St Delyn Waist South One",
+      "resetInfo":[],
+      "name":"Vivec, St. Delyn Waist South-One",
+      "requiresResets":false
+    },
+    "Vivec, St. Delyn Canal North-Three":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St Delyn Canal North Three",
+      "resetInfo":[],
+      "name":"Vivec, St. Delyn Canal North-Three",
+      "requiresResets":false
+    },
+    "7, -19":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "name":"7, -19",
+      "requiresResets":false
+    },
+    "Vivec, St. Delyn Canal North-Two":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St Delyn Canal North Two",
+      "resetInfo":[],
+      "name":"Vivec, St. Delyn Canal North-Two",
+      "requiresResets":false
+    },
+    "Vivec, St. Delyn Canal North-One":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St Delyn Canal North One",
+      "resetInfo":[],
+      "name":"Vivec, St. Delyn Canal North-One",
+      "requiresResets":false
+    },
+    "Balmora, Vori's House":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"Balmora, West Riverside 3",
+      "resetInfo":[],
+      "name":"Balmora, Vori's House",
+      "requiresResets":false
+    },
+    "Vivec, St. Olms Waist South-One":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St. Olms Waist South One",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Waist South-One",
+      "requiresResets":false
+    },
+    "Vivec, Temple Apartments":{
+      "ownedContainers":false,
+      "requiredAccess":true,
+      "house":"Vivec, Patriarch Apartments",
+      "resetInfo":[],
+      "name":"Vivec, Temple Apartments",
+      "requiresResets":false
+    },
+    "Vivec, St. Olms Waist North-Two":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St. Olms Waist North Two",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Waist North-Two",
+      "requiresResets":false
+    },
+    "Vivec, St. Olms Canal North-One":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St. Olms Canal North One",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Canal North-One",
+      "requiresResets":false
+    },
+    "Vivec, Redoran Plaza":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "name":"Vivec, Redoran Plaza",
+      "requiresResets":false
+    },
+    "Vivec, St. Olms Upper South-One":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St. Olms Upper South One",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Upper South-One",
+      "requiresResets":false
+    },
+    "Vivec, St. Olms Canal South-Three":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St. Olms Canal South Three",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Canal South-Three",
+      "requiresResets":false
+    },
+    "Ald-ruhn, Arobar Manor Bedrooms":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"Ald-Ruhn, Arobar Manor Bedrooms",
+      "resetInfo":[],
+      "name":"Ald-ruhn, Arobar Manor Bedrooms",
+      "requiresResets":false
+    },
+    "Vivec, St. Olms Canal South-Two":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St. Olms, Canal South Two",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Canal South-Two",
+      "requiresResets":false
+    },
+    "Mournhold":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "name":"Mournhold",
+      "requiresResets":false
+    },
+    "Stirk, Helvor Manor":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"Stirk Sea-side Condo",
+      "resetInfo":[],
+      "name":"Stirk, Helvor Manor",
+      "requiresResets":false
+    },
+    "Balmora, Rarayn Radarys' House":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "house":"Balmora, East Riverside 1",
+      "name":"Balmora, Rarayn Radarys' House",
+      "requiresResets":false
+    },
+    "Old Ebonheart, Anjzhirra's Rare Goods":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "house":"The Guar Saddle",
+      "name":"Old Ebonheart, Anjzhirra's Rare Goods",
+      "requiresResets":false
+    },
+    "Vivec, St. Delyn Canal South-One":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St Delyn Canal South Two",
+      "resetInfo":[],
+      "name":"Vivec, St. Delyn Canal South-One",
+      "requiresResets":false
+    },
+    "Balmora, Hlaalu Council Manor":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "name":"Balmora, Hlaalu Council Manor",
+      "requiresResets":false
+    },
+    "Vivec, St. Olms Canal North-Two":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St. Olms Canal North Two",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Canal North-Two",
+      "requiresResets":false
+    },
+    "Old Ebonheart, Joaline Frey's House":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "house":"Old Ebonheart, Cottage Row 2",
+      "name":"Old Ebonheart, Joaline Frey's House",
+      "requiresResets":false
+    },
+    "Vivec, St. Olms Canal North-Three":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St. Olms Canal North Three",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Canal North-Three",
+      "requiresResets":false
+    },
+    "Vivec, St. Olms Upper North-One":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St Olms Upper North One",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Upper North-One",
+      "requiresResets":false
+    },
+    "Vivec, St. Olms Yngling Manor Basement":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St. Olms Yngling Manor",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Yngling Manor Basement",
+      "requiresResets":false
+    },
+    "Suran, Oran Manor":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"Suran, Oran Manor",
+      "resetInfo":[],
+      "name":"Suran, Oran Manor",
+      "requiresResets":false
+    },
+    "Vivec, St. Delyn Waist South-Two":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St Delyn Waist South Two",
+      "resetInfo":[],
+      "name":"Vivec, St. Delyn Waist South-Two",
+      "requiresResets":false
+    },
+    "Vivec, St. Delyn Canal South-Three":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St Delyn Canal South Three",
+      "resetInfo":[],
+      "name":"Vivec, St. Delyn Canal South-Three",
+      "requiresResets":false
+    },
+    "Vivec, St. Olms Haunted Manor":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St. Olms Haunted Manor",
+      "resetInfo":[],
+      "name":"Vivec, St. Olms Haunted Manor",
+      "requiresResets":false
+    },
+    "Ules Manor":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"Ules Manor",
+      "resetInfo":[],
+      "name":"Ules Manor",
+      "requiresResets":false
+    },
+    "Vivec, St. Delyn Canal South-Two":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St Delyn Canal South One",
+      "resetInfo":[],
+      "name":"Vivec, St. Delyn Canal South-Two",
+      "requiresResets":false
+    },
+    "Vivec, St. Delyn Waist North-Two":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "house":"St Delyn Waist North Two",
+      "resetInfo":[],
+      "name":"Vivec, St. Delyn Waist North-Two",
+      "requiresResets":false
+    },
+    "Old Ebonheart, Merxia Vendicci's Manor: Basement":{
+      "ownedContainers":false,
+      "requiredAccess":false,
+      "resetInfo":[],
+      "house":"Old Ebonheart, Governor's Mansion: Basement",
+      "name":"Old Ebonheart, Merxia Vendicci's Manor: Basement",
+      "requiresResets":false
+    }
+  },
+  "houses":{
+    "St Olms Upper North Two":{
+      "price":800,
+      "inside":{
+        "pos":{
+          "y":-151.46258544922,
+          "x":-1.7929286956787,
+          "z":-127.00000762939
+        },
+        "cell":"Vivec, St. Olms Upper North-Two"
+      },
+      "cells":{
+        "Vivec, St. Olms Upper North-Two":true
+      },
+      "doors":[],
+      "name":"St Olms Upper North Two",
+      "outside":{
+        "pos":{
+          "y":545.32928466797,
+          "x":1258.9133300781,
+          "z":-1886.6595458984
+        },
+        "cell":"Vivec, St. Olms Plaza"
+      }
+    },
+    "St. Olms Canal North Two":{
+      "price":500,
+      "inside":{
+        "pos":{
+          "y":82.688613891602,
+          "x":0.80585694313049,
+          "z":-126.99999237061
+        },
+        "cell":"Vivec, St. Olms Canal North-Two"
+      },
+      "cells":{
+        "Vivec, St. Olms Canal North-Two":true
+      },
+      "doors":[],
+      "name":"St. Olms Canal North Two",
+      "outside":{
+        "pos":{
+          "y":-90895.546875,
+          "x":36548.12890625,
+          "z":577
+        },
+        "cell":"4, -12"
+      }
+    },
+    "Ald-Ruhn, Arobar Manor Bedrooms":{
+      "price":5000,
+      "inside":{
+        "pos":{
+          "y":1.1413860321045,
+          "x":-728.25842285156,
+          "z":-127
+        },
+        "cell":"Ald-ruhn, Arobar Manor Bedrooms"
+      },
+      "cells":{
+        "Ald-ruhn, Arobar Manor Bedrooms":true
+      },
+      "doors":[],
+      "name":"Ald-Ruhn, Arobar Manor Bedrooms",
+      "outside":{
+        "pos":{
+          "y":-524.27783203125,
+          "x":721.02319335938,
+          "z":-383
+        },
+        "cell":"Ald-ruhn, Arobar Private Quarters"
+      }
+    },
+    "Old Ebonheart, Cottage Row 2":{
+      "price":5000,
+      "inside":{
+        "cell":"Old Ebonheart, Joaline Frey's House",
+        "pos":{
+          "y":5071.8662109375,
+          "x":4102.5434570312,
+          "z":14113
+        }
+      },
+      "cells":{
+        "Old Ebonheart, Joaline Frey's House":true
+      },
+      "doors":[],
+      "name":"Old Ebonheart, Cottage Row 2",
+      "outside":{
+        "cell":"7, -19",
+        "pos":{
+          "y":-149784.78125,
+          "x":59360.4921875,
+          "z":478.14117431641
+        }
+      }
+    },
+    "Geth, Bolvyn Falas' House":{
+      "price":5000,
+      "inside":{
+        "cell":"Geth, Bolvyn Falas' House",
+        "pos":{
+          "y":-258.67709350586,
+          "x":-328.02294921875,
+          "z":1
+        }
+      },
+      "cells":{
+        "Geth, Bolvyn Falas' House":true
+      },
+      "doors":[],
+      "name":"Geth, Bolvyn Falas' House",
+      "outside":{
+        "cell":"-8, -10",
+        "pos":{
+          "y":-80693.6484375,
+          "x":-63890.2578125,
+          "z":2369
+        }
+      }
+    },
+    "St. Olms Waist South One":{
+      "price":600,
+      "inside":{
+        "pos":{
+          "y":29.144714355469,
+          "x":-65.271362304688,
+          "z":-61.709648132324
+        },
+        "cell":"Vivec, St. Olms Waist South-One"
+      },
+      "cells":{
+        "Vivec, St. Olms Waist South-One":true
+      },
+      "doors":[],
+      "name":"St. Olms Waist South One",
+      "outside":{
+        "pos":{
+          "y":-95415.65625,
+          "x":35571.36328125,
+          "z":1792.9996337891
+        },
+        "cell":"4, -12"
+      }
+    },
+    "St Delyn Waist South Two":{
+      "price":600,
+      "inside":{
+        "pos":{
+          "y":92.746559143066,
+          "x":-4.1316800117493,
+          "z":-127
+        },
+        "cell":"Vivec, St. Delyn Waist South-Two"
+      },
+      "cells":{
+        "Vivec, St. Delyn Waist South-Two":true
+      },
+      "doors":[],
+      "name":"St Delyn Waist South Two",
+      "outside":{
+        "pos":{
+          "y":-95416.671875,
+          "x":30056.111328125,
+          "z":1792.9996337891
+        },
+        "cell":"3, -12"
+      }
+    },
+    "St Delyn Waist North One":{
+      "price":600,
+      "inside":{
+        "pos":{
+          "y":-183.35844421387,
+          "x":240.37747192383,
+          "z":-127
+        },
+        "cell":"Vivec, St. Delyn Waist North-One"
+      },
+      "cells":{
+        "Vivec, St. Delyn Waist North-One":true
+      },
+      "doors":[],
+      "name":"St Delyn Waist North One",
+      "outside":{
+        "pos":{
+          "y":-91186.4375,
+          "x":28152.818359375,
+          "z":1792.9995117188
+        },
+        "cell":"3, -12"
+      }
+    },
+    "St. Olms, Canal South Two":{
+      "price":250,
+      "inside":{
+        "pos":{
+          "y":156.04441833496,
+          "x":12.830171585083,
+          "z":-127
+        },
+        "cell":"Vivec, St. Olms Canal South-Two"
+      },
+      "cells":{
+        "Vivec, St. Olms Canal South-Two":true
+      },
+      "doors":[],
+      "name":"St. Olms, Canal South Two",
+      "outside":{
+        "pos":{
+          "y":-95727.5625,
+          "x":36502.3046875,
+          "z":577
+        },
+        "cell":"4, -12"
+      }
+    },
+    "Ald-Ruhn, Venim Manor Master Bedroom":{
+      "price":5000,
+      "inside":{
+        "cell":"Ald-ruhn, Venim Manor Bedrooms",
+        "pos":{
+          "y":-714.68951416016,
+          "x":-511.00152587891,
+          "z":1
+        }
+      },
+      "cells":{
+        "Ald-ruhn, Venim Manor Bedrooms":true
+      },
+      "doors":[],
+      "name":"Ald-Ruhn, Venim Manor Master Bedroom",
+      "outside":{
+        "cell":"Ald-ruhn, Venim Manor Private Quarters",
+        "pos":{
+          "y":682.66253662109,
+          "x":-507.58648681641,
+          "z":-511
+        }
+      }
+    },
+    "Old Ebonheart, Cyrtus Clagno's House":{
+      "price":4000,
+      "inside":{
+        "pos":{
+          "y":4158.2822265625,
+          "x":3541.1630859375,
+          "z":14115.362304688
+        },
+        "cell":"Old Ebonheart, Cyrtus Clagno's House"
+      },
+      "cells":{
+        "Old Ebonheart, Cyrtus Clagno's House":true
+      },
+      "doors":[],
+      "name":"Old Ebonheart, Cyrtus Clagno's House",
+      "outside":{
+        "pos":{
+          "y":-149441.609375,
+          "x":60786.11328125,
+          "z":435.20599365234
+        },
+        "cell":"7, -19"
+      }
+    },
+    "St Delyn Canal North Three":{
+      "price":250,
+      "inside":{
+        "pos":{
+          "y":90.912322998047,
+          "x":-77.964096069336,
+          "z":-127
+        },
+        "cell":"Vivec, St. Delyn Canal North-Three"
+      },
+      "cells":{
+        "Vivec, St. Delyn Canal North-Three":true
+      },
+      "doors":[],
+      "name":"St Delyn Canal North Three",
+      "outside":{
+        "pos":{
+          "y":-90886.6484375,
+          "x":30097.353515625,
+          "z":577
+        },
+        "cell":"3, -12"
+      }
+    },
+    "Old Ebonheart, Ruma Soanix's Manor":{
+      "price":10000,
+      "inside":{
+        "pos":{
+          "y":7118.525390625,
+          "x":318.2649230957,
+          "z":15169
+        },
+        "cell":"Old Ebonheart, Ruma Soanix's Manor"
+      },
+      "cells":{
+        "Old Ebonheart, Ruma Soanix's Manor":true
+      },
+      "doors":[],
+      "name":"Old Ebonheart, Ruma Soanix's Manor",
+      "outside":{
+        "pos":{
+          "y":-152213.390625,
+          "x":54715.75,
+          "z":1209.8854980469
+        },
+        "cell":"6, -19"
+      }
+    },
+    "St. Olms Canal North Three":{
+      "price":250,
+      "inside":{
+        "pos":{
+          "y":20.45359992981,
+          "x":-1.0600920915604,
+          "z":-127
+        },
+        "cell":"Vivec, St. Olms Canal North-Three"
+      },
+      "cells":{
+        "Vivec, St. Olms Canal North-Three":true
+      },
+      "doors":[],
+      "name":"St. Olms Canal North Three",
+      "outside":{
+        "pos":{
+          "y":-90906.296875,
+          "x":35409.57421875,
+          "z":577
+        },
+        "cell":"4, -12"
+      }
+    },
+    "St Delyn Canal North Two":{
+      "price":300,
+      "inside":{
+        "pos":{
+          "y":18.126449584961,
+          "x":16.503170013428,
+          "z":-127
+        },
+        "cell":"Vivec, St. Delyn Canal North-Two"
+      },
+      "cells":{
+        "Vivec, St. Delyn Canal North-Two":true
+      },
+      "doors":[],
+      "name":"St Delyn Canal North Two",
+      "outside":{
+        "pos":{
+          "y":-90868.421875,
+          "x":29106.052734375,
+          "z":577
+        },
+        "cell":"3, -12"
+      }
+    },
+    "St Delyn Canal South One":{
+      "price":300,
+      "inside":{
+        "pos":{
+          "y":151.63882446289,
+          "x":-3.3734893798828,
+          "z":-125.76773071289
+        },
+        "cell":"Vivec, St. Delyn Canal South-Two"
+      },
+      "cells":{
+        "Vivec, St. Delyn Canal South-Two":true
+      },
+      "doors":[],
+      "name":"St Delyn Canal South One",
+      "outside":{
+        "pos":{
+          "y":-95713.0625,
+          "x":30241.4765625,
+          "z":577
+        },
+        "cell":"3, -12"
+      }
+    },
+    "St. Olms Haunted Manor":{
+      "price":10000,
+      "inside":{
+        "pos":{
+          "y":282.00231933594,
+          "x":181.78514099121,
+          "z":-255
+        },
+        "cell":"Vivec, St. Olms Haunted Manor"
+      },
+      "cells":{
+        "Vivec, St. Olms Haunted Manor":true
+      },
+      "doors":[],
+      "name":"St. Olms Haunted Manor",
+      "outside":{
+        "pos":{
+          "y":-570.26531982422,
+          "x":1523.0036621094,
+          "z":-1886.6595458984
+        },
+        "cell":"Vivec, St. Olms Plaza"
+      }
+    },
+    "St. Olms Yngling Manor":{
+      "price":10000,
+      "inside":{
+        "pos":{
+          "y":408.63549804688,
+          "x":-319.39907836914,
+          "z":-255
+        },
+        "cell":"Vivec, St. Olms Yngling Manor"
+      },
+      "cells":{
+        "Vivec, St. Olms Yngling Manor":true,
+        "Vivec, St. Olms Yngling Manor Basement":true
+      },
+      "doors":[],
+      "name":"St. Olms Yngling Manor",
+      "outside":{
+        "pos":{
+          "y":-316.99765014648,
+          "x":-1541.5396728516,
+          "z":-1886.6595458984
+        },
+        "cell":"Vivec, St. Olms Plaza"
+      }
+    },
+    "Vivec, Patriarch Apartments":{
+      "price":1000000,
+      "inside":{
+        "pos":{
+          "y":-233.20809936523,
+          "x":85.778472900391,
+          "z":-575
+        },
+        "cell":"Vivec, Temple Apartments"
+      },
+      "cells":{
+        "Vivec, Temple Apartments":true
+      },
+      "doors":[],
+      "name":"Vivec, Patriarch Apartments",
+      "outside":{
+        "pos":{
+          "y":453.72506713867,
+          "x":555.61840820312,
+          "z":-1022.6595458984
+        },
+        "cell":"Vivec, Indoril Plaza"
+      }
+    },
+    "Balmora, West Riverside 3":{
+      "price":5000,
+      "inside":{
+        "pos":{
+          "y":-183.3864440918,
+          "x":-171.92626953125,
+          "z":5.9999942779541
+        },
+        "cell":"Balmora, Vori's House"
+      },
+      "cells":{
+        "Balmora, Vori's House":true
+      },
+      "doors":[],
+      "name":"Balmora, West Riverside 3",
+      "outside":{
+        "pos":{
+          "y":-13670.095703125,
+          "x":-20349.73828125,
+          "z":153.3050994873
+        },
+        "cell":"-3, -2"
+      }
+    },
+    "St Olms. Waist South Two":{
+      "price":600,
+      "inside":{
+        "pos":{
+          "y":4250.787109375,
+          "x":3836.6274414062,
+          "z":15618.290039062
+        },
+        "cell":"Vivec, St. Olms Waist South-Two"
+      },
+      "cells":{
+        "Vivec, St. Olms Waist South-Two":true
+      },
+      "doors":[],
+      "name":"St Olms. Waist South Two",
+      "outside":{
+        "pos":{
+          "y":-95327.265625,
+          "x":37477.86328125,
+          "z":1792.9997558594
+        },
+        "cell":"4, -12"
+      }
+    },
+    "St. Olms Waist North Two":{
+      "price":600,
+      "inside":{
+        "pos":{
+          "y":91.919921875,
+          "x":-9.0321578979492,
+          "z":-127
+        },
+        "cell":"Vivec, St. Olms Waist North-Two"
+      },
+      "cells":{
+        "Vivec, St. Olms Waist North-Two":true
+      },
+      "doors":[],
+      "name":"St. Olms Waist North Two",
+      "outside":{
+        "pos":{
+          "y":-91198.515625,
+          "x":35626.49609375,
+          "z":1792.9996337891
+        },
+        "cell":"4, -12"
+      }
+    },
+    "St Delyn Waist North Two":{
+      "price":600,
+      "inside":{
+        "pos":{
+          "y":123.12510681152,
+          "x":5.4954566955566,
+          "z":-127
+        },
+        "cell":"Vivec, St. Delyn Waist North-Two"
+      },
+      "cells":{
+        "Vivec, St. Delyn Waist North-Two":true
+      },
+      "doors":[],
+      "name":"St Delyn Waist North Two",
+      "outside":{
+        "pos":{
+          "y":-91223.3125,
+          "x":30068.423828125,
+          "z":1792.9995117188
+        },
+        "cell":"3, -12"
+      }
+    },
+    "St Delyn Waist South One":{
+      "price":600,
+      "inside":{
+        "pos":{
+          "y":25.53133392334,
+          "x":-2.1090066432953,
+          "z":-127
+        },
+        "cell":"Vivec, St. Delyn Waist South-One"
+      },
+      "cells":{
+        "Vivec, St. Delyn Waist South-One":true
+      },
+      "doors":[],
+      "name":"St Delyn Waist South One",
+      "outside":{
+        "pos":{
+          "y":-95425.171875,
+          "x":28252.880859375,
+          "z":1792.9995117188
+        },
+        "cell":"3, -12"
+      }
+    },
+    "Ald-Ruhn, Sarethi Manor":{
+      "price":5000,
+      "inside":{
+        "cell":"Ald-ruhn, Sarethi Manor",
+        "pos":{
+          "y":81.01993560791,
+          "x":-5.3996396064758,
+          "z":-119.10191345215
+        }
+      },
+      "cells":{
+        "Ald-ruhn, Sarethi Manor":true,
+        "Ald-ruhn, Sarethi Guard Quarters":true
+      },
+      "doors":[],
+      "name":"Ald-Ruhn, Sarethi Manor",
+      "outside":{
+        "cell":"Ald-ruhn, Manor District",
+        "pos":{
+          "y":-112.33292388916,
+          "x":-1487.0483398438,
+          "z":-67.623916625977
+        }
+      }
+    },
+    "St. Olms Waist North One":{
+      "price":600,
+      "inside":{
+        "pos":{
+          "y":156.57096862793,
+          "x":-84.977714538574,
+          "z":-127.00001525879
+        },
+        "cell":"Vivec, St. Olms Waist North-One"
+      },
+      "cells":{
+        "Vivec, St. Olms Waist North-One":true
+      },
+      "doors":[],
+      "name":"St. Olms Waist North One",
+      "outside":{
+        "pos":{
+          "y":-91194.3203125,
+          "x":37555.07421875,
+          "z":1792.9995117188
+        },
+        "cell":"4, -12"
+      }
+    },
+    "St Delyn Canal South Three":{
+      "price":250,
+      "inside":{
+        "pos":{
+          "y":83.290733337402,
+          "x":-72.329742431641,
+          "z":-127
+        },
+        "cell":"Vivec, St. Delyn Canal South-Three"
+      },
+      "cells":{
+        "Vivec, St. Delyn Canal South-Three":true
+      },
+      "doors":[],
+      "name":"St Delyn Canal South Three",
+      "outside":{
+        "pos":{
+          "y":-95708.7578125,
+          "x":27996.54296875,
+          "z":577
+        },
+        "cell":"3, -12"
+      }
+    },
+    "Stirk Sea-side Condo":{
+      "price":1200,
+      "inside":{
+        "pos":{
+          "y":-68.659515380859,
+          "x":-190.16046142578,
+          "z":1
+        },
+        "cell":"Stirk, Helvor Manor"
+      },
+      "cells":{
+        "Stirk, Helvor Manor":true
+      },
+      "doors":[],
+      "name":"Stirk Sea-side Condo",
+      "outside":{
+        "pos":{
+          "y":-413388.125,
+          "x":-1106456.375,
+          "z":1457.4375
+        },
+        "cell":"-136, -51"
+      }
+    },
+    "St Olms Upper North One":{
+      "price":800,
+      "inside":{
+        "pos":{
+          "y":-218.41479492188,
+          "x":-1.0065135955811,
+          "z":-126.99998474121
+        },
+        "cell":"Vivec, St. Olms Upper North-One"
+      },
+      "cells":{
+        "Vivec, St. Olms Upper North-One":true
+      },
+      "doors":[],
+      "name":"St Olms Upper North One",
+      "outside":{
+        "pos":{
+          "y":696.68835449219,
+          "x":-1234.0029296875,
+          "z":-1886.6595458984
+        },
+        "cell":"Vivec, St. Olms Plaza"
+      }
+    },
+    "St. Olms Canal South Three":{
+      "price":250,
+      "inside":{
+        "pos":{
+          "y":91.994911193848,
+          "x":-7.0177154541016,
+          "z":-127
+        },
+        "cell":"Vivec, St. Olms Canal South-Three"
+      },
+      "cells":{
+        "Vivec, St. Olms Canal South-Three":true
+      },
+      "doors":[],
+      "name":"St. Olms Canal South Three",
+      "outside":{
+        "pos":{
+          "y":-95719.4609375,
+          "x":37711.1015625,
+          "z":577.00006103516
+        },
+        "cell":"4, -12"
+      }
+    },
+    "St. Olms Canal North One":{
+      "price":250,
+      "inside":{
+        "pos":{
+          "y":93.216590881348,
+          "x":-12.695862770081,
+          "z":-127.00000762939
+        },
+        "cell":"Vivec, St. Olms Canal North-One"
+      },
+      "cells":{
+        "Vivec, St. Olms Canal North-One":true
+      },
+      "doors":[],
+      "name":"St. Olms Canal North One",
+      "outside":{
+        "pos":{
+          "y":-90904.109375,
+          "x":37615.2109375,
+          "z":577
+        },
+        "cell":"4, -12"
+      }
+    },
+    "Trove of Tomes":{
+      "price":2,
+      "inside":[],
+      "cells":{
+        "Balmora, Dorisa Darvel: Bookseller":true
+      },
+      "doors":[],
+      "name":"Trove of Tomes",
+      "outside":{
+        "pos":{
+          "y":-13336.974609375,
+          "x":-22388.6640625,
+          "z":505
+        },
+        "cell":"-3, -2"
+      }
+    },
+    "The Guar Saddle":{
+      "price":5000,
+      "inside":{
+        "cell":"Old Ebonheart, Anjzhirra's Rare Goods",
+        "pos":{
+          "y":4152.5981445312,
+          "x":4167.3232421875,
+          "z":15617.31640625
+        }
+      },
+      "cells":{
+        "Old Ebonheart, Anjzhirra's Rare Goods":true
+      },
+      "doors":[],
+      "name":"The Guar Saddle",
+      "outside":{
+        "cell":"6, -19",
+        "pos":{
+          "y":-150917.015625,
+          "x":55648.6171875,
+          "z":1115.0185546875
+        }
+      }
+    },
+    "Old Ebonheart, Governor's Mansion: Basement":{
+      "price":5000,
+      "inside":{
+        "cell":"Old Ebonheart, Merxia Vendicci's Manor: Basement",
+        "pos":{
+          "y":4541.7734375,
+          "x":1310.7432861328,
+          "z":12417
+        }
+      },
+      "cells":{
+        "Old Ebonheart, Merxia Vendicci's Manor: Basement":true
+      },
+      "doors":[],
+      "name":"Old Ebonheart, Governor's Mansion: Basement",
+      "outside":{
+        "cell":"6, -19",
+        "pos":{
+          "y":-150385.53125,
+          "x":53152.484375,
+          "z":1271.9788818359
+        }
+      }
+    },
+    "Vivec, Saren Manor":{
+      "price":200000,
+      "inside":{
+        "cell":"Vivec, Saren Manor",
+        "pos":{
+          "y":346.89239501953,
+          "x":1470.19921875,
+          "z":-255
+        }
+      },
+      "cells":{
+        "Vivec, Saren Manor":true
+      },
+      "doors":[],
+      "name":"Vivec, Saren Manor",
+      "outside":{
+        "cell":"Vivec, Redoran Plaza",
+        "pos":{
+          "y":-553.88885498047,
+          "x":1562.2973632812,
+          "z":1505.3404541016
+        }
+      }
+    },
+    "St. Olms Canal South One":{
+      "price":250,
+      "inside":{
+        "pos":{
+          "y":87.891967773438,
+          "x":-5.710901260376,
+          "z":-127
+        },
+        "cell":"Vivec, St. Olms Canal South-One"
+      },
+      "cells":{
+        "Vivec, St. Olms Canal South-One":true
+      },
+      "doors":[],
+      "name":"St. Olms Canal South One",
+      "outside":{
+        "pos":{
+          "y":-95745.1328125,
+          "x":35427.65234375,
+          "z":577
+        },
+        "cell":"4, -12"
+      }
+    },
+    "St Delyn Canal South Two":{
+      "price":300,
+      "inside":{
+        "pos":{
+          "y":88.555633544922,
+          "x":10.394965171814,
+          "z":-127
+        },
+        "cell":"Vivec, St. Delyn Canal South-One"
+      },
+      "cells":{
+        "Vivec, St. Delyn Canal South-One":true
+      },
+      "doors":[],
+      "name":"St Delyn Canal South Two",
+      "outside":{
+        "pos":{
+          "y":-95764.578125,
+          "x":29088.466796875,
+          "z":577
+        },
+        "cell":"3, -12"
+      }
+    },
+    "Suran, Oran Manor":{
+      "price":4000,
+      "inside":{
+        "pos":{
+          "y":-263.93145751953,
+          "x":-90.884552001953,
+          "z":6
+        },
+        "cell":"Suran, Oran Manor"
+      },
+      "cells":{
+        "Suran, Oran Manor":true
+      },
+      "doors":[],
+      "name":"Suran, Oran Manor",
+      "outside":{
+        "pos":{
+          "y":-56044.33984375,
+          "x":54366.94921875,
+          "z":1202.5577392578
+        },
+        "cell":"6, -7"
+      }
+    },
+    "St. Olms Upper South One":{
+      "price":800,
+      "inside":{
+        "pos":{
+          "y":-218.7615814209,
+          "x":-249.23571777344,
+          "z":-255
+        },
+        "cell":"Vivec, St. Olms Upper South-One"
+      },
+      "cells":{
+        "Vivec, St. Olms Upper South-One":true
+      },
+      "doors":[],
+      "name":"St. Olms Upper South One",
+      "outside":{
+        "pos":{
+          "y":-625.43743896484,
+          "x":298.21173095703,
+          "z":-1886.6595458984
+        },
+        "cell":"Vivec, St. Olms Plaza"
+      }
+    },
+    "Caldera Governors Mansion":{
+      "price":125000,
+      "inside":{
+        "cell":"Caldera, Governor's Hall",
+        "pos":{
+          "y":-245.31523132324,
+          "x":-2.7258906364441,
+          "z":-127.00000762939
+        }
+      },
+      "cells":{
+        "Caldera, Governor's Hall":true
+      },
+      "doors":[],
+      "name":"Caldera Governors Mansion",
+      "outside":{
+        "cell":"-2, 2",
+        "pos":{
+          "y":22355.814453125,
+          "x":-10036.099609375,
+          "z":2060.3703613281
+        }
+      }
+    },
+    "Ald-Ruhn, Ald Skar Inn":{
+      "price":5000,
+      "inside":{
+        "pos":{
+          "y":-283.02886962891,
+          "x":389.88647460938,
+          "z":-238.88656616211
+        },
+        "cell":"Ald-ruhn, Ald Skar Inn"
+      },
+      "cells":{
+        "Ald-ruhn, Ald Skar Inn":true
+      },
+      "doors":[],
+      "name":"Ald-Ruhn, Ald Skar Inn",
+      "outside":{
+        "pos":{
+          "y":55957.21875,
+          "x":-14417.55078125,
+          "z":2338.6911621094
+        },
+        "cell":"-2, 6"
+      }
+    },
+    "Ules Manor":{
+      "price":10000,
+      "inside":{
+        "pos":{
+          "y":546.47308349609,
+          "x":-257.77502441406,
+          "z":-634
+        },
+        "cell":"Ules Manor"
+      },
+      "cells":{
+        "Ules Manor":true
+      },
+      "doors":[],
+      "name":"Ules Manor",
+      "outside":{
+        "pos":{
+          "y":-49461.70703125,
+          "x":45763.5,
+          "z":994.61193847656
+        },
+        "cell":"5, -7"
+      }
+    },
+    "Old Ebonheart, Governor's Mansion":{
+      "price":5000,
+      "inside":{
+        "cell":"Old Ebonheart, Merxia Vendicci's Manor",
+        "pos":{
+          "y":1825.0201416016,
+          "x":3137.4572753906,
+          "z":5761
+        }
+      },
+      "cells":{
+        "Old Ebonheart, Merxia Vendicci's Manor":true
+      },
+      "doors":[],
+      "name":"Old Ebonheart, Governor's Mansion",
+      "outside":{
+        "cell":"6, -19",
+        "pos":{
+          "y":-150387.453125,
+          "x":53166.40625,
+          "z":1271.9787597656
+        }
+      }
+    },
+    "Balmora, East Riverside 1":{
+      "price":150,
+      "inside":{
+        "cell":"Balmora, Rarayn Radarys' House",
+        "pos":{
+          "y":-210.34660339355,
+          "x":-199.49234008789,
+          "z":5.9999966621399
+        }
+      },
+      "cells":{
+        "Balmora, Rarayn Radarys' House":true
+      },
+      "doors":[],
+      "name":"Balmora, East Riverside 1",
+      "outside":{
+        "cell":"Balmora, Rarayn Radarys' House",
+        "pos":{
+          "y":-210.34660339355,
+          "x":-199.49234008789,
+          "z":5.9999966621399
+        }
+      }
+    },
+    "St Delyn Canal North One":{
+      "price":300,
+      "inside":{
+        "pos":{
+          "y":29.153312683105,
+          "x":17.527317047119,
+          "z":-127
+        },
+        "cell":"Vivec, St. Delyn Canal North-One"
+      },
+      "cells":{
+        "Vivec, St. Delyn Canal North-One":true
+      },
+      "doors":[],
+      "name":"St Delyn Canal North One",
+      "outside":{
+        "pos":{
+          "y":-90912.890625,
+          "x":28024.865234375,
+          "z":577.00006103516
+        },
+        "cell":"3, -12"
+      }
+    }
+  },
+  "owners":{
+    "lans arniman":{
+      "houses":{
+        "Stirk Sea-side Condo":{
+          "coowners":{
+            "oritha casyll":true
+          },
+          "isLocked":true
+        },
+        "The Guar Saddle":{
+          "coowners":[],
+          "isLocked":true
+        }
+      }
+    },
+    "vitrus":{
+      "houses":{
+        "St. Olms, Canal South Two":{
+          "coowners":[],
+          "isLocked":true
+        }
+      }
+    },
+    "verana atosa":{
+      "houses":{
+        "St Delyn Canal North One":{
+          "coowners":[],
+          "isLocked":true
+        },
+        "Ald-Ruhn, Arobar Manor Bedrooms":{
+          "coowners":[],
+          "isLocked":true
+        }
+      }
+    },
+    "yusazami":{
+      "houses":{
+        "Old Ebonheart, Cottage Row 2":{
+          "coowners":{
+            "ren'sha":true
+          },
+          "isLocked":false
+        }
+      }
+    },
+    "galos othril":{
+      "houses":{
+        "Caldera Governors Mansion":{
+          "coowners":[],
+          "isLocked":false
+        },
+        "Vivec, Patriarch Apartments":{
+          "coowners":{
+            "melyna alender":true,
+            "midiri":true
+          },
+          "isLocked":true
+        }
+      }
+    },
+    "ordis":{
+      "houses":{
+        "Geth, Bolvyn Falas' House":{
+          "coowners":{
+            "ulyna vlesyl":true
+          },
+          "isLocked":true
+        }
+      }
+    },
+    "valen dreth":{
+      "houses":{
+        "Old Ebonheart, Ruma Soanix's Manor":{
+          "coowners":[],
+          "isLocked":false
+        }
+      }
+    },
+    "drekna oreyn":{
+      "houses":{
+        "Ald-Ruhn, Sarethi Manor":{
+          "coowners":[],
+          "isLocked":false
+        }
+      }
+    },
+    "cornelius septim":{
+      "houses":{
+      }
+    },
+    "ri'mandari":{
+      "houses":{
+        "Ald-Ruhn, Ald Skar Inn":{
+          "coowners":{
+            "la'jirra":true,
+            "ji'sharr":true
+          },
+          "isLocked":false
+        }
+      }
+    },
+    "midiri":{
+      "houses":{
+        "Old Ebonheart, Governor's Mansion":{
+          "coowners":{
+            "drissida-la":true,
+            "ulyna vlesyl":true,
+            "scales-like-silver":true,
+            "slavdim dalken":true
+          },
+          "isLocked":true
+        },
+        "Old Ebonheart, Governor's Mansion: Basement":{
+          "coowners":{
+            "drissida-la":true,
+            "scales-like-silver":true,
+            "slavdim dalken":true
+          },
+          "isLocked":true
+        }
+      }
+    },
+    "schel":{
+      "houses":{
+        "St Delyn Waist North Two":{
+          "coowners":{
+            "shell":true,
+            "dranos r'ain":true
+          },
+          "isLocked":false
+        }
+      }
+    },
+    "n'goth":{
+      "houses":{
+      }
+    },
+    "jo'lani":{
+      "houses":{
+        "Trove of Tomes":{
+          "coowners":{
+          },
+          "isLocked":true
+        }
+      }
+    },
+    "vaden rylendor":{
+      "houses":{
+        "Ald-Ruhn, Venim Manor Master Bedroom":{
+          "coowners":{
+            "verana atosa":true
+          },
+          "isLocked":false
+        }
+      }
+    },
+    "dranos r'ain":{
+      "houses":{
+        "St Delyn Waist South Two":{
+          "coowners":[],
+          "isLocked":true
+        }
+      }
+    },
+    "do'han":{
+      "houses":{
+        "St Olms Upper North One":{
+          "coowners":{
+            "la'jirra":true
+          },
+          "isLocked":true
+        }
+      }
+    },
+    "s'rabii":{
+      "houses":{
+        "Balmora, West Riverside 3":{
+          "coowners":{
+            "yusazami":true
+          },
+          "isLocked":false
+        }
+      }
+    },
+    "melyna alender":{
+      "houses":{
+        "St. Olms Canal South One":{
+          "coowners":[],
+          "isLocked":true
+        }
+      }
+    },
+    "puppet":{
+      "houses":{
+        "St Olms. Waist South Two":{
+          "coowners":{
+            "naris-kinslayer":true
+          },
+          "isLocked":false
+        }
+      }
+    },
+    "serano llervil":{
+      "houses":{
+        "Suran, Oran Manor":{
+          "coowners":[],
+          "isLocked":false
+        },
+        "St. Olms Canal North Two":{
+          "coowners":[],
+          "isLocked":false
+        },
+        "Balmora, East Riverside 1":{
+          "coowners":{
+            "ulyna vlesyl":true,
+            "oritha casyll":true,
+            "midiri":true
+          },
+          "isLocked":false
+        }
+      }
+    }
+  }
+}

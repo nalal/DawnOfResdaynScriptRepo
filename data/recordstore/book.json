@@ -1,0 +1,1628 @@
+{
+  "general":{
+    "currentGeneratedNum":17
+  },
+  "permanentRecords":{
+    "plyscroll_2":{
+      "name":"Arrest Warrent: Geth",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Saint Geth AKA Gryn Firoth <BR> <BR> The aforehere mentioned personage is hereby charged with domestic abuse, assault, threats of violence and murder, and is hereby remanded into the custody of the Temple Ordinators by the order of Almalexia, Blessed Mother Morrowind, as witnessed by Arch-Canon and Patriarch Galos Othril. <br> In Service to the Three, Almsivi <br> Galos Othril <BR> <BR> Thought for the Day: We can have no opinions about Truth.<p>"
+    },
+    "plynote_26":{
+      "name":"Galos Othril's Ballot",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Votes for Midiri<p>"
+    },
+    "plynote_21":{
+      "name":"Drissida's Ballot",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Cornelius Septim for Governor of Vvardenfell District<p>"
+    },
+    "plynote_19":{
+      "name":"Note",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Master - I have acquired these items through means which begin to fade from my memory, but haunt me dearly. I am unsure of the importance, rarity, or quality of the items, but I believed it important to offer them to you. I will be taking many of your ingredients in some hope to induce memory loss so I may forget this drain on my sanity. Please do not remind me of this note or how the items were obtained, and may these items be considered payment. My sincerest apologies, I hope to survive to serve you another day. - Midiri<p>"
+    },
+    "plyscroll_13":{
+      "name":"Honorable Writ of Execution",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">                           Oritha Casyll                                              The afore-mentioned personage has been marked for honorable execution in accordance to the lawful tradition and practice of the Morag Tong Guild. The Bearer of this non-disputable document has official sanctioned license to kill the afore-mentioned personage.<p>"
+    },
+    "plynote_16":{
+      "name":"Drissida's Answers",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">(1) 2013 > 391 (2) 492 < 518 (3) 312 1/2 (4) 188 (5) 125 (6) 89 > 101 (7) 33 (8) 111 (9) 1299 (10) [The word 915 is spelled out in khajiiti script.]<p>"
+    },
+    "plynote_11":{
+      "name":"La'Jirra's Notes",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">L<p>"
+    },
+    "plynote_22":{
+      "name":"Ballot",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">I vote Midiri for governor.<p>"
+    },
+    "plyscroll_12":{
+      "name":"Honorable Writ of Execution",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Otitha Casyll                                                                                    The afore-mentioned personage has been marked for honorable execution in accordance to the lawful tradition and practice of the Morag Tong Guild. The Bearer of this non-disputable document has official sanctioned license to kill the afore-mentioned personage.<p>"
+    },
+    "plynote_78":{
+      "name":"Slavdim's Vote",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Midiri<p>"
+    },
+    "plynote_34":{
+      "name":"He Lies",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">h a<p>"
+    },
+    "plynote_37":{
+      "name":"\"Under the Mountain\" - by Verana Atosa",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Lurking in wait, ready to strike<br> but willing? Ashes corrupting.<br> Devil's blight, black and cruel.<br> He lies in the Mountain.<br> <br>  Sleepers awake, fed nightmares<br> in the dark. Dagoth's temptation.<br> Rancid shadows, of tribe unmourned.<br> He lies in the Mountain.<p>"
+    },
+    "plyscroll_17":{
+      "name":"The Murdering Messiah",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">He is the PROTECTOR PRINCE  Our chosen son!  Our blackest light which sheds color on the unseen.  His word is filling, we are fulfilled by it.  We feel the reverberations and fullness of God in his resonance,   In his tongue.  In his eyes we see the void,  The Ever-Longing thirst of the Son.  But we are reassured,   He sees us, our singularities in the vast choir of the one-song.  He sees us for our imperfections, and our uniquities.   Every Dunmer voice is a song of praise to him.   Outlanders will search for the Saint in him,   They will have disdain for him.  They find naught but the revenant’s glare.  Not our Sacrosanct Prince! Not our King! Not our Crusader!  They will say he is cold,  But he is the dawning fire,   He lives not by the souls of the dead but by the obsession of our Ancestors.  Let ALMSIVI possess him.<p>"
+    },
+    "plyscroll_22":{
+      "name":"Geth's Vote",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">midiri for governor <p>"
+    },
+    "plynote_12":{
+      "name":"help",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">H<p>"
+    },
+    "plynote_70":{
+      "name":"N'Goth's last will and testament",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">                N'Goth's Last Will and Testament<br>I N'Goth Lee Zasubari have served my master until the end as promised. I have tested Galos Othran to make sure he is loyal to the cause, incorruptible, and non-rebellious. I have not spoken with Ulyna about this, as I used what I saw happen to her as part of the test, with many of it's parts fabricated. Galos Othran Passed the test. <br> I leave all of my worldly possesions to Jo'Lani. I would like a copy of this to reach Ulyna too. I would like my Hlaalu Court Excerpts to be given to Yusazami, just as a joke, since they are quite humorous. I would like my 3 pearls to be given to Midiri, Ulyna, and Oritha. <br> Always True <br>-N'Goth Lee Zasubari<p>"
+    },
+    "plynote_73":{
+      "name":"N'goth's poem",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">For treason and heresy I was accused,<br> I asked for death, and was refused.<p>"
+    },
+    "plynote_68":{
+      "name":"Summons for N'goths Trial",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">I, Chief Justice Lans Arniman - request the sole presence of everyone involved at the Imperial Mission of Geth's arrest of N'goth regarding the saint. Thank you.<p>"
+    },
+    "plyscroll_16":{
+      "name":"testscroll",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\"><IMG SRC=\"https://i.imgur.com/rKkYEkG.jpg\" WIDTH=\"96\" HEIGHT=\"96\"><p>"
+    },
+    "plynote_27":{
+      "name":"testpaper",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">test \\n test /n test<p>"
+    },
+    "plyscroll_33":{
+      "name":"Writ of Citizenship: Ordis",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\"> WRIT OF CITIZENSHIP <br><br> This document is a legal representation of the citizenship for the following citizen, Ordis the Maormer. <br><br> From the office of Saint Geth.<p>"
+    },
+    "plyscroll_27":{
+      "name":"Drissida's Studies, V.5",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">3E 426 6th of Sun's Dawn<br><br>Drissida had acquired the help of that dunmer sellsword again. He led Drissida to the shrines in Gnisis and Koal Cave, where she left the customary offerings. She was unable to pay him for his work, and thus left him a note of debt.<br><br>Khajiit then traveled to Vivec, where she completed three more pilgrimmages. She does not know which was harder. Collecting enough coins for the Palace Shrine, or working up the nerve to try and drown herself. I will definitely take more careful reading - the Shrine of Daring made khajiit start to float! She is afraid of heights, you know.<br><br>All that remains for khajiit to complete her pilgrimeging to is the Shrine of Pride, beyond the Ghostfence. Drissida worries for this. It is a most dangerous place, full of monsters and blight. She will need a great ally to assist her.<p>"
+    },
+    "plynote_60":{
+      "name":"Parabola",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">This bod<p>"
+    },
+    "plyscroll_32":{
+      "name":"test2",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">wassup <br><br> boii<p>"
+    },
+    "plyscroll_26":{
+      "name":"Drissida's Studies, V.4",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">3E 426 5th of Sun's Dawn<br><br>Drissida decided to first attempt the Fields of Kummu Pilgrimedge. She had made it safely the first attempt, though she had forgotten her offering. The second time, she had made it but was chased off by a kagouti. She ended up on a roof in Balmora, where she was further tormented by that swine Do'han.<br><br>Do'han had the nerve to call Drissida loveless and egotistical. She is still in shock - she has given her entire life to learning Mara's words, and he has the gall to call her this thing? After what he had done? That assassin was dead. And he desecrated it's corpse. Khajiit says this in writing: Do'han is beyond salvation. Namiira's darkness takes him.<br><br>On the third and final attempt, Drissida was chased again by a kagouti. She had managed to complete her pilgrimege, thouh. She left her offering and quickly ran back to Pelagiad. The guards took care of the Kagouti for her.<br><br>Drissida believes she will next attempt the Koal Cave pilgrimidge.<p>"
+    },
+    "plynote_58":{
+      "name":"Low Quality Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Looking for some fun? So am I! Come find me at the Indoril Canton, and we can have some fun together! <b> - Ulyna<p>"
+    },
+    "plyscroll_11":{
+      "name":"Honorable Writ of Execution",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Oritha Casyll<p>"
+    },
+    "plynote_14":{
+      "name":"dunmer pussy",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Such succulent drippy wenches, here in the land of Morrowind. Never have I laid my eyes, or tongue upon such ripe fruit in all of Tamriel! I must continue my research, and once I have gathered enough data, I will take some of these fine specimens back with me to High Rock for further study.<p>"
+    },
+    "plynote_17":{
+      "name":"Sarys-Othril's Regenerative Elixir Recipe",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Black Spore Cap|Lavender|Belladonna Berries|Saltrice<p>"
+    },
+    "plynote_75":{
+      "name":"Elective Candidates",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Sareth Graybinder, Cornelius Septim, and Midiri.<p>"
+    },
+    "plynote_48":{
+      "name":"Low Quality Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Looking for some fun? So am I! Come find me in the Indoril Canton, and we can have some fun together! <b> - Ulyna<p>"
+    },
+    "plynote_3":{
+      "name":"To-Do List",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">- Find that damn dog. -Organize shelves again. -Buy a GREEN cloak -Practice sketching armour -Take a trip to Vivec (Don't fret it.)<p>"
+    },
+    "plynote_50":{
+      "name":"Low Quality Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Looking for some fun? So am I! Come find me in the Indoril Canton, and we can have some fun together! <b> - Ulyna<p>"
+    },
+    "plynote_79":{
+      "name":"Ballot",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Oritha votes Midiri for governor.<p>"
+    },
+    "plyscroll_21":{
+      "name":"Saint Geth's Vote",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">I, Saint Geth of the Tribunal Canon, hereby vote for Midiri as Governor.<p>"
+    },
+    "plyscroll_6":{
+      "name":"Hlaalu Court Excerpt 142-C",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">\"What did you just say about me, you little fetcher? I'll have you know I graduated top of my class in the Royal Guard, and I've been involved in numerous secret raids on The sixth house, and I have over 300 confirmed kills. I am trained in ashland warfare and I'm the top Marksmen in the Imperial Legion. You are nothing to me but just another target. I will wipe you out with precision the likes of which has never been seen before on Nirn, mark my words. You think you can get away with saying that Netch dropping of an insult to me at the Cornerclub? Think again, fetcher. I have contacted my secret network of Morag Tong Assasins across Morrowind and your family is in danger now so you better prepare for the storm, Fetcher. The storm that wipes out the pathetic little thing you call your life. You're dead, S'wit. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the Ordinators and I will use it to its full extent to wipe your existence off the face of Tamriel, you little scamp. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your tongue. But you couldn't, you didn't, and now you're paying the price, you S'wit. I will defecate fury all over you and you will drown in it. You're dead, N'wah.\"<p>"
+    },
+    "plynote_112":{
+      "name":"An illustration of Almalexia",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">[An image is depicted of Almalexia nude, performing intercourse with Verana Atosa.]<p>"
+    },
+    "plyscroll_14":{
+      "name":"Honorable Writ of Execution",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Oritha Casyll <br> <br> The afore-mentioned personage has been marked for honorable execution in accordance to the lawful tradition and practice of the Morag Tong Guild. The Bearer of this non-disputable document has official sanctioned license to kill the afore-mentioned personage.<p>"
+    },
+    "plyscroll_15":{
+      "name":"Honorable Writ of Execution",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\"><DIV ALIGN=\"CENTER\"><FONT COLOR=\"000000\" SIZE=\"3\" FACE=\"Magic Cards\"><BR> Oritha Casyll<BR><BR> <DIV ALIGN=\"LEFT\"><BR><BR> The afore-mentioned personage has been marked for honorable execution in accordance to the lawful tradition and practice of the Morag Tong Guild. The Bearer of this non-disputable document has official sanctioned license to kill the afore-mentioned personage.<BR> <BR> <DIV ALIGN=\"CENTER\"> <IMG SRC=\"MoragTong.tga\" WIDTH=\"96\" HEIGHT=\"96\"><BR><p>"
+    },
+    "plynote_43":{
+      "name":"Low Quality Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Looking for some fun? So am I! Come find me in the Indoril Canton, and we can have some fun together! <b> - Ulyna<p>"
+    },
+    "plynote_76":{
+      "name":"A vote",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Name: Deacon Smith   Vote: Corneilius Septim or whoever<p>"
+    },
+    "plynote_88":{
+      "name":"<JOIN THE ASHEN ALLIANCE!>",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Calling all elves of Morrowind,<p>"
+    },
+    "plynote_90":{
+      "name":"Note on Sayroni's Sermons",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Sayroni's Sermons contains very similar information to The Book of Dawn and Dusk. <br> [There is some khajiiti script scrawled along the margins, likely more notes.]<p>"
+    },
+    "plynote_93":{
+      "name":"DONT FORGET",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">khajiit saw almalexia don't forget to tell Midiri<p>"
+    },
+    "plynote_102":{
+      "name":"Letter of Authorisation",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Ordis <BR> By Order of the Temple and Ayemcess, the aforehere mentioned personage is to be granted passage through the upper city of Geth through the duration of one day, commending on the 6th of Suns Dawn.<BR> Signed, <BR> Galos Othril, Arch-Canon and Patriarch of the Temple<p>"
+    },
+    "plynote_110":{
+      "name":"\"The Lady of Love\" - by Verana Atosa",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">O, songs I had sang, of God-Queen golden,<br> Beauty she was, and to me was beholden.<br> Upon my floor, 'ere she did come for the song<br> Sing, oh sing did I. dancing away, the Matron fair.<br> She has come for me, the Lady of love.<br> <br> Upon my bed, the two of us met. I exchanged a kiss<br> from her cherried lips. Her golden skin, so gentle and fair,<br> Complemented her reddened hair. Caressing me behind<br> And below, she gave to me nectar as I suckled.<br> Merciful Mother hath bestowed to me her milk.<br> <br> My tongue to her lips, both 'bove and below.<br> Past her fields fertile, a tower did grow.<br> Into my soul and body she came, my apertures as gates,<br> For digits gentle and spears pointed. We pressed together,<br> Mammaries rubbing. This was a night, all just for loving.<br> <br> Stroking my hair, the lady guides me onwards.<br> Forged of myself, she had forged me a spear, and I had guided it inwards.<br> Into my matron I came and I went, upon her visage my essence was spent.<br> Betwixt my lips fair, and into mine hair, she had come as well.<br> I did not mind, for I did soon find, I could use her nectar as gel.<br> <br> Spear of mine fades, yet into the valley her Tower is built.<br> Against it I press, Ayem makes a mess, into my mouth it is spilt.<br> Her spear is then sheathed, as we rest for the eve, cuddling and <br> squeezing galore. We kiss and we laugh, I speak of my love,<br> I could never have asked for more.<p>"
+    },
+    "plyscroll_31":{
+      "name":"test",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">hello <br>br> big titty dunmer gf <br><br> boii<p>"
+    },
+    "plyscroll_25":{
+      "name":"Drissida's Studies, V.3",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">[The date is smudged.]<br><br>Khajiit has start prepare for her pilgremigeing. I think she will need help, as Drissida is rather faint of heart. She believes the most difficult task will be the Shrine of Daring.<br><br>The Shrine of Daring is found within the Ghostfence.(a big wall made of ghosts.) Apparently, the area inside the ghost fence is home to Dagoth Or, an immortal demon. Not to mention the potential for horrible disease, grievous injury and [This section of the scroll is unfinished.]<br><br>Khajiit thinks she will take great care with *all* of the pilgrimamges.<p>"
+    },
+    "plynote_103":{
+      "name":"Palace District - Lifetime Pass",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">This pass allows the Gethian Citizen, Ordis, the right to entry for all districts in the Holy City.<p>"
+    },
+    "plynote_55":{
+      "name":"Low Quality Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Looking for some fun? So am I! Come find me at the Indoril Canton, and we can have some fun together! <b> - Ulyna<p>"
+    },
+    "plynote_80":{
+      "name":"Emir Indicus's Vote",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">I vote for Midiri<p>"
+    },
+    "plynote_66":{
+      "name":"Drawing",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">[A crude pornographic sketch is shown, labelled in quick writing \"Midiri, Imperial Hound\"]<p>"
+    },
+    "plynote_61":{
+      "name":"Parabola",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">This body, that is holding me, reminds me of my own mortality. Hold on, stay inside, this holy reality. This body that is holding me, reminds me of my mortality. I am eternal, all this pain is an illusion. Gods, and Princes with their pitiful parlays, and fueds. The Three are just simple minded children, while the Deadric Princes are just pawns of those mortals who can control them..such as I.<p>"
+    },
+    "plyscroll_3":{
+      "name":"Hlaalu Court Excerpt 142-C",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">\"What did you just say about me, you little fetcher? I'll have you know I graduated top of my class in the Royal Guard, and I've been involved in numerous secret raids on The sixth house, and I have over 300 confirmed kills. I am trained in ashland warfare and I'm the top Marksmen in the Imperial Legion. You are nothing to me but just another target. I will wipe you out with precision the likes of which has never been seen before on Nirn, mark my words. You think you can get away with saying that Netch dropping of an insult to me at the Cornerclub? Think again, fetcher. I have contacted my secret network of Morag Tong Assasins across Morrowind and your family is in danger now so you better prepare for the storm, Fetcher. The storm that wipes out the pathetic little thing you call your life. You're dead, S'wit. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the Ordinators and I will use it to its full extent to wipe your existence off the face of Tamriel, you little scamp. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your tongue. But you couldn't, you didn't, and now you're paying the price, you S'wit. I will defecate fury all over you and you will drown in it. You're dead, N'wah.\"<p>"
+    },
+    "plynote_0":{
+      "name":"Bohethran Aehlric, Barrister",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">If you need any help from our finest Barristers when dealing with the court of imperial law, contact one of our finest barristers. You can specify gender, age group and to arrange payment and future dues.\\n\\nWe are located in Old Ebonheart, Official Guild of Barristers.<p>"
+    },
+    "plynote_45":{
+      "name":"Low Quality Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Looking for some fun? So am I! Come find me in the Indoril Canton, and we can have some fun together! <b> - Ulyna<p>"
+    },
+    "plyscroll_34":{
+      "name":"Holy Seal",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\"><font:Daderic:1> ALMSIVI seal this door<p>"
+    },
+    "plyscroll_10":{
+      "name":"The Guar Saddle",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">The Guar Saddle is now open! Our headquarters is in Old Ebonheart! We are a business that hires able fleet footers that can deliver messages across all of Morrowind. Visit us in Old Ebonheart!<p>"
+    },
+    "plyscroll_4":{
+      "name":"Hlaalu Court Excerpt 142-C",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">\"What did you just say about me, you little fetcher? I'll have you know I graduated top of my class in the Royal Guard, and I've been involved in numerous secret raids on The sixth house, and I have over 300 confirmed kills. I am trained in ashland warfare and I'm the top Marksmen in the Imperial Legion. You are nothing to me but just another target. I will wipe you out with precision the likes of which has never been seen before on Nirn, mark my words. You think you can get away with saying that Netch dropping of an insult to me at the Cornerclub? Think again, fetcher. I have contacted my secret network of Morag Tong Assasins across Morrowind and your family is in danger now so you better prepare for the storm, Fetcher. The storm that wipes out the pathetic little thing you call your life. You're dead, S'wit. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the Ordinators and I will use it to its full extent to wipe your existence off the face of Tamriel, you little scamp. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your tongue. But you couldn't, you didn't, and now you're paying the price, you S'wit. I will defecate fury all over you and you will drown in it. You're dead, N'wah.\"<p>"
+    },
+    "plynote_101":{
+      "name":"Yusazami's Measurements",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">[This details off the direct measurements of Yusazami, for what seems to include a drawing of her forebody, limbs; and what seems to be a mechanical device sketch.]<p>"
+    },
+    "plynote_95":{
+      "name":"Note to Melyna",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Melyna, <BR> <BR> I have had some spare food and drink delivered so you'd be alright. Everything's sorted with the registrar and I hope you find the place to your liking. <BR> <BR> Galos<p>"
+    },
+    "plynote_56":{
+      "name":"Low Quality Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Looking for some fun? So am I! Come find me at the Indoril Canton, and we can have some fun together! <b> - Ulyna<p>"
+    },
+    "plynote_51":{
+      "name":"Low Quality Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Looking for some fun? So am I! Come find me in the Indoril Canton, and we can have some fun together! <b> - Ulyna<p>"
+    },
+    "plyscroll_5":{
+      "name":"Hlaalu Court Excerpt 142-C",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">\"What did you just say about me, you little fetcher? I'll have you know I graduated top of my class in the Royal Guard, and I've been involved in numerous secret raids on The sixth house, and I have over 300 confirmed kills. I am trained in ashland warfare and I'm the top Marksmen in the Imperial Legion. You are nothing to me but just another target. I will wipe you out with precision the likes of which has never been seen before on Nirn, mark my words. You think you can get away with saying that Netch dropping of an insult to me at the Cornerclub? Think again, fetcher. I have contacted my secret network of Morag Tong Assasins across Morrowind and your family is in danger now so you better prepare for the storm, Fetcher. The storm that wipes out the pathetic little thing you call your life. You're dead, S'wit. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the Ordinators and I will use it to its full extent to wipe your existence off the face of Tamriel, you little scamp. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your tongue. But you couldn't, you didn't, and now you're paying the price, you S'wit. I will defecate fury all over you and you will drown in it. You're dead, N'wah.\"<p>"
+    },
+    "plynote_62":{
+      "name":"But It's All Wrong",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">No one I think is in my tree,  I mean it must be high or low,  That is you can't you know tune in,  But it's all right, That is I think it's not too bad..<p>"
+    },
+    "plynote_99":{
+      "name":"art",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">[The drawing is well made and decorated, showing a khajiit with hair similar to Drissida-La's, being petted with many hearts and audible personia of purring as the khajiit lies on what seems to be an elf.]<p>"
+    },
+    "plyscroll_20":{
+      "name":"N'Goth's last will and testament",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">                N'Goth's Last Will and Testament<br>I N'Goth Lee Zasubari have served my master until the end as promised. I have tested Galos Othran to make sure he is loyal to the cause, incorruptible, and non-rebellious. I have not spoken with Ulyna about this, as I used what I saw happen to her as part of the test, with many of it's parts fabricated. Galos Othran Passed the test. <br> I leave all of my worldly possesions to Jo'Lani. I would like a copy of this to reach Ulyna too. I would like my Hlaalu Court Excerpts to be given to Yusazami, just as a joke, since they are quite humorous. I would like my 3 pearls to be given to Midiri, Ulyna, and Oritha. <br> Always True <br>-N'Goth Lee Zasubari<p>"
+    },
+    "plyscroll_7":{
+      "name":"Hlaalu Court Excerpt 142-C",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">\"What did you just say about me, you little fetcher? I'll have you know I graduated top of my class in the Royal Guard, and I've been involved in numerous secret raids on The sixth house, and I have over 300 confirmed kills. I am trained in ashland warfare and I'm the top Marksmen in the Imperial Legion. You are nothing to me but just another target. I will wipe you out with precision the likes of which has never been seen before on Nirn, mark my words. You think you can get away with saying that Netch dropping of an insult to me at the Cornerclub? Think again, fetcher. I have contacted my secret network of Morag Tong Assasins across Morrowind and your family is in danger now so you better prepare for the storm, Fetcher. The storm that wipes out the pathetic little thing you call your life. You're dead, S'wit. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the Ordinators and I will use it to its full extent to wipe your existence off the face of Tamriel, you little scamp. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your tongue. But you couldn't, you didn't, and now you're paying the price, you S'wit. I will defecate fury all over you and you will drown in it. You're dead, N'wah.\"<p>"
+    },
+    "plynote_106":{
+      "name":"Letter to the Mother Almalexia",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Greetings. Assuming this message has been delivered securely and properly from the Archcanon Galos Othril, or the Saint Gryn Firoth; otherknown as Geth. This message is to be ultimately confidential until the seal is properly opened and read by the lady of grace, if the message has not reached her and you have found it. Scrap it. <br><br> Salutations, I am Ordis; a Maormer. I am writing to you today about potentially spending a day's honor in your grace with the ayemstress. I wish to indulge myself with you and share explicit history on the Pyandonean Isle. Discuss Dunmer politics, and other rituals. <br><br> Ordis.<p>"
+    },
+    "plynote_9":{
+      "name":"Remedy study",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Perfume failed, repulsed many. Dunmer's natural scent seems pleasing, attempt to concentrate to perfume form.<p>"
+    },
+    "plynote_74":{
+      "name":"N'goth's poem",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">For treason and heresy I was accused,<br> I asked for death, and was refused.<p>"
+    },
+    "plynote_77":{
+      "name":"another vote",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Midiri<p>"
+    },
+    "plynote_107":{
+      "name":"A Tribute - by Verana Atosa",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">There we met, in house of plates,<br> You were there, as was your mate.<br> Destined we were, to join as one,<br> For a night of love and fun.<br> <br> A quiet room, in city stone,<br> Intimate, yet not alone.<br> United we were, all we four,<br> Spread out on my bedroom floor.<br> <br> Your fur was soft, my legs were weak,<br> You brushed your hand, against my cheek.<br> United then, alas, no more.<br> I long for you, back on my floor.<br> <br> Though he was hard, and she was soft,<br> Only you held me aloft.<br> I long for you, near every night.<br> I know we'll meet, when time is right.<br> <br> I'll hold you again, within my arms,<br> With your beauty, with your charms.<br> We'll meet again, you need not fear.<br> We'll meet again, Ren'sha, my dear.<br> <br> -Verana<p>"
+    },
+    "plynote_89":{
+      "name":"Illegible Note",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">[The note is written in the khajiiti script. It is signed with a heart and a doodle of two stick figures holding hands.]<p>"
+    },
+    "plyscroll_8":{
+      "name":"Hlaalu Court Excerpt 142-C",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">\"What did you just say about me, you little fetcher? I'll have you know I graduated top of my class in the Royal Guard, and I've been involved in numerous secret raids on The sixth house, and I have over 300 confirmed kills. I am trained in ashland warfare and I'm the top Marksmen in the Imperial Legion. You are nothing to me but just another target. I will wipe you out with precision the likes of which has never been seen before on Nirn, mark my words. You think you can get away with saying that Netch dropping of an insult to me at the Cornerclub? Think again, fetcher. I have contacted my secret network of Morag Tong Assasins across Morrowind and your family is in danger now so you better prepare for the storm, Fetcher. The storm that wipes out the pathetic little thing you call your life. You're dead, S'wit. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the Ordinators and I will use it to its full extent to wipe your existence off the face of Tamriel, you little scamp. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your tongue. But you couldn't, you didn't, and now you're paying the price, you S'wit. I will defecate fury all over you and you will drown in it. You're dead, N'wah.\"<p>"
+    },
+    "plynote_96":{
+      "name":"Seven Graces",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">1. Shrine of Humility<br><br>2. Shrine of Daring<br><br>3. Shrine of Generosity<br><br>4. Shrine of Courtesy<br><br>5. Shrine of Justice<br><br>6. Shrine of Valor<br><br>7. Shrine of Pride<br><br>Khajiit must remember the seven inscriptions on these shrines, if she has any hopes of joining the Temple.<p>"
+    },
+    "plynote_91":{
+      "name":"To Whom It May Concern",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">While you slept, I was able to finish the remainder of our job here. The ones left alive have surrendered, their fates left to the Temple should they ever arrive. Take care on your way back to Galos. May we work again soon.                  -Slavdim Dalken<p>"
+    },
+    "plynote_52":{
+      "name":"Note",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Capture that stuipid bitch of a Khajiit and bring her to the underworks. I'll pay you the rest of the money and deal with her. <br> L. Kaeius<p>"
+    },
+    "plynote_4":{
+      "name":"Written Quote",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">\"Pull yourself together. 'Cause that you should do better that's because you're a free man.\"<p>"
+    },
+    "plynote_1":{
+      "name":"Hi",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Hi there<p>"
+    },
+    "plyscroll_30":{
+      "name":"Writ of Citizenship: Ordis",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">d<p>"
+    },
+    "plynote_104":{
+      "name":"Reminder",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Khajiit needs to read the 36 lessuns. Very importants.<p>"
+    },
+    "plynote_64":{
+      "name":"Lies",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">You've all been lied to, the Gods of Old return. Death to false Gods, death to the Nine! -Indicus<p>"
+    },
+    "plynote_67":{
+      "name":"N'Goth - Prosecution Paper",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">N'goth Lee Zasubari has been indicted into the Imperial Mission's cells in Geth by decree of Archcanon Galos Othril. N'Goth is a dunmer male at the age of sixty two. He is awaiting digress by the tribunal counsel that has stored him here.<p>"
+    },
+    "plynote_42":{
+      "name":"Note to Self",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">With Midiri leaving to pursue the position of governor, I'll need to find the ingredients better myself. Those she brought were very useful to me. I'll miss her presence dearly, being able to focus more aptly like this has been productive. Still, it was inevitable that she'd more on to greener pastures eventually- and her new position is one that will be very helpful towards stabilising and improving Vivec.<p>"
+    },
+    "plynote_105":{
+      "name":"Ordis - Successful Prosthetic",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">I have accomplished what seems to be a revelation, with the combination of ancient dwemer tech; and soul gem technology. I was recently able, with the guidance of Yagram Bagarn and various other dwemer spectres and spirits; be able to re-create one of their designs that stopped at nothing to restore limbs to their ancient society. Today, that was all recovered; in fervor to assist and plemouth the khajiit known as Yusazami with the power and ability to touch again, with a strengthened help with a blessing from the Shrine of the Tribunal, that in activity - stored a lifetime's blessing worth of feel through the cog-ridded device, for ayem has given her grace this day.<br><br><br>Ordis.<p>"
+    },
+    "plyscroll_18":{
+      "name":"Drawing",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Like a creeping scrib, he is birthed into the scattering ashes. Anon was the city which he called paradise. Yearning in the whirling dirt of Ald-Ruhn. Myriad lessons and trials he overcame, to see the day of his repentenee. Exalted in the seas, on an island raised by God. Down in the dirt, where Gods life beats to the sound of a drum. Our only Sacred Son, our beloved Crusader Prince! Wanting for more, always more, for his brothers and sisters, the vicar of the Holy One! Neverending glory upon our Ashen Messiah, who comes to save and stoke the fires beneath our eyelids, the blackness of our hearts. The Ending of the Words is Geth<p>"
+    },
+    "plynote_92":{
+      "name":"PS",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">I forgot to mention but there is gear in the crate behind the right, magical device. Take what you need from it, I had no use for such things.<p>"
+    },
+    "plyscroll_19":{
+      "name":"The Sacrosanct Prince",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">He walks in the Shadow of God, He's shaded. He treks through the fields of false-thinking, He's faded. He walks amidst mer who are his brothers, He has fire behind his eyelids. He sits on a Throne, raised on an island over the sea. God has shaped the lands for him to take, he has shaped his hair into blue-lit-wind. He has the revenant's glare. They say he is cold, but he is a dawning fire. He lives not by the ghosts of the dead, but by the obsession of our Ancestors. ALMSIVI possess him. The image of God's love and voice, dwelling. You and I, and All of Us, here in forever.<p>"
+    },
+    "plynote_30":{
+      "name":"Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">MIDIRI FOR GOVERNOR <br> A Servant of the People <br> A Child of Morrowind <br> A Negotiator of Peace <br> And a Bringer of Right <br> <br> In her 105 years Midiri watched and assisted her employers in Hlaalu-Redoran-Temple negotations, land ownership, and the personal safety of those above and below her. <br> Trust not an outlander to rule the Dunmer. Midiri will focus on Empire-Temple negotiations and the satisfaction of the Dunmer people. <br> <br> Ballots can be cast in Old Ebonheart. <p>"
+    },
+    "plynote_33":{
+      "name":"He Lies",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Lurking in wait, ready to strike but willing? Ashes corrupting. Devil's blight, black and cruel. He lies in the Mountain.  Sleepers awake, fed nightmares in the dark. Dagoth's temptation. Rancid shadows, of tribe unmourned. He lies in the Mountain.<p>"
+    },
+    "plynote_57":{
+      "name":"Low Quality Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Looking for some fun? So am I! Come find me at the Indoril Canton, and we can have some fun together! <b> - Ulyna<p>"
+    },
+    "plyscroll_28":{
+      "name":"Writ of Ownership",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">The owner of this writ is hereby declared the rightful owner of the Khajiit slave Yusazami<p>"
+    },
+    "plyscroll_29":{
+      "name":"Drissida's Studies, V.6",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">3E 426 6th of Sun's Dawn, Addendum.<br><br>Drissida was officially sworn in as a priestess of the dunmer Triunes. She is ekstatik, as this opens her many opportuntiies to better help the people. She is hopeful for the future.<br><br>The maormer, Ordis, helped khajiit with the Seventh pilgremidg. She needs to wash her clothes - the ash is a most annoying shade of red. (Or green?) She was lucky not to have seen any beasts beyond the Ghostfence.<p>"
+    },
+    "plynote_44":{
+      "name":"Low Quality Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Looking for some fun? So am I! Come find me in the Indoril Canton, and we can have some fun together! <b> - Ulyna<p>"
+    },
+    "plynote_47":{
+      "name":"Low Quality Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Looking for some fun? So am I! Come find me in the Indoril Canton, and we can have some fun together! <b> - Ulyna<p>"
+    },
+    "plynote_72":{
+      "name":"N'goth's poem",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">For treason and heresy I was accused,<br> I asked for death, and was refused.<p>"
+    },
+    "plynote_86":{
+      "name":"drawing",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">(:D)-|-=<p>"
+    },
+    "plynote_5":{
+      "name":"Prosecution Warrant",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">[Details regard about a pending prosecution on someone.]<p>"
+    },
+    "plyscroll_23":{
+      "name":"Drissida's Studies, V.1",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">3E 426 - 5th of Sun's Dawn<br>The dunmeri faith seems to rely heavily on folklore and commandments. It bears many paralells to khajiit's own faith, as primordial dunmer worshipped Azurah all the same.<br><br>Drissida thinks she may consider practicing the dunmer faith as she stays in Morrowind. She will of course seek counsel for such a weightful choice. She trusts the judgement of Midiri, the Archcanon, and Oritha the most.<br><br> An interesting mantra that seems to be repeated in the dunmer scriptures is Lorkhaj. He seems to be references - sometimes incorrectly - very often. Drissida wonders what his role is in the elves' pantheon? He is a figure of great malevolence to the khajiit.<p>"
+    },
+    "plynote_6":{
+      "name":"Galos Othril's Notes, 27 Morning Star 3e426",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">It feels almost sacrilegious to revise it, but perhaps the formula for the Sarys-Othril Regenerative Elixir could be improved further. Nev never cared much for sentimentality. She wouldn't have me hold back on pushing forwards with our research out of some misguided sense of honour to her memory. But I digress; The fundamental alchemical properties of the ingredients are special, and yes, we spent many years finding the right ingredients from all over Tamriel. But strides have been made since then in the alchemical field. It doesn't help that stocks have become more difficult to find in recent times... which perhaps necessitates even experimentation into alternative ingredients. Note to self: The Water Breathing potion came along well, but perhaps ingredients from further afield could make the recipe even better.<p>"
+    },
+    "plynote_94":{
+      "name":"I.O.U.",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Drissida-La owes you 100 septims<p>"
+    },
+    "plynote_18":{
+      "name":"jumbernickle tinkle!",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Marvelous marvelous, you've been invited to take part in ravaging festivities of great splendor and knee-slapping fun! See that old guy there? He's your man! Follow him to the fun times ahead!<p>"
+    },
+    "plynote_97":{
+      "name":"drawing",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">[A basic drawing of an elf with a knife cutting the tongue out of an Argonian]<p>"
+    },
+    "plynote_69":{
+      "name":"N'Goth's last will and testament",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">                N'Goth's Last Will and Testament<br>I N'Goth Lee Zasubari have served my master until the end as promised. I have tested Galos Othran to make sure he is loyal to the cause, incorruptible, and non-rebellious. I have not spoken with Ulyna about this, as I used what I saw happen to her as part of the test, with many of it's parts fabricated. Galos Othran Passed the test. <br> I leave all of my worldly possesions to Jo'Lani. I would like a copy of this to reach Ulyna too. I would like my Hlaalu Court Excerpts to be given to Yusazami, just as a joke, since they are quite humorous. I would like my 3 pearls to be given to Midiri, Ulyna, and Oritha. <br> Always True <br>-N'Goth Lee Zasubari<p>"
+    },
+    "plynote_28":{
+      "name":"testpaper",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">test <br> test <h1>test</h1><p>"
+    },
+    "plynote_23":{
+      "name":"Written Quote",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">\"Love of my life, you've hurt me. You've broken my heart and now you leave me. Love of my life, can't you see? Bring it back, bring it back. Don't take it away from me. Because you don't know what it means to me.\"<p>"
+    },
+    "plynote_82":{
+      "name":"Notice",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">The meet and greet of Governor Candidate Midiri has moved to The Mother Alessia's<p>"
+    },
+    "plynote_53":{
+      "name":"Note",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Capture Yusazami and bring her to the Underworks, I'll pay you and then take care of her. <br> L. Kaeius<p>"
+    },
+    "plynote_35":{
+      "name":"He Lies",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Lurking in wait, ready to strike<br> but willing? Ashes corrupting.<br> Devil's blight, black and cruel.<br> He lies in the Mountain.<br> <br>  Sleepers awake, fed nightmares<br> in the dark. Dagoth's temptation.<br> Rancid shadows, of tribe unmourned.<br> He lies in the Mountain.<p>"
+    },
+    "plynote_98":{
+      "name":"drawing",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">[A drawing of a compass, the needle is pointing to a slave bracer]<p>"
+    },
+    "plynote_85":{
+      "name":"drawing",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">(:D)-|-<<p>"
+    },
+    "plynote_84":{
+      "name":"Sales Permit",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">SALES PERMIT of Serano Llervil. <br> Sir. Serano Llervil is hereby permitted to sell Weapons, armor, food, and medicines of no limited class. <br> Signed by: Odral Hlevi of the Great House Hlaalu<p>"
+    },
+    "plynote_81":{
+      "name":"Emer Indicus' Fine",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Emer Indicus has paid 200 septims in a reimbursement fine for assault and battery to khajiit named Do'Han. No charges were pressed.<p>"
+    },
+    "plynote_87":{
+      "name":"Note for Midiri",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Congratulations on becoming Governor. We knew you will become the governor, as there was a 78% chance you would, just like there is 80% chance you will recieve this note.<br>-Anonymous<p>"
+    },
+    "plynote_65":{
+      "name":"Angry Note",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Midiri is a stuck up bitch, I'd rather see an Imperial in office than her grimy face. Why the hell are we trying to negotiate with the Empire anyway? To arms!<p>"
+    },
+    "plynote_71":{
+      "name":"N'goth's poem",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">For treason and heresy I was accused,<br> I asked for death, and was refused.<p>"
+    },
+    "plynote_10":{
+      "name":"Grocery List",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">-Grocerry List-<p>"
+    },
+    "plynote_39":{
+      "name":"test",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">test test test<p>"
+    },
+    "plynote_13":{
+      "name":"La'Jirra's Notes",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Ra'Jirra leaves Cyrodiil, and changes her name. La'Jirra is different enough, and sounds better anyway. Ra'Jirra blames that idiot Khajiit, with the Imps. If it hadn't been for her, Ra'Jirra wouldn't have...<The Rest Of The Note Is Torn And Not Legible><p>"
+    },
+    "plyscroll_1":{
+      "name":"writing",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">A a B b C c D d E e F f G g H h I i  J i K k L l M m N n O o P p Q q R r S s T t U u V v W w X x Y y Z z <br> The quick borwn fox jmumped over the lasy dog<p>"
+    },
+    "plyscroll_24":{
+      "name":"Drissida's Studies, V.2",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">3E 426 - 3rd of Sun's Dawn<br>This is Drissida's first note on her study of the Tribunal faith of the dunmer. (Sometimes called ALMSIVI- which is used commonly as a greeting of sorts.) She has decided to study their religion in an effort to better understand their people. She admits that she had doubts at first, but as she reads into it she becomes more enthralled by it's teachings.<br><br>Khajiit will be making great efforts to further herself with this knowledge. She plans on documenting all of the particulars she can that she deems fit. She will purchase more books when she gets the opportunity. <br><br> 3E 426 - 4th of Sun's Dawn<br> Addendum: The Archcanon and I seem to think eye-to-eye on many issues. Perhaps this land is not as alien as it seems. Despite being an ancient dunmer (2023 years - Wow!) - He seems respectful of Drissida's people. He even speaks Ta'agra.<br><br>Khajiit also decided she will use this as practice for her imperial script. Not many non-khajiit can read what she writes otherwise.<p>"
+    },
+    "plynote_8":{
+      "name":"La'Jirra's Notes",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Ri'Jirra leaves Cyrodiil, and changes her name. Ri'Jirra not worth the risk, and Li'Jirra sounds better, anyway. Ri'Jirra collects her thoughts here. Though they aren't in Ta'agra, thanks to the Jekosiit who ruined her tongue, and thoughts. Blehck. Common. Still, Ri'Jirra thought that the most bizzare encounter she would ever see would be that Idiot Khajiit from Kvatch, trying to do a trick with a Yo-Yo and a pineapple. Ri'Jiira has decided this is NOT the case, having met the Cathay-Rhat....She is still undecided about how to leave that one. And the Priest is no help, since her voice grates this one like sandpaper...Ri'Jirra writes more here later.<p>"
+    },
+    "plynote_38":{
+      "name":"Receipt",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">PATRON: Verana Atosa<br>SERVICE: 6 bottles of Sujamma<br>COST: 70 drakes<br>TIP: 22 drakes<br>TOTAL: 92 drakes (PAID)<p>"
+    },
+    "plynote_111":{
+      "name":"\"The Lady of Love\" - by Verana Atosa",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">O, songs I had sang, of God-Queen golden,<br> Beauty she was, and to me was beholden.<br> Upon my floor, 'ere she did come for the song<br> Sing, oh sing did I. dancing away, the Matron fair.<br> She has come for me, the Lady of love.<br> <br> Upon my bed, the two of us met. I exchanged a kiss<br> from her cherried lips. Her golden skin, so gentle and fair,<br> Complemented her reddened hair. Caressing me behind<br> And below, she gave to me nectar as I suckled.<br> Merciful Mother hath bestowed to me her milk.<br> <br> My tongue to her lips, both 'bove and below.<br> Past her fields fertile, a tower did grow.<br> Into my soul and body she came, my apertures as gates,<br> For digits gentle and spears pointed. We pressed together,<br> Mammaries rubbing. This was a night, all just for loving.<br> <br> Stroking my hair, the lady guides me onwards.<br> Forged of myself, she had forged me a spear, and I had guided it inwards.<br> Into my matron I came and I went, upon her visage my essence was spent.<br> Betwixt my lips fair, and into mine hair, she had come as well.<br> I did not mind, for I did soon find, I could use her nectar as gel.<br> <br> Spear of mine fades, yet into the valley her Tower is built.<br> Against it I press, Ayem makes a mess, into my mouth it is spilt.<br> Her spear is then sheathed, as we rest for the eve, cuddling and <br> squeezing galore. We kiss and we laugh, I speak of my love,<br> I could never have asked for more.<p>"
+    },
+    "plynote_46":{
+      "name":"Low Quality Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Looking for some fun? So am I! Come find me in the Indoril Canton, and we can have some fun together! <b> - Ulyna<p>"
+    },
+    "plynote_59":{
+      "name":"Low Quality Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Looking for some fun? So am I! Come find me at the Indoril Canton, and we can have some fun together! <b> - Ulyna<p>"
+    },
+    "plynote_100":{
+      "name":"Galos with a Maormer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">[The drawing seems to be in fine detail, and even colorized due to the knowledge of herbs and certain spices that can be conctracted to make art. It shows Galos Othril in a shining archcanon robe with a Maormer kneeling behind him with two fingers opened behind his head.]<p>"
+    },
+    "plynote_25":{
+      "name":"To S'rinna",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">To S'rinn,  Hello! It's Jo'Lani. He's very sorry for not writing to you so soon. The time seems to have flown so fast! Anyways, how are things back home? Still working at the Flowing Bowl? Jo'Lani hates to admit it, but he misses working for those two Bosmer. Evne though that they can be BOSSYmer. Anyways. Jo'Lani finally has a shop now! His OWN place. It's a little bookstore called the Trove of Tomes! See? Khajiit did remember to use your name suggestion. Anyways, Jo'Lani misses you so much and everyone on the Golden Coast. He hopes that you'll right back to him. Sorry that's it's been so long.  - Jo'Lani<p>"
+    },
+    "plynote_7":{
+      "name":"Sarys-Othril's Regenerative Elixir Recipe",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Garlic, Saltrice, Water Hycacinth Nectar Sacks, Comberries.<p>"
+    },
+    "plynote_83":{
+      "name":"vote",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">midiri<p>"
+    },
+    "plynote_36":{
+      "name":"He Lies",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">twetwet<p>"
+    },
+    "plynote_108":{
+      "name":"A Tribute - by Verana Atosa",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">There we met, in house of plates,<br> You were there, as was your mate.<br> Destined we were, to join as one,<br> For a night of love and fun.<br> <br> A quiet room, in city stone,<br> Intimate, yet not alone.<br> United we were, all we four,<br> Spread out on my bedroom floor.<br> <br> Your fur was soft, my legs were weak,<br> You brushed your hand, against my cheek.<br> United then, alas, no more.<br> I long for you, back on my floor.<br> <br> Though he was hard, and she was soft,<br> Only you held me aloft.<br> I long for you, near every night.<br> I know we'll meet, when time is right.<br> <br> I'll hold you again, within my arms,<br> With your beauty, with your charms.<br> We'll meet again, you need not fear.<br> We'll meet again, Ren'sha, my dear.<br> <br> -Verana<p>"
+    },
+    "plynote_31":{
+      "name":"Angry Note",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">I don't give a guars ass who Midiri is, stop leaving this trash on my doorstep!<p>"
+    },
+    "plynote_40":{
+      "name":"To the Archcanon",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Hey! Khajiit found a Propidilon Index for you, Serjo. She's read your notices for these rare artifacts. At first, she was a bit hesitant to hand it in because she believed that it should be in a museum. However, Drissida thought about it and she changed her mind. Hope you enjoy the Index. By the way, could you please give the reward to her the next time you see her? Pretty please? -Drissida-La<p>"
+    },
+    "plyscroll_9":{
+      "name":"Hlaalu Court Excerpt 142-C",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">\"What did you just say about me, you little fetcher? I'll have you know I graduated top of my class in the Royal Guard, and I've been involved in numerous secret raids on The sixth house, and I have over 300 confirmed kills. I am trained in ashland warfare and I'm the top Marksmen in the Imperial Legion. You are nothing to me but just another target. I will wipe you out with precision the likes of which has never been seen before on Nirn, mark my words. You think you can get away with saying that Netch dropping of an insult to me at the Cornerclub? Think again, fetcher. I have contacted my secret network of Morag Tong Assasins across Morrowind and your family is in danger now so you better prepare for the storm, Fetcher. The storm that wipes out the pathetic little thing you call your life. You're dead, S'wit. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the Ordinators and I will use it to its full extent to wipe your existence off the face of Tamriel, you little scamp. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your tongue. But you couldn't, you didn't, and now you're paying the price, you S'wit. I will defecate fury all over you and you will drown in it. You're dead, N'wah.\"<p>"
+    },
+    "plyscroll_0":{
+      "name":"I AM AND I ARE ALL WE",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_Scroll_01.tga",
+      "model":"m\\Text_Scroll_01.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br> I AM AND I ARE ALL WE <br><br><p>"
+    },
+    "plynote_29":{
+      "name":"Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">MIDIRI FOR GOVERNOR <br> A SERVANT OF THE PEOPLE <br> A CHILD OF MORROWIND <br> A NEGOTIATOR OF PEACE <br> AND A BRINGER OF RIGHT <br> <br> IN HER 105 YEARS MIDIRI WATCHED AND ASSISTED HER EMPLOYERS IN HLAALU-REDORAN NEGOTATIONS, LAND OWNERSHIP, AND THE PERSONAL SAFETY OF THOSE ABOVE AND BELOW HER. <br> CAN WE TRUST AN OUTLANDER TO BE ASSIGNED THIS POSITION OF POWER OVER SOMEONE WITH PROVEN RESULTS? <br> <br> BALLOTS CAN BE CAST IN OLD EBONHEART<p>"
+    },
+    "plynote_109":{
+      "name":"An Illustration of Vivec",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">[This piece of parchment contains an ink sketch of Vivec, drawn with passion yet done by an untrained artist.]<p>"
+    },
+    "plynote_20":{
+      "name":"Candidate Entry",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">MIDIRI - A FUTURE FOR VVARDENFELL FOR THE CHILDREN OF THE THREE<p>"
+    },
+    "plynote_54":{
+      "name":"Low Quality Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Looking for some fun? So am I! Come find me at the Indoril Canton, and we can have some fun together! <b> - Ulyna<p>"
+    },
+    "plynote_63":{
+      "name":"The Truth",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Death to the Three, the pitiful false gods shall fall. -Indicus<p>"
+    },
+    "plynote_24":{
+      "name":"To S'riina",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Hello. It's Jo'Lani. He's sorry for not writing to you in months. (Whoops) The time has flown by faster than this one knew it! Anyways, Jo'Lani is wondering how things are back at home? Are you still working at the Flowing Bowl? Jo'Lani hates to admit it, but he being ordered around by those two Bosmer. Kaelorn and Maelorn, right? Jo<p>"
+    },
+    "plynote_49":{
+      "name":"Low Quality Flyer",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Looking for some fun? So am I! Come find me in the Indoril Canton, and we can have some fun together! <b> - Ulyna<p>"
+    },
+    "plynote_41":{
+      "name":"Galos Othril's Alchemical Research Note, 2nd Suns Dawn, 3e426",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">At last.<BR> I managed to make an improvement to the formula. As expected, it has returned far better results. Although I do feel somewhat bad at having altered the formula, Nev was never one for sentimentality. Not holding back from improving it was the right course of action. She'd agree. I'll now be able to better pursue my other ends...<p>"
+    },
+    "plynote_32":{
+      "name":"Journal Entry",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">1st of Sun's Dawn, 3E 426- Jo'Lani can never keep a journal. Of any kind. He usually starts it but he forgets it. So bother continuing? He always comes back to try again with this when he feels like an unwanted mannequin....Always happens. A cute priestess named Drissida-La was really interested in this one. Very interested in him. In fact, she even tried to seduce him on his own counter. BUT, Jo'Lani was too caught up in his own head to notice her. So when HE started to be interested, she was getting uninterested. And long story short, she was too fast and Jo'Lani is terribly slow. What the worse part is tried to take her out on a date to know her better!! All that hard work for nothing! When he comes back from unintentionally getting drunk from too much wine, she lets him go! This one could barely count his own fingers at the time, let alone comprehend a break-up. She was the one who was being too pushy and trying to make seductive gestures in the first place....Jo'Lani is done with relationships. Too much heartache. <p>"
+    },
+    "plynote_2":{
+      "name":"hello i am a crazy biich",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">Hellow I am a crazy biich<p>"
+    },
+    "plynote_15":{
+      "name":"Drissida's Mathmatics Questions",
+      "value":1,
+      "weight":0.2,
+      "icon":"m\\Tx_note_02.tga",
+      "model":"m\\Text_Note_02.nif",
+      "scrollState":true,
+      "skillId":"-1",
+      "text":"<DIV ALIGN=\"CENTER\">1. Which is larger, 2013 or 391? 2. Which is smaller, 518 or 492. 3. What is a third of 946? 4. What is 59 a third of? 5. What is a fourth of 500? 6. Which is larger, 101 or 89? 7. What is eleven a third of? 8. What is a third of 433. 9. And what is 433 a third of? 10. Write this number out as a word 915<p>"
+    }
+  },
+  "generatedRecords":{
+    "$custom_book_13":{
+      "baseId":"t_sc_blank",
+      "name":"Holy Seal",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_145"
+    },
+    "$custom_book_6":{
+      "baseId":"t_sc_blank",
+      "name":"Divine Seal",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_138"
+    },
+    "$custom_book_5":{
+      "baseId":"t_sc_blank",
+      "name":"Divine Seal",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_137"
+    },
+    "$custom_book_8":{
+      "baseId":"t_sc_blank",
+      "name":"Sacred Seal",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_140"
+    },
+    "$custom_book_16":{
+      "baseId":"t_sc_blank",
+      "name":"Scroll of Sworn Armour",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_148"
+    },
+    "$custom_book_10":{
+      "baseId":"t_sc_blank",
+      "name":"Sacred Seal",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_142"
+    },
+    "$custom_book_14":{
+      "baseId":"t_sc_blank",
+      "name":"Holy Seal",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_146"
+    },
+    "$custom_book_17":{
+      "baseId":"t_sc_blank",
+      "name":"Scroll of Sworn Armour",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_149"
+    },
+    "$custom_book_7":{
+      "baseId":"t_sc_blank",
+      "name":"Divine Seal",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_139"
+    },
+    "$custom_book_12":{
+      "baseId":"t_sc_blank",
+      "name":"Holy Seal",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_144"
+    },
+    "$custom_book_1":{
+      "baseId":"t_sc_blank",
+      "name":"Scrol of the Wild Leap",
+      "enchantmentCharge":400,
+      "enchantmentId":"$custom_enchantment_5"
+    },
+    "$custom_book_11":{
+      "baseId":"t_sc_blank",
+      "name":"Sacred Seal",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_143"
+    },
+    "$custom_book_15":{
+      "baseId":"t_sc_blank",
+      "name":"Holy Seal",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_147"
+    },
+    "$custom_book_9":{
+      "baseId":"t_sc_blank",
+      "name":"Sacred Seal",
+      "enchantmentCharge":100,
+      "enchantmentId":"$custom_enchantment_141"
+    },
+    "$custom_book_3":{
+      "baseId":"sc_paper plain",
+      "name":"Paper",
+      "enchantmentCharge":30,
+      "enchantmentId":"$custom_enchantment_74"
+    }
+  },
+  "recordLinks":{
+    "$custom_book_13":{
+      "players":["Galos Othril"]
+    },
+    "$custom_book_6":{
+      "players":["Galos Othril"]
+    },
+    "$custom_book_5":{
+      "players":["Galos Othril"]
+    },
+    "$custom_book_8":{
+      "players":["Galos Othril"]
+    },
+    "$custom_book_16":{
+      "players":["Galos Othril"]
+    },
+    "$custom_book_10":{
+      "players":["Galos Othril"]
+    },
+    "$custom_book_14":{
+      "players":["Galos Othril"]
+    },
+    "$custom_book_17":{
+      "players":["Galos Othril"]
+    },
+    "$custom_book_7":{
+      "players":["Galos Othril"]
+    },
+    "$custom_book_12":{
+      "players":["Galos Othril"]
+    },
+    "$custom_book_1":{
+      "players":[],
+      "cells":["Vivec, Temple Apartments"]
+    },
+    "$custom_book_11":{
+      "players":["Galos Othril"]
+    },
+    "$custom_book_15":{
+      "players":["Galos Othril"]
+    },
+    "$custom_book_9":{
+      "players":["Galos Othril"]
+    },
+    "$custom_book_3":{
+      "players":[],
+      "cells":["Vivec, St. Delyn Waist South-Two"]
+    }
+  }
+}
