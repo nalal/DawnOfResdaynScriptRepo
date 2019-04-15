@@ -41,10 +41,15 @@ function commandHandler.ProcessCommand(pid, cmd)
             tes3mp.SendMessage(targetPid, message, false)
         end
 
+	elseif cmd[1] == "rest" then
+		targetCell = tes3mp.GetCell(pid)
+		basicNeeds.rest(pid, targetCell)
+		
 	elseif cmd[1] == "showneeds" then
 		hunger = tonumber(Players[pid].data.playerNeeds.hunger)
 		thirst = tonumber(Players[pid].data.playerNeeds.thirst)
-		message = "Your hunger is currently at " .. hunger .. "\nYour thirst is currently at " .. thirst .. "\n"
+		fatigue = tonumber(Players[pid].data.playerNeeds.fatigue)
+		message = "Your hunger is currently at " .. hunger .. "\nYour thirst is currently at " .. thirst .. "\nYour fatigue is currently at " .. fatigue .. "\n"
 		tes3mp.SendMessage(pid, message, false)
 
     --[[elseif cmd[1] == "me" and cmd[2] ~= nil then

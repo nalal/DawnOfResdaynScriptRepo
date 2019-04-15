@@ -338,4 +338,6 @@ config.foodItems = { "ingred_ash_yam_01", "ingred_comberry_01", "ingred_bread_01
 
 config.drinkItems = { "potion_local_liquor_01", "Potion_Local_Brew_01", "Potion_Cyro_Whiskey_01", "potion_ancient_brandy", "potion_cyro_brandy_01", "potion_nord_mead", "potion_comberry_brandy_01", "potion_comberry_wine_01", "potion_skooma_01", "p_vintagecornberrybrandy1" }
 
+config.restingCells = { "Balmora, South Wall Cornerclub" }
+
 return config
