@@ -1,8 +1,12 @@
+activeHungerTimers = { }
+activeThirstTimers = { }
+activeFatigueTimers = { }
 basicNeedsLogic = function(oldPlayerName, pid, tic, val1, val2, val3, val4)
 	if logicHandler.CheckPlayerValidity(pid, pid) then
 		val = tonumber(Players[pid].data.playerNeeds[val1])
 		playerName = Players[pid].name
-		if playerName == oldPlayerName then
+		listName = playerName .. pid
+		if listName == oldPlayerName then
 			newVal = val + 10
 			if val < 90 then
 				Players[pid].data.playerNeeds[val1] = newVal
@@ -11,6 +15,7 @@ basicNeedsLogic = function(oldPlayerName, pid, tic, val1, val2, val3, val4)
 					tes3mp.LogMessage(enumerations.log.INFO, "Increasing " .. val1 .. " for player " .. logicHandler.GetChatName(pid) .. ", current " .. val1 .. " is " .. newVal .. ".")
 				end
 				basicNeedsMessage(pid, message)
+				basicNeedsTableConvert(listName, val1)
 				basicNeeds[tic](pid)
 			else
     			Players[pid].data.playerNeeds[val1] = 100
@@ -26,11 +31,15 @@ basicNeedsLogic = function(oldPlayerName, pid, tic, val1, val2, val3, val4)
 				if Players[pid].data.playerNeedsDebuffs[val3] == false then
     				Players[pid].data.playerNeedsDebuffs[val3] = true
 			    end
+				basicNeedsTableConvert(listName, val1)
 			    basicNeeds[tic](pid)
 			end
 		else
-			basicNeedsLogDebug("Player " .. playerName .. "'s name does not match " .. oldPlayerName .. ".")
+			basicNeedsLog("Player " .. listName .. "'s name does not match " .. oldPlayerName .. ".")
 		end
+	else
+	basicNeedsTableConvert(oldPlayerName, val1)
+	basicNeedsLog("Clearing name " .. oldPlayerName .. " from activeTimer")
 	end
 end
 
@@ -88,12 +97,40 @@ basicNeedsMessage = function(pid, message, messagecolor)
 	Players[pid]:Message(color.Cyan .. "[Basic Needs]: " .. color.LightCyan .. message .. "\n")
 end
 
+basicNeedsTableConvert = function(playerName, tableType)
+	if tableType == "hunger" then
+		tableHelper.removeValue(activeHungerTimers, playerName)
+	elseif tableType == "thirst" then
+		tableHelper.removeValue(activeThirstTimers, playerName)
+	elseif tableType == "fatigue" then
+		tableHelper.removeValue(activeFatigueTimers, playerName)
+	end
+end
+
+basicNeedsTimerPurge = function(playerName, tableType)
+	basicNeedsLog("Removing " .. playerName .. " from timer list " .. tableType)
+	tableHelper.removeValue(tableType, playerName)
+end
+
 local basicNeeds = {}
+
+	function basicNeeds.logoutCatch(playerName)
+		if tableHelper.containsValue(activeHungerTimers, playerName) == true then
+			basicNeedsTimerPurge(playername, activeHungerTimers)
+		end
+		if tableHelper.containsValue(activeThirstTimers, playerName) == true then
+			basicNeedsTimerPurge(playername, activeThirstTimers)
+		end
+		if tableHelper.containsValue(activeFatigueTimers, playerName) == true then
+			basicNeedsTimerPurge(playername, activeFatigueTimers)
+		end
+	end
 
 	function basicNeeds.startTic(pid)
 		if config.needsToggle == true then
 			basicNeeds.hungerTic(pid)
 			basicNeeds.thirstTic(pid)
+			basicNeeds.fatigueTic(pid)
 		elseif Players[pid].data.playerNeeds ~= nil and Players[pid].data.playerNeedsDebuffs ~= nil then
 			basicNeedsLog("basicNeeds is disabled in the config, skiping needs tracking init.")
 			Players[pid].data.playerNeedsDebuffs.starving = false
@@ -109,27 +146,40 @@ local basicNeeds = {}
 
 	function basicNeeds.hungerTic(pid)
 		playerName = tostring(Players[pid].name)
-		hungerTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sisssss", playerName, pid, "hungerTic", "hunger", "hungry", "starving", "healthBase")
-		basicNeedsLog("Running hunger timer for player " .. logicHandler.GetChatName(pid) .. ".")
-		tes3mp.StartTimer(hungerTime)
+		listName = playerName .. pid
+		if tableHelper.containsValue(activeHungerTimers, listName) ~= true then
+			hungerTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sisssss", listName, pid, "hungerTic", "hunger", "hungry", "starving", "healthBase")
+			basicNeedsLog("Running hunger timer for player " .. logicHandler.GetChatName(pid) .. ".")
+			tes3mp.StartTimer(hungerTime)
+			table.insert(activeHungerTimers, listName)
+		else
+			basicNeedsLog("Player " .. logicHandler.GetChatName(pid) .. " already has a hunger timer running, ignoring.")
+		end
 	end
 	
 	function basicNeeds.thirstTic(pid)
-		if config.needsToggle == true then
-			playerName = tostring(Players[pid].name)
-			thirstTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sisssss", playerName, pid, "thirstTic", "thirst", "thirsty", "dehydrated", "magickaBase")
+		playerName = tostring(Players[pid].name)
+		listName = playerName .. pid
+		if tableHelper.containsValue(activeThirstTimers, listName) ~= true then
+			thirstTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sisssss", listName, pid, "thirstTic", "thirst", "thirsty", "dehydrated", "magickaBase")
 			basicNeedsLog("Running thirst timer for player " .. logicHandler.GetChatName(pid) .. ".")
 			tes3mp.StartTimer(thirstTime)
+			table.insert(activeThirstTimers, listName)
+		else
+			basicNeedsLog("Player " .. logicHandler.GetChatName(pid) .. " already has a thirst timer running, ignoring.")
 		end
 	end
 
-    -- Not initialized on login, function not complete
 	function basicNeeds.fatigueTic(pid)
-		if config.needsToggle == true then
-			playerName = tostring(Players[pid].name)
-			fatigueTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sisssss", playerName, pid, "fatigueTic", "fatigue", "tired", "exhausted", "fatigueBase")
+		playerName = tostring(Players[pid].name)
+		listName = playerName .. pid
+		if tableHelper.containsValue(activeFatigueTimers, listName) ~= true then
+			fatigueTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sisssss", listName, pid, "fatigueTic", "fatigue", "tired", "exhausted", "fatigueBase")
 			basicNeedsLog("Running fatigue timer for player " .. logicHandler.GetChatName(pid) .. ".")
-			tes3mp.StartTimer(thirstTime)
+			tes3mp.StartTimer(fatigueTime)
+			table.insert(activeFatigueTimers, listName)
+		else
+			basicNeedsLog("Player " .. logicHandler.GetChatName(pid) .. " already has a fatigue timer running, ignoring.")
 		end
 	end
 

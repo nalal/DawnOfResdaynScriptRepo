@@ -53,6 +53,8 @@ end
 eventHandler.OnPlayerDisconnect = function(pid)
 
     if Players[pid] ~= nil then
+	--playerName = Players[pid].name
+	--basicNeeds.logoutCatch(playerName)
         if Players[pid]:IsLoggedIn() then
 
             Players[pid]:DeleteSummons()
