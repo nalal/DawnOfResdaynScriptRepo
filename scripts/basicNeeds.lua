@@ -33,14 +33,16 @@ local basicNeeds = {}
 		if config.needsToggle == true then
 			basicNeeds.hungerTic(pid)
 			basicNeeds.thirstTic(pid)
-		else
+		elseif Players[pid].playerNeeds ~= nil and Players[pid].playerNeedsDebuffs ~= nil then
+			tes3mp.LogMessage(enumerations.log.INFO, "basicNeeds is disabled in the config, skiping needs tracking init.")
 			Players[pid].playerNeedsDebuffs.starving = false
 			Players[pid].playerNeedsDebuffs.dehydrated = false
 			Players[pid].playerNeedsDebuffs.exhausted = false
 			Players[pid].playerNeeds.hunger = 0
 			Players[pid].playerNeeds.thirst = 0
 			Players[pid].playerNeeds.fatigue = 0
-			tes3mp.LogMessage(enumerations.log.INFO, "basicNeeds is disabled in the config, skiping needs tracking init.")
+			tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(pid) .. " had basicNeeds data but basicNeeds is disabled.")
+			tes3mp.LogMessage(enumerations.log.INFO, "Setting data for player " .. logicHandler.GetChatName(pid) .. " to default.")
 		end
 	end
 

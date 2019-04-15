@@ -143,7 +143,7 @@ function BasePlayer:initNeeds()
 	end
 	if self.data.playerNeedsDebuffs == nil then
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'playerNeedsDebuffs', repairing now. ")
-		playerNeedsDebuffs = {
+		self.data.playerNeedsDebuffs = {
 			startving = false,
 			dehydrated = false,
 			exausted = false
