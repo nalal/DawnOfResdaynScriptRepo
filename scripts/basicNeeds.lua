@@ -6,7 +6,7 @@ basicNeedsLogic = function(oldPlayerName, pid, tic, val1, val2, val3, val4)
 			newVal = val + 10
 			if val < 90 then
 				Players[pid].data.playerNeeds[val1] = newVal
-				message = "You feel " .. val2 .. ".\n"
+				message = "You feel " .. val2 .. "."
 				if config.needsLogging == true then
 					tes3mp.LogMessage(enumerations.log.INFO, "Increasing " .. val1 .. " for player " .. logicHandler.GetChatName(pid) .. ", current " .. val1 .. " is " .. newVal .. ".")
 				end
@@ -14,11 +14,9 @@ basicNeedsLogic = function(oldPlayerName, pid, tic, val1, val2, val3, val4)
 				basicNeeds[tic](pid)
 			else
     			Players[pid].data.playerNeeds[val1] = 100
-				message = "You are " .. val3 .. ".\n"
-				if config.needsLogging == true then
-					tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(pid) .. " is " .. val3)
-				end
-				basicNeedsMessage(pid, message)
+				message = "You are " .. val3 .. "."
+				basicNeedsLog("Player " .. logicHandler.GetChatName(pid) .. " is " .. val3)
+				basicNeedsMessage(pid, color.Red .. message)
 				if config.needsEmote == true then
 					basicNeedsEmote(pid, val1)
 				end
@@ -46,7 +44,7 @@ basicNeedsRestApply = function(pid, name)
 		Players[pid].data.playerNeeds.fatigue = 0
 		Players[pid].data.playerNeedsDebuffs.exhausted = false
 		basicNeedsMessage(pid, "You are now rested.")
-		basicNeedsLog(checkname .. " is now rested, setting fatigue to 0")
+		basicNeedsLog(checkname .. " is now rested, setting fatigue to 0 and clearing fatigue debuff")
 	else
 		basicNeedsLog(checkName .. " does not match old name " .. name .. ".")
 	end
@@ -87,7 +85,7 @@ basicNeedsMessage = function(pid, message, messagecolor)
 	if messagecolor ~= nil then
 		message = messagecolor .. message
 	end
-	Players[pid]:Message("[Basic Needs]: " .. color.LightCyan .. message .. "\n")
+	Players[pid]:Message(color.Cyan .. "[Basic Needs]: " .. color.LightCyan .. message .. "\n")
 end
 
 local basicNeeds = {}

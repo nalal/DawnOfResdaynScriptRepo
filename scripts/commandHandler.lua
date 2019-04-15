@@ -49,7 +49,7 @@ function commandHandler.ProcessCommand(pid, cmd)
 		hunger = tonumber(Players[pid].data.playerNeeds.hunger)
 		thirst = tonumber(Players[pid].data.playerNeeds.thirst)
 		fatigue = tonumber(Players[pid].data.playerNeeds.fatigue)
-		message = "Your hunger is currently at " .. hunger .. "\nYour thirst is currently at " .. thirst .. "\nYour fatigue is currently at " .. fatigue .. "\n"
+		message = color.Aqua .. "[Basic Needs]:" .. color.White .. " Your hunger is currently at " .. color.Orange .. "\n" .. hunger .. color.Aqua .. "\n[Basic Needs]:" .. color.White .. " Your thirst is currently at " .. color.Orange .. "\n" .. thirst .. color.Aqua .. "\n[Basic Needs]:" .. color.White .. " Your fatigue is currently at " .. color.Orange .. "\n" .. fatigue .. "\n"
 		tes3mp.SendMessage(pid, message, false)
 
     --[[elseif cmd[1] == "me" and cmd[2] ~= nil then
