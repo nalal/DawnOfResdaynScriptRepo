@@ -31,21 +31,22 @@ basicNeedsLogic = function(oldPlayerName, pid, tic, val1, val2, val3, val4)
 			    basicNeeds[tic](pid)
 			end
 		else
-		basicNeedsLogDebug("Player " .. playerName .. "'s name does not match " .. oldPlayerName .. ".")
+			basicNeedsLogDebug("Player " .. playerName .. "'s name does not match " .. oldPlayerName .. ".")
+		end
 	end
 end
 
-basicNeedsDebuff = funtion(pid, val1)
+basicNeedsDebuff = function(pid, val1)
 	basicNeedsLogDebug("Server tried to apply the debuff for " .. val1 .. " on PID " .. pid .. " but the debuff function isn't complete yet.")
 end
 
-basicNeedsLog(message)
+basicNeedsLog = function(message)
 	if config.needsLogging == true then
 		tes3mp.LogMessage(enumerations.log.INFO, message)	
 	end
 end
 
-basicNeedsLogDebug(message)
+basicNeedsLogDebug = function(message)
 	if config.needsLogging == true and config.needsLoggingDebug == true then
 		tes3mp.LogMessage(enumerations.log.INFO, message)
 	end
@@ -126,39 +127,24 @@ local basicNeeds = {}
 
 	function basicNeeds.ingest(pid, itemRefID)
 		if tableHelper.containsValue(config.foodItems, itemRefID) then
-			basicNeeds.eat(pid)
+			basicNeeds.ingestApply(pid, "eat", "hunger", "starving")
 		elseif tableHelper.containsValue(config.drinkItems, itemRefID) then
-			basicNeeds.drink(pid)
-		end
-	end
-
-	function basicNeeds.drink(pid)
-		basicNeedsLog("Applying drink function to " .. logicHandler.GetChatName(pid) .. ".")
-		thirstVal = tonumber(Players[pid].data.playerNeeds.thirst)
-		drinkVal = thirstVal - 25
-		if drinkVal >=0 then
-			Players[pid].data.playerNeeds.thirst = drinkVal
-			if Players[pid].data.playerNeedsDebuffs.dehydrated == true then
-				Players[pid]:Message("You are no longer dehydrated.")
-				Players[pid].data.playerNeedsDebuffs.dehydrated = false
-			end
-		else
-			Players[pid].data.playerNeeds.thirst = 0
+			basicNeeds.ingestApply(pid, "drink", "thirst", "dehydrated")
 		end
 	end
 	
-	function basicNeeds.eat(pid)
-		basicNeedsLog( "Applying eat function to " .. logicHandler.GetChatName(pid) .. ".")
-		hungerVal = tonumber(Players[pid].data.playerNeeds.hunger)
-		foodVal = hungerVal - 25
-		if foodVal >=0 then
-			Players[pid].data.playerNeeds.hunger = foodVal
-			if Players[pid].data.playerNeedsDebuffs.starving == true then
-				Players[pid]:Message("You are no longer starving.")
-				Players[pid].data.playerNeedsDebuffs.starving = false
+	function basicNeeds.ingestApply(pid, ingestType, statType, debuffType)
+		basicNeedsLog( "Applying " .. ingestType .. " function to " .. logicHandler.GetChatName(pid) .. ".")
+		inVal = tonumber(Players[pid].data.playerNeeds[statType])
+		consumeVal = inVal - 25
+		if consumeVal >=0 then
+			Players[pid].data.playerNeeds[statType] = consumeVal
+			if Players[pid].data.playerNeedsDebuffs[debuffType] == true then
+				Players[pid]:Message("You are no longer " .. debuffType .. ".\n")
+				Players[pid].data.playerNeedsDebuffs[debuffType] = false
 			end
 		else
-			Players[pid].data.playerNeeds.thirst = 0
+			Players[pid].data.playerNeeds[statType] = 0
 		end
 	end
 	
