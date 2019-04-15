@@ -171,8 +171,7 @@ eventHandler.OnGUIAction = function(pid, idGui, data)
                     Players[pid]:FinishLogin()
                     scriptLoader.CallHook("OnPlayerLoginFinish", pid)
                     Players[pid]:Message("You have successfully logged in.\n" .. config.chatWindowInstructions)
-					basicNeeds.hungerTic(pid)
-					basicNeeds.thirstTic(pid)
+					basicNeeds.startTic(pid)
                 end
             elseif idGui == guiHelper.ID.REGISTER then
                 if data == nil then

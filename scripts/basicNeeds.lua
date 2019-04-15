@@ -29,6 +29,15 @@ end
 
 local basicNeeds = {}
 
+	function basicNeeds.startTic(pid)
+		if config.needsToggle == true then
+			basicNeeds.hungerTic(pid)
+			basicNeeds.thirstTic(pid)
+		else
+			tes3mp.LogMessage(enumerations.log.INFO, "basicNeeds is disabled in the config, skiping needs tracking init.")
+		end
+	end
+
 	function basicNeeds.hungerTic(pid)
 		playerName = tostring(Players[pid].name)
 		hungerTime = tes3mp.CreateTimerEx("basicNeedsLogic", 12000, "sisssss", playerName, pid, "hungerTic", "hunger", "hungry", "starving", "healthBase")
@@ -37,18 +46,22 @@ local basicNeeds = {}
 	end
 	
 	function basicNeeds.thirstTic(pid)
-		playerName = tostring(Players[pid].name)
-		thirstTime = tes3mp.CreateTimerEx("basicNeedsLogic", 12000, "sisssss", playerName, pid, "thirstTic", "thirst", "thirsty", "dehydrated", "magickaBase")
-		tes3mp.LogMessage(enumerations.log.INFO, "Running thirst timer for player " .. logicHandler.GetChatName(pid) .. ".")
-		tes3mp.StartTimer(thirstTime)
+		if config.needsToggle == true then
+			playerName = tostring(Players[pid].name)
+			thirstTime = tes3mp.CreateTimerEx("basicNeedsLogic", 12000, "sisssss", playerName, pid, "thirstTic", "thirst", "thirsty", "dehydrated", "magickaBase")
+			tes3mp.LogMessage(enumerations.log.INFO, "Running thirst timer for player " .. logicHandler.GetChatName(pid) .. ".")
+			tes3mp.StartTimer(thirstTime)
+		end
 	end
 
     -- Not initialized on login, function not complete
 	function basicNeeds.fatigueTic(pid)
-		playerName = tostring(Players[pid].name)
-		fatigueTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sisssss", playerName, pid, "fatigueTic", "fatigue", "tired", "exhausted", "fatigueBase")
-		tes3mp.LogMessage(enumerations.log.INFO, "Running fatigue timer for player " .. logicHandler.GetChatName(pid) .. ".")
-		tes3mp.StartTimer(thirstTime)
+		if config.needsToggle == true then
+			playerName = tostring(Players[pid].name)
+			fatigueTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sisssss", playerName, pid, "fatigueTic", "fatigue", "tired", "exhausted", "fatigueBase")
+			tes3mp.LogMessage(enumerations.log.INFO, "Running fatigue timer for player " .. logicHandler.GetChatName(pid) .. ".")
+			tes3mp.StartTimer(thirstTime)
+		end
 	end
 
 	function basicNeeds.rest(pid, cell)
