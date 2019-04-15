@@ -34,6 +34,12 @@ local basicNeeds = {}
 			basicNeeds.hungerTic(pid)
 			basicNeeds.thirstTic(pid)
 		else
+			Players[pid].playerNeedsDebuffs.starving = false
+			Players[pid].playerNeedsDebuffs.dehydrated = false
+			Players[pid].playerNeedsDebuffs.exhausted = false
+			Players[pid].playerNeeds.hunger = 0
+			Players[pid].playerNeeds.thirst = 0
+			Players[pid].playerNeeds.fatigue = 0
 			tes3mp.LogMessage(enumerations.log.INFO, "basicNeeds is disabled in the config, skiping needs tracking init.")
 		end
 	end
