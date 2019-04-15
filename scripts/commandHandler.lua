@@ -1094,8 +1094,8 @@ function commandHandler.ProcessCommand(pid, cmd)
 
         -- Check "scripts/menu/advancedExample.lua" if you want to change the advanced menu example
         Players[pid].currentCustomMenu = "advanced example origin"
-        menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
-    end]]--
+        menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)]]--
+    end
 end
 
 function commandHandler.StoreRecord(pid, cmd)
