@@ -181,8 +181,7 @@ eventHandler.OnGUIAction = function(pid, idGui, data)
                 end
                 Players[pid]:Register(data)
                 Players[pid]:Message("You have successfully registered.\n" .. config.chatWindowInstructions)
-				basicNeeds.hungerTic(pid)
-				basicNeeds.thirstTic(pid)
+				basicNeeds.startTic(pid)
             end
         end
     end

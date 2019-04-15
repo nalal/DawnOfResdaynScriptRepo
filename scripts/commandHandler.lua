@@ -1086,15 +1086,16 @@ function commandHandler.ProcessCommand(pid, cmd)
     elseif cmd[1] == "craft" then
 
         -- Check "scripts/menu/defaultCrafting.lua" if you want to change the example craft menu
-        Players[pid].currentCustomMenu = "default crafting origin"
-        menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
-
-    elseif (cmd[1] == "advancedexample" or cmd[1] == "advex") and moderator then
+        -- Players[pid].currentCustomMenu = "default crafting origin"
+        -- menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
+		tes3mp.SendMessage(pid, color.Aqua .. "Crafting is disabled is disabled.\n", false)
+		
+    --[[elseif (cmd[1] == "advancedexample" or cmd[1] == "advex") and moderator then
 
         -- Check "scripts/menu/advancedExample.lua" if you want to change the advanced menu example
         Players[pid].currentCustomMenu = "advanced example origin"
         menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
-    end
+    end]]--
 end
 
 function commandHandler.StoreRecord(pid, cmd)

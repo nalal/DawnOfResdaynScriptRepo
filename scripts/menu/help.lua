@@ -19,7 +19,7 @@ Menus["help player"] = {
             "if you use invalid ones " ..
             color.Yellow .. "(/s)\n" ..
         color.Yellow .. "/craft\n" ..
-            color.White .. "Open up a small crafting menu used as a scripting example\n" ..
+            color.White .. "Open up a small crafting menu used as a scripting example (This is disabled)\n" ..
         color.Yellow .. "/help\n" ..
             color.White .. "Get the list of available commands",
     buttons = {
@@ -131,10 +131,10 @@ Menus["help moderator page 2"] = {
             color.White .. "Set a player's momentum to certain values\n" ..
         color.Yellow .. "/setauthority <pid> <cell>\n" ..
             color.White .. "Forcibly set a certain player as the authority of a cell " ..
-            color.Yellow .. "(/setauth)\n" ..
-        color.Yellow .. "/advancedexample\n" ..
+            color.Yellow .. "(/setauth)\n",
+ --[[       color.Yellow .. "/advancedexample\n" ..
             color.White .. "Display an example of an advanced menu using menuHelper " ..
-            color.Yellow .. "(/advex)",
+            color.Yellow .. "(/advex)",]]--
     buttons = {
         { caption = "Moderator help page 1",
             displayConditions = {

@@ -133,6 +133,7 @@ end
 
 function BasePlayer:initNeeds()
 	if self.data.playerNeeds == nil then
+		self:Message(color.Aqua .. "[SYSTEM]: You were missing save data for 'playerNeeds', this has been fixed.\n")
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'playerNeeds', repairing now. ")
 		self.data.playerNeeds = {
 			hunger = 0,
@@ -142,6 +143,7 @@ function BasePlayer:initNeeds()
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. "'s playerdata was repaired. ")
 	end
 	if self.data.playerNeedsDebuffs == nil then
+		self:Message(color.Aqua .. "[SYSTEM]: You were missing save data for 'playerNeedsDebuffs', this has been fixed.\n")
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'playerNeedsDebuffs', repairing now. ")
 		self.data.playerNeedsDebuffs = {
 			startving = false,
