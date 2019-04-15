@@ -21,7 +21,9 @@ Menus["help player"] = {
         color.Yellow .. "/craft\n" ..
             color.White .. "Open up a small crafting menu used as a scripting example (This is disabled)\n" ..
         color.Yellow .. "/help\n" ..
-            color.White .. "Get the list of available commands",
+            color.White .. "Get the list of available commands\n" ..
+		color.Yellow .. "/showneeds\n" ..
+			color.White .. "Shows your current hunger/thirst/fatige",
     buttons = {
         { caption = "Admin help",
             displayConditions = {
