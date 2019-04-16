@@ -29,7 +29,7 @@ basicNeedsLogic = function(oldPlayerName, pid, tic, val1, val2, val3, val4)
 					basicNeedsEmote(pid, val1)
 				end
 				if config.needsDebuff == true then
-					basicNeedsDebuff(pid, val3)
+					basicNeedsDebuff(pid, val3, playerName)
 				end
 				if Players[pid].data.playerNeedsDebuffs[val3] == false then
     				Players[pid].data.playerNeedsDebuffs[val3] = true
@@ -46,23 +46,26 @@ basicNeedsLogic = function(oldPlayerName, pid, tic, val1, val2, val3, val4)
 	end
 end
 
-basicNeedsDebuff = function(pid, val3)
+basicNeedsDebuff = function(pid, val3, playerName)
 	local recordStore = RecordStores["spell"]
 	basicNeedsLog("Server tried to apply the debuff " .. val3 .. " on PID " .. pid .. " but the debuff function isn't complete yet.")
 	if val3 == "starving" then
-		id = "needs_debuff_00"
+		basicNeeds.spellInitHunger(pid)
+		id = "needs_debuff_h_" .. playerName
 		recordStore:LoadGeneratedRecords(pid, recordStore.data.generatedRecords, {id})
 		table.insert(Players[pid].data.spellbook, id)
 		Players[pid]:LoadSpellbook()
 	end
 	if val3 == "dehydrated" then
-		id = "needs_debuff_01"
+		basicNeeds.spellInitThirst(pid)
+		id = "needs_debuff_t_" .. playerName
 		recordStore:LoadGeneratedRecords(pid, recordStore.data.generatedRecords, {id})
 		table.insert(Players[pid].data.spellbook, id)
 		Players[pid]:LoadSpellbook()
 	end
 	if val3 == "exhausted" then
-		id = "needs_debuff_02"
+		basicNeeds.spellInitFatigue(pid)
+		id = "needs_debuff_f_" .. playerName
 		recordStore:LoadGeneratedRecords(pid, recordStore.data.generatedRecords, {id})
 		table.insert(Players[pid].data.spellbook, id)
 		Players[pid]:LoadSpellbook()
@@ -152,9 +155,11 @@ local basicNeeds = {}
 		end
 	end
 	
-	function basicNeeds.spellInit(pid)
+	function basicNeeds.spellInitHunger(pid)
 		local recordStore = RecordStores["spell"]
-		local id = "needs_debuff_" .. "00"
+		playerName = Players[pid].name
+		dmgVal = Players[pid].stats.healthBase / 2
+		local id = "needs_debuff_h_" .. playerName
 		local recordTable = {
 			name = "Starvation",
 			subtype = 2,
@@ -164,13 +169,18 @@ local basicNeeds = {}
 				skill = -1,
 				rangeType = 0,
 				area = 0,
-				magnitudeMin = 20,
-				magnitudeMax = 20
+				magnitudeMin = dmgVal,
+				magnitudeMax = dmgVal
 			}}
 		}
 		recordStore.data.generatedRecords[id] = recordTable
 		recordStore:Save()
-		id = "needs_debuff_" .. "01"
+	end
+	function basicNeeds.spellInitThirst(pid)
+		local recordStore = RecordStores["spell"]
+		playerName = Players[pid].name
+		dmgVal = Players[pid].stats.magickaBase / 2
+		local id = "needs_debuff_t_" .. playerName
 		local recordTable = {
 			name = "Deydration",
 			subtype = 2,
@@ -180,13 +190,18 @@ local basicNeeds = {}
 				skill = -1,
 				rangeType = 0,
 				area = 0,
-				magnitudeMin = 20,
-				magnitudeMax = 20
+				magnitudeMin = dmgVal,
+				magnitudeMax = dmgVal
 			}}
 		}
 		recordStore.data.generatedRecords[id] = recordTable
 		recordStore:Save()
-		id = "needs_debuff_" .. "02"
+	end
+	function basicNeeds.spellInitFatigue(pid)
+		local recordStore = RecordStores["spell"]
+		playerName = Players[pid].name
+		dmgVal = Players[pid].stats.fatigueBase / 2
+		local id = "needs_debuff_f_" .. playerName
 		local recordTable = {
 			name = "Exhaustion",
 			subtype = 2,
@@ -196,8 +211,8 @@ local basicNeeds = {}
 				skill = -1,
 				rangeType = 0,
 				area = 0,
-				magnitudeMin = 20,
-				magnitudeMax = 20
+				magnitudeMin = dmgVal,
+				magnitudeMax = dmgVal
 			}}
 		}
 		recordStore.data.generatedRecords[id] = recordTable
@@ -207,11 +222,11 @@ local basicNeeds = {}
 	
 	
 	function basicNeeds.spellClean(pid, spellName)
-		--local recordStore = RecordStores["spell"]
-		--recordStore:RemoveLinkToPlayer(spellName, Players[pid])
-		--tableHelper.removeValue(Players[pid].data.spellbook, spellName)
-		--Players[pid]:RemoveLinkToRecord("spell", spellName)
-		--recordStore:Save()
+		local recordStore = RecordStores["spell"]
+		recordStore:RemoveLinkToPlayer(spellName, Players[pid])
+		tableHelper.removeValue(Players[pid].data.spellbook, spellName)
+		Players[pid]:RemoveLinkToRecord("spell", spellName)
+		recordStore:Save()
 		tes3mp.ClearSpellbookChanges(pid)
 		tes3mp.SetSpellbookChangesAction(pid, enumerations.spellbook.REMOVE)
 		tes3mp.AddSpell(pid, spellName)
