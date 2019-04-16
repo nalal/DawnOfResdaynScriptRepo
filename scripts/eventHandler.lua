@@ -51,7 +51,7 @@ eventHandler.OnPlayerConnect = function(pid, playerName)
 end
 
 eventHandler.OnPlayerDisconnect = function(pid)
-
+	Players[pid].data.playerResting = false
     if Players[pid] ~= nil then
 	--playerName = Players[pid].name
 	--basicNeeds.logoutCatch(playerName)
@@ -268,6 +268,10 @@ eventHandler.OnPlayerCellChange = function(pid)
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 
         if contentFixer.ValidateCellChange(pid) then
+			if Players[pid].data.playerResting == true then
+				Players[pid].data.playerResting = false
+				Players[pid]:Message(pid, "You have left the rest area, you are no longer resting.")
+			end
 
             local previousCellDescription = Players[pid].data.location.cell
 

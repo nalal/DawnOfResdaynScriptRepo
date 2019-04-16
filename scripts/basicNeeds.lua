@@ -1,6 +1,9 @@
+basicNeedsConfig = require("basicNeedsConfig")
+
 activeHungerTimers = { }
 activeThirstTimers = { }
 activeFatigueTimers = { }
+
 basicNeedsLogic = function(oldPlayerName, pid, tic, val1, val2, val3, val4)
 	if logicHandler.CheckPlayerValidity(pid, pid) then
 		val = tonumber(Players[pid].data.playerNeeds[val1])
@@ -44,16 +47,39 @@ basicNeedsLogic = function(oldPlayerName, pid, tic, val1, val2, val3, val4)
 end
 
 basicNeedsDebuff = function(pid, val3)
-	basicNeedsLog("Server tried to apply the debuff " .. val1 .. " on PID " .. pid .. " but the debuff function isn't complete yet.")
+	local recordStore = RecordStores["spell"]
+	basicNeedsLog("Server tried to apply the debuff " .. val3 .. " on PID " .. pid .. " but the debuff function isn't complete yet.")
+	if val3 == "starving" then
+		id = "needs_debuff_00"
+		recordStore:LoadGeneratedRecords(pid, recordStore.data.generatedRecords, {id})
+		table.insert(Players[pid].data.spellbook, id)
+		Players[pid]:LoadSpellbook()
+	end
+	if val3 == "dehydrated" then
+		id = "needs_debuff_01"
+		recordStore:LoadGeneratedRecords(pid, recordStore.data.generatedRecords, {id})
+		table.insert(Players[pid].data.spellbook, id)
+		Players[pid]:LoadSpellbook()
+	end
+	if val3 == "exhausted" then
+		id = "needs_debuff_02"
+		recordStore:LoadGeneratedRecords(pid, recordStore.data.generatedRecords, {id})
+		table.insert(Players[pid].data.spellbook, id)
+		Players[pid]:LoadSpellbook()
+	end
 end
 
 basicNeedsRestApply = function(pid, name)
 	local checkName = logicHandler.GetChatName(pid)
-	if name == checkName then
+	if name == checkName  and Players[pid].data.playerResting == true then
 		Players[pid].data.playerNeeds.fatigue = 0
 		Players[pid].data.playerNeedsDebuffs.exhausted = false
 		basicNeedsMessage(pid, "You are now rested.")
-		basicNeedsLog(checkname .. " is now rested, setting fatigue to 0 and clearing fatigue debuff")
+		basicNeedsLog(name .. " is now rested, setting fatigue to 0 and clearing fatigue debuff")
+		Players[pid].data.playerResting = false
+		basicNeeds.spellClean(pid, "needs_debuff_02")
+	elseif Players[pid].data.playerResting == false then
+		basicNeedsLog("No resting flag on player " .. name .. ", skipping rest timer.")
 	else
 		basicNeedsLog(checkName .. " does not match old name " .. name .. ".")
 	end
@@ -125,8 +151,88 @@ local basicNeeds = {}
 			basicNeedsTimerPurge(playername, activeFatigueTimers)
 		end
 	end
-
+	
+	function basicNeeds.spellInit(pid)
+		local recordStore = RecordStores["spell"]
+		local id = "needs_debuff_" .. "00"
+		local recordTable = {
+			name = "Starvation",
+			subtype = 2,
+			effects = {{
+				id = 18,
+				attribute = -1,
+				skill = -1,
+				rangeType = 0,
+				area = 0,
+				magnitudeMin = 20,
+				magnitudeMax = 20
+			}}
+		}
+		recordStore.data.generatedRecords[id] = recordTable
+		recordStore:Save()
+		id = "needs_debuff_" .. "01"
+		local recordTable = {
+			name = "Deydration",
+			subtype = 2,
+			effects = {{
+				id = 19,
+				attribute = -1,
+				skill = -1,
+				rangeType = 0,
+				area = 0,
+				magnitudeMin = 20,
+				magnitudeMax = 20
+			}}
+		}
+		recordStore.data.generatedRecords[id] = recordTable
+		recordStore:Save()
+		id = "needs_debuff_" .. "02"
+		local recordTable = {
+			name = "Exhaustion",
+			subtype = 2,
+			effects = {{
+				id = 20,
+				attribute = -1,
+				skill = -1,
+				rangeType = 0,
+				area = 0,
+				magnitudeMin = 20,
+				magnitudeMax = 20
+			}}
+		}
+		recordStore.data.generatedRecords[id] = recordTable
+		recordStore:Save()
+	end
+	
+	
+	
+	function basicNeeds.spellClean(pid, spellName)
+		--local recordStore = RecordStores["spell"]
+		--recordStore:RemoveLinkToPlayer(spellName, Players[pid])
+		--tableHelper.removeValue(Players[pid].data.spellbook, spellName)
+		--Players[pid]:RemoveLinkToRecord("spell", spellName)
+		--recordStore:Save()
+		tes3mp.ClearSpellbookChanges(pid)
+		tes3mp.SetSpellbookChangesAction(pid, enumerations.spellbook.REMOVE)
+		tes3mp.AddSpell(pid, spellName)
+		tes3mp.SendSpellbookChanges(pid)
+	end
+	
 	function basicNeeds.startTic(pid)
+		playerName = tostring(Players[pid].name)
+		listName = playerName .. pid
+		if Players[pid].data.playerNeedsDebuffs.starving == true then
+			basicNeedsLogic(listName, pid, "hungerTic", "hunger", "hungry", "starving", "healthBase")
+			basicNeedsLog("PlayerID " .. listName .. " logged in starving")
+		end
+		if Players[pid].data.playerNeedsDebuffs.dehydrated == true then
+			basicNeedsLogic(listName, pid, "thirstTic", "thirst", "thirsty", "dehydrated", "magickaBase")
+			basicNeedsLog("PlayerID " .. listName .. " logged in dehydrated")		
+		end
+		if Players[pid].data.playerNeedsDebuffs.exhausted == true then
+			basicNeedsLogic(listName, pid, "fatigueTic", "fatigue", "tired", "exhausted", "fatigueBase")
+			basicNeedsLog("PlayerID " .. listName .. " logged in exhausted")		
+		end
 		if config.needsToggle == true and Players[pid].data.debugFlags.haltTracking == false then
 			basicNeeds.hungerTic(pid)
 			basicNeeds.thirstTic(pid)
@@ -150,7 +256,7 @@ local basicNeeds = {}
 			listName = playerName .. pid
 			basicNeedsLogDebug("listName " .. listName .. " created for hungerTic.")
 			if tableHelper.containsValue(activeHungerTimers, listName) ~= true then
-				hungerTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sisssss", listName, pid, "hungerTic", "hunger", "hungry", "starving", "healthBase")
+				hungerTime = tes3mp.CreateTimerEx("basicNeedsLogic", config.needsTimer, "sisssss", listName, pid, "hungerTic", "hunger", "hungry", "starving", "healthBase")
 				basicNeedsLog("Running hunger timer for player " .. logicHandler.GetChatName(pid) .. ".")
 				tes3mp.StartTimer(hungerTime)
 				basicNeedsLog("PlayerID " .. listName .. " added to activeHungerTimers list")
@@ -167,7 +273,7 @@ local basicNeeds = {}
 			listName = playerName .. pid
 			basicNeedsLogDebug("listName " .. listName .. " created for thirstTic.")
 			if tableHelper.containsValue(activeThirstTimers, listName) ~= true then
-				thirstTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sisssss", listName, pid, "thirstTic", "thirst", "thirsty", "dehydrated", "magickaBase")
+				thirstTime = tes3mp.CreateTimerEx("basicNeedsLogic", config.needsTimer, "sisssss", listName, pid, "thirstTic", "thirst", "thirsty", "dehydrated", "magickaBase")
 				basicNeedsLog("Running thirst timer for player " .. logicHandler.GetChatName(pid) .. ".")
 				tes3mp.StartTimer(thirstTime)
 				basicNeedsLog("PlayerID " .. listName .. " added to activeThirstTimers list")
@@ -184,7 +290,7 @@ local basicNeeds = {}
 			listName = playerName .. pid
 			basicNeedsLogDebug("listName " .. listName .. " created for fatigueTic.")
 			if tableHelper.containsValue(activeFatigueTimers, listName) ~= true then
-				fatigueTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sisssss", listName, pid, "fatigueTic", "fatigue", "tired", "exhausted", "fatigueBase")
+				fatigueTime = tes3mp.CreateTimerEx("basicNeedsLogic", config.needsTimer, "sisssss", listName, pid, "fatigueTic", "fatigue", "tired", "exhausted", "fatigueBase")
 				basicNeedsLog("Running fatigue timer for player " .. logicHandler.GetChatName(pid) .. ".")
 				tes3mp.StartTimer(fatigueTime)
 				basicNeedsLog("PlayerID " .. listName .. " added to activeFatigueTimers list")
@@ -205,10 +311,13 @@ local basicNeeds = {}
 				playerName = logicHandler.GetChatName(pid)
 				restTimer = tes3mp.CreateTimerEx("basicNeedsRestApply", restTime, "is", pid, playerName)
 				tes3mp.StartTimer(restTimer)
+				Players[pid].data.playerResting = true
 				basicNeedsLog("Running rest timer for player " .. logicHandler.GetChatName(pid) .. ".")
 			else
 				basicNeedsMessage(pid, "You are not tired.\n")
 			end
+		elseif Players[pid].data.playerResting == true then
+			basicNeedsMessage(pid, "You are already resting.")
 		else
 			basicNeedsLog("Player " .. logicHandler.GetChatName(pid) .. " tried to rest in invalid cell.")
 			basicNeedsMessage(pid, "You cannot rest here.")
@@ -217,13 +326,13 @@ local basicNeeds = {}
 
 	function basicNeeds.ingest(pid, itemRefID)
 		if tableHelper.containsValue(config.foodItems, itemRefID) then
-			basicNeeds.ingestApply(pid, "eat", "hunger", "starving")
+			basicNeeds.ingestApply(pid, "eat", "hunger", "starving", "needs_debuff_00")
 		elseif tableHelper.containsValue(config.drinkItems, itemRefID) then
-			basicNeeds.ingestApply(pid, "drink", "thirst", "dehydrated")
+			basicNeeds.ingestApply(pid, "drink", "thirst", "dehydrated", "needs_debuff_01")
 		end
 	end
 	
-	function basicNeeds.ingestApply(pid, ingestType, statType, debuffType)
+	function basicNeeds.ingestApply(pid, ingestType, statType, debuffType, debuff)
 		basicNeedsLog( "Applying " .. ingestType .. " function to " .. logicHandler.GetChatName(pid) .. ".")
 		inVal = tonumber(Players[pid].data.playerNeeds[statType])
 		consumeVal = inVal - 25
@@ -232,6 +341,7 @@ local basicNeeds = {}
 			if Players[pid].data.playerNeedsDebuffs[debuffType] == true then
 				Players[pid]:Message("You are no longer " .. debuffType .. ".\n")
 				Players[pid].data.playerNeedsDebuffs[debuffType] = false
+				basicNeeds.spellClean(pid, debuff)
 			end
 		else
 			Players[pid].data.playerNeeds[statType] = 0
