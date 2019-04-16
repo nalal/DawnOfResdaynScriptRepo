@@ -96,7 +96,10 @@ function BasePlayer:__init(pid, playerName)
 			thirst = 0,
 			fatigue = 0
 		},
-		debugMode = false
+		debugMode = false,
+		debugFlags = {
+			haltTracking = false
+		}
     }
 
     for index = 0, (tes3mp.GetAttributeCount() - 1) do
