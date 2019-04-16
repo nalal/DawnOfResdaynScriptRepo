@@ -63,10 +63,15 @@ function commandHandler.ProcessCommand(pid, cmd)
 			if cmd[3] == "enable" then
 				Players[pid].data.debugFlags.haltTracking = false
 				tes3mp.SendMessage(pid, color.Cyan ..  "[SYSTEM]: " .. color.White .. "Needs tracking enabled", false)
+				basicNeeds.startTic(pid)
 			elseif cmd[3] == "disable" then
 				Players[pid].data.debugFlags.haltTracking = true
-				tes3mp.SendMessage(pid, color.Cyan ..  "[SYSTEM]: " .. color.White .. "Needs tracking enabled", false)
+				tes3mp.SendMessage(pid, color.Cyan ..  "[SYSTEM]: " .. color.White .. "Needs tracking disable", false)
 			end
+		elseif cmd[2] == "bakeSpells" then
+			basicNeeds.spellInit(pid)
+		elseif cmd[2] == "cleanSpells" then
+			basicNeeds.spellClean(pid)
 		else
 			tes3mp.SendMessage(pid, "Invalid debugMode flag, please use enable/disable\n", false)
 		end
