@@ -147,10 +147,12 @@ local basicNeeds = {}
 	function basicNeeds.hungerTic(pid)
 		playerName = tostring(Players[pid].name)
 		listName = playerName .. pid
+		basicNeedsLogDebug("listName " .. listName .. " created for hungerTic.")
 		if tableHelper.containsValue(activeHungerTimers, listName) ~= true then
 			hungerTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sisssss", listName, pid, "hungerTic", "hunger", "hungry", "starving", "healthBase")
 			basicNeedsLog("Running hunger timer for player " .. logicHandler.GetChatName(pid) .. ".")
 			tes3mp.StartTimer(hungerTime)
+			basicNeedsLog("PlayerID " .. listName .. " added to activeHungerTimers list")
 			table.insert(activeHungerTimers, listName)
 		else
 			basicNeedsLog("Player " .. logicHandler.GetChatName(pid) .. " already has a hunger timer running, ignoring.")
@@ -160,10 +162,12 @@ local basicNeeds = {}
 	function basicNeeds.thirstTic(pid)
 		playerName = tostring(Players[pid].name)
 		listName = playerName .. pid
+		basicNeedsLogDebug("listName " .. listName .. " created for thirstTic.")
 		if tableHelper.containsValue(activeThirstTimers, listName) ~= true then
 			thirstTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sisssss", listName, pid, "thirstTic", "thirst", "thirsty", "dehydrated", "magickaBase")
 			basicNeedsLog("Running thirst timer for player " .. logicHandler.GetChatName(pid) .. ".")
 			tes3mp.StartTimer(thirstTime)
+			basicNeedsLog("PlayerID " .. listName .. " added to activeThirstTimers list")
 			table.insert(activeThirstTimers, listName)
 		else
 			basicNeedsLog("Player " .. logicHandler.GetChatName(pid) .. " already has a thirst timer running, ignoring.")
@@ -173,10 +177,12 @@ local basicNeeds = {}
 	function basicNeeds.fatigueTic(pid)
 		playerName = tostring(Players[pid].name)
 		listName = playerName .. pid
+		basicNeedsLogDebug("listName " .. listName .. " created for fatigueTic.")
 		if tableHelper.containsValue(activeFatigueTimers, listName) ~= true then
 			fatigueTime = tes3mp.CreateTimerEx("basicNeedsLogic", 120000, "sisssss", listName, pid, "fatigueTic", "fatigue", "tired", "exhausted", "fatigueBase")
 			basicNeedsLog("Running fatigue timer for player " .. logicHandler.GetChatName(pid) .. ".")
 			tes3mp.StartTimer(fatigueTime)
+			basicNeedsLog("PlayerID " .. listName .. " added to activeFatigueTimers list")
 			table.insert(activeFatigueTimers, listName)
 		else
 			basicNeedsLog("Player " .. logicHandler.GetChatName(pid) .. " already has a fatigue timer running, ignoring.")
