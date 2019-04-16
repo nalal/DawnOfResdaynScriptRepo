@@ -65,7 +65,7 @@ function commandHandler.ProcessCommand(pid, cmd)
 				tes3mp.SendMessage(pid, color.Cyan ..  "[SYSTEM]: " .. color.White .. "Needs tracking enabled", false)
 			elseif cmd[3] == "disable" then
 				Players[pid].data.debugFlags.haltTracking = true
-				tes3mp.SendMessage(pid, color.Cyan ..  "[SYSTEM]: " .. color.White .. "Needs tracking enabled", false)
+				tes3mp.SendMessage(pid, color.Cyan ..  "[SYSTEM]: " .. color.White .. "Needs tracking disable", false)
 			end
 		else
 			tes3mp.SendMessage(pid, "Invalid debugMode flag, please use enable/disable\n", false)
