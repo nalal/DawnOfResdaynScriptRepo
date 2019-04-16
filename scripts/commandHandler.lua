@@ -51,7 +51,31 @@ function commandHandler.ProcessCommand(pid, cmd)
 		fatigue = tonumber(Players[pid].data.playerNeeds.fatigue)
 		message = color.Aqua .. "[Basic Needs]:" .. color.White .. " Your hunger is currently at " .. color.Orange .. "\n" .. hunger .. color.Aqua .. "\n[Basic Needs]:" .. color.White .. " Your thirst is currently at " .. color.Orange .. "\n" .. thirst .. color.Aqua .. "\n[Basic Needs]:" .. color.White .. " Your fatigue is currently at " .. color.Orange .. "\n" .. fatigue .. "\n"
 		tes3mp.SendMessage(pid, message, false)
+	
+	elseif cmd[1] == "debug" and config.debugMode == true then
+		if cmd[2] == "enable" then
+			Players[pid].data.debugMode = true
+			tes3mp.SendMessage(pid, color.Cyan .. "[SYSTEM]: " .. color.White .. "debugMode enabled\n", false)
+		elseif cmd[2] == "disable" then
+			Players[pid].data.debugMode = false
+			tes3mp.SendMessage(pid, color.Cyan ..  "[SYSTEM]: " .. color.White .. "debugMode disabled\n", false)
+		elseif cmd[2] == "hunger" and Players[pid].data.debugMode == true then
+			if cmd[3] == "enable" then
+				Players[pid].data.debugFlags.haltTracking = false
+				tes3mp.SendMessage(pid, color.Cyan ..  "[SYSTEM]: " .. color.White .. "Needs tracking enabled", false)
+			elseif cmd[3] == "disable" then
+				Players[pid].data.debugFlags.haltTracking = true
+				tes3mp.SendMessage(pid, color.Cyan ..  "[SYSTEM]: " .. color.White .. "Needs tracking enabled", false)
+			end
+		else
+			tes3mp.SendMessage(pid, "Invalid debugMode flag, please use enable/disable\n", false)
+		end
+	
+	elseif cmd[1] == "disableHunger" and config.debugMode == true and Players[pid].data.debugMode == true then
+		Players[pid].data.debugFlags.haltTracking = true
+		
 
+	
     --[[elseif cmd[1] == "me" and cmd[2] ~= nil then
         local message = logicHandler.GetChatName(pid) .. " " .. tableHelper.concatenateFromIndex(cmd, 2) .. "\n"
         tes3mp.SendMessage(pid, message, true)

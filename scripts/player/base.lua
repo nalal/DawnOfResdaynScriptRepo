@@ -95,7 +95,8 @@ function BasePlayer:__init(pid, playerName)
 			hunger = 0,
 			thirst = 0,
 			fatigue = 0
-		}
+		},
+		debugMode = false
     }
 
     for index = 0, (tes3mp.GetAttributeCount() - 1) do
@@ -131,7 +132,7 @@ function BasePlayer:__init(pid, playerName)
     self.hasFinishedInitialTeleportation = false
 end
 
-function BasePlayer:initNeeds()
+function BasePlayer:initData()
 	if self.data.playerNeeds == nil then
 		self:Message(color.Aqua .. "[SYSTEM]: You were missing save data for 'playerNeeds', this has been fixed.\n")
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'playerNeeds', repairing now. ")
@@ -145,10 +146,18 @@ function BasePlayer:initNeeds()
 	if self.data.playerNeedsDebuffs == nil then
 		self:Message(color.Aqua .. "[SYSTEM]: You were missing save data for 'playerNeedsDebuffs', this has been fixed.\n")
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'playerNeedsDebuffs', repairing now. ")
-		self.data.playerNeedsDebuffs = {
-			startving = false,
-			dehydrated = false,
-			exausted = false
+		self.data.debugMode = false
+		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. "'s playerdata was repaired. ")
+	end
+	if self.data.debugMode == nil then
+		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'debugMode', repairing now. ")
+
+		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. "'s playerdata was repaired. ")
+	end
+	if self.data.debugFlags == nil then
+		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'debugFlags', repairing now. ")
+		self.data.debugFlags = {
+			haltTracking = false
 		}
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. "'s playerdata was repaired. ")
 	end
@@ -183,7 +192,7 @@ function BasePlayer:FinishLogin()
     self.loggedIn = true
     if self.hasAccount ~= false then -- load account
         self:SaveIpAddress()
-		self:initNeeds()
+		self:initData()
         self:LoadSettings()
         self:LoadCharacter()
         self:LoadClass()

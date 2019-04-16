@@ -23,7 +23,11 @@ Menus["help player"] = {
         color.Yellow .. "/help\n" ..
             color.White .. "Get the list of available commands\n" ..
 		color.Yellow .. "/showneeds\n" ..
-			color.White .. "Shows your current hunger/thirst/fatige",
+			color.White .. "Shows your current hunger/thirst/fatigue\n" ..
+		color.Yellow .. "/debug <enabled/disabled>\n" ..
+			color.White .. "enables debug mode\n" .. 
+		color.Yellow .. "/debug hunger <enable/disable>\n" ..
+			color.White .. "Enables/disables hunger tracking",
     buttons = {
         { caption = "Admin help",
             displayConditions = {
