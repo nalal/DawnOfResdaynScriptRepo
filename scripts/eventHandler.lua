@@ -51,7 +51,6 @@ eventHandler.OnPlayerConnect = function(pid, playerName)
 end
 
 eventHandler.OnPlayerDisconnect = function(pid)
-	Players[pid].data.playerResting = false
     if Players[pid] ~= nil then
 	--playerName = Players[pid].name
 	--basicNeeds.logoutCatch(playerName)

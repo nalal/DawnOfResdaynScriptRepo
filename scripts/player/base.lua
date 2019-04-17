@@ -202,6 +202,7 @@ end
 function BasePlayer:FinishLogin()
     self.loggedIn = true
     if self.hasAccount ~= false then -- load account
+		self.data.playerResting = false
         self:SaveIpAddress()
 		self:initData()
         self:LoadSettings()
