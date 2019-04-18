@@ -16,15 +16,16 @@ Menus["default crafting start"] = {
 
 Menus["default crafting origin"] = {
     text = color.Orange .. "What would you like to craft?\n" ..
-            color.Yellow .. "Guarskin drum" .. color.White .. " - 1 per 3 guar hides",
+            color.Yellow .. "Iron Sword" .. color.White .. " - 1 per 3 Iron and 1 Ragged Leather",
     buttons = {
-        { caption = "Guarskin drum",
+        { caption = "Iron Sword",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting drum guarskin",
+                menuHelper.destinations.setConditional("default crafting iron sword",
                 {
-                    menuHelper.conditions.requireItem("ingred_guar_hide_01", 3),
-					menuHelper.conditions.requireCustomSkill("Leatherworking", 0)
+                    menuHelper.conditions.requireItem("$ingred_iron_1", 3),
+					menuHelper.conditions.requireItem("$ingred_leather_1", 1),
+					menuHelper.conditions.requireCustomSkill("weaponSmithing", 0)
                 })
             }
         },
@@ -33,107 +34,19 @@ Menus["default crafting origin"] = {
     }
 }
 
-Menus["default crafting pillow white"] = {
-    text = "How many would you like to craft?",
+Menus["default crafting iron sword"] = {
+    text = "Are you sure you want to craft an Iron Sword?",
     buttons = {
-        { caption = "1",
+        { caption = "yes",
             destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic singular",
-                {
-                    menuHelper.conditions.requireItem("misc_de_foldedcloth00", 2)
-                },
-                {
-                    menuHelper.effects.removeItem("misc_de_foldedcloth00", 2),
-                    menuHelper.effects.giveItem("misc_uni_pillow_01", 1),
-					menuHelper.effects.runPlayerFunction("IncreaseTailoring", { 1 })
-				})
+                menuHelper.destinations.setDefault("lack of materials",                     
+				menuHelper.effects.removeItem("ingred_guar_hide_01", 3),
+                menuHelper.effects.giveItem("misc_de_drum_02", 1),
+				menuHelper.effects.runPlayerFunction("weaponSmithing", { 1 }),
             }
         },
-        { caption = "5",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic plural",
-                {
-                    menuHelper.conditions.requireItem("misc_de_foldedcloth00", 10)
-                },
-                {
-                    menuHelper.effects.removeItem("misc_de_foldedcloth00", 10),
-                    menuHelper.effects.giveItem("misc_uni_pillow_01", 5),
-					menuHelper.effects.runPlayerFunction("IncreaseTailoring", { 5 })
-                })
-            }
-        },
-        { caption = "Back", destinations = { menuHelper.destinations.setDefault("default crafting origin") } },
-        { caption = "Exit", destinations = nil }
-    }
-}
-
-Menus["default crafting pillow hammock"] = {
-    text = "How many would you like to craft?",
-    buttons = {
-        { caption = "15",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic plural",
-                {
-                    menuHelper.conditions.requireItem({"misc_clothbolt_01", "misc_clothbolt_02", "misc_clothbolt_03"}, 1)
-
-                },
-                {
-                    menuHelper.effects.removeItem({"misc_clothbolt_01", "misc_clothbolt_02", "misc_clothbolt_03"}, 1),
-                    menuHelper.effects.giveItem("Misc_Uni_Pillow_02", 15),
-					menuHelper.effects.runPlayerFunction("IncreaseTailoring", { 15 * 5 })
-                })
-            }
-        },
-        { caption = "60",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic plural",
-                {
-                    menuHelper.conditions.requireItem({"misc_clothbolt_01", "misc_clothbolt_02", "misc_clothbolt_03"}, 4)
-                },
-                {
-                    menuHelper.effects.removeItem({"misc_clothbolt_01", "misc_clothbolt_02", "misc_clothbolt_03"}, 4),
-                    menuHelper.effects.giveItem("Misc_Uni_Pillow_02", 60)
-                })
-            }
-        },
-        { caption = "Back", destinations = { menuHelper.destinations.setDefault("default crafting origin") } },
-        { caption = "Exit", destinations = nil }
-    }
-}
-
-Menus["default crafting drum guarskin"] = {
-    text = "How many would you like to craft?",
-    buttons = {
-        { caption = "1",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic singular",
-                {
-                    menuHelper.conditions.requireItem("ingred_guar_hide_01", 3)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_guar_hide_01", 3),
-                    menuHelper.effects.giveItem("misc_de_drum_02", 1),
-					menuHelper.effects.runPlayerFunction("IncreaseLeatherworking", { 1 })
-                })
-            }
-        },
-        { caption = "5",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic plural",
-                {
-                    menuHelper.conditions.requireItem("ingred_guar_hide_01", 15)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_guar_hide_01", 15),
-                    menuHelper.effects.giveItem("misc_de_drum_02", 5)
-                })
-            }
+        { caption = "No",
+            destinations = {menuHelper.destinations.setDefault("default crafting origin")}
         },
         { caption = "Back", destinations = { menuHelper.destinations.setDefault("default crafting origin") } },
         { caption = "Exit", destinations = nil }

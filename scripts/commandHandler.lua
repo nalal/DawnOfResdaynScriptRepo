@@ -1122,7 +1122,7 @@ function commandHandler.ProcessCommand(pid, cmd)
 		pidt = cmd[2]
 		Role = cmd[3]
 		if tableHelper.containsValue(Players[pidt].data.playerRoles, Role) ~= true and logicHandler.CheckPlayerValidity(pidt, pid) then
-			if tableHelper.containsValue(config.activeRoles, Player[pid].name .. " gave " .. Player[pidt].name .. " the role " Role) == true then
+			if tableHelper.containsValue(config.activeRoles, Player[pid].name .. " gave " .. Player[pidt].name .. " the role " .. Role) == true then
 				tes3mp.LogMessage(enumerations.log.INFO, "" )
 				tes3mp.SendMessage(pid, color.Aqua .. "Player " .. Players[pidt].name .. " was given the role " .. Role .. ".\n", false)
 				tes3mp.SendMessage(pidt, color.Aqua .. "You have been given the role " .. Role .. ".\n", false)
@@ -1156,11 +1156,11 @@ function commandHandler.ProcessCommand(pid, cmd)
     elseif cmd[1] == "craft" then
 		if config.craftEnabled == true then
 			-- Check "scripts/menu/defaultCrafting.lua" if you want to change the example craft menu
-			--Players[pid].currentCustomMenu = "default crafting origin"
-			--menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
+			Players[pid].currentCustomMenu = "default crafting origin"
+			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
 		else
-			tes3mp.LogMessage(enumerations.log.INFO, Player[pid].name .. " tried to open crafing menu but it's disabled.")
-			tes3mp.SendMessage(pid, color.Aqua .. "Crafting is disabled is disabled.\n", false)
+			tes3mp.LogMessage(enumerations.log.INFO, Players[pid].name .. " tried to open crafing menu but it's disabled.")
+			tes3mp.SendMessage(pid, color.Aqua .. "[SYSTEM]: Crafting is disabled.\n", false)
 		end
 		
     --[[elseif (cmd[1] == "advancedexample" or cmd[1] == "advex") and moderator then

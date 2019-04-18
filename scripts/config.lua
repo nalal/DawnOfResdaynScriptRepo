@@ -325,7 +325,7 @@ config.activeRoles = { "Guard" }
 config.debugMode = true
 
 --Toggle for crafting
-config.craftEnabled = false
+config.craftEnabled = true
 
 -- Toggle for basicNeeds
 config.needsToggle = true

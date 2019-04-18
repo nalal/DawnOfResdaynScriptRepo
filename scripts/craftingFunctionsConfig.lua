@@ -4,7 +4,7 @@ local craftingSkillsConfig = {}
 	craftingSkillsConfig.maxSkillProgress = 10
 	
 	--The level caps for skills
-	raftingSkillsConfig.maxSkill = 10
+	craftingSkillsConfig.maxSkill = 10
 	
 	--Skill names and their corresponding data value
 	craftingSkillsConfig.skillNames = {

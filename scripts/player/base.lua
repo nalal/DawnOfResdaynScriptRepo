@@ -186,7 +186,7 @@ function BasePlayer:initData()
 	if self.data.craftSkills == nil then
 		self:Message(color.Aqua .. "[SYSTEM]: You were missing save data for 'craftSkills', this has been fixed.\n")
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'craftSkills', repairing now. ")
-		craftSkills = {
+		self.data.craftSkills = {
 			armorSmithing = 0,
 			weaponSmithing = 0
 		}
@@ -194,7 +194,7 @@ function BasePlayer:initData()
 	end
 	if self.data.craftSkillsProgress == nil then
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'craftSkills', repairing now. ")
-		craftSkillsProgress = {
+		self.data.craftSkillsProgress = {
 			armorSmithing = 0,
 			weaponSmithing = 0
 		}
