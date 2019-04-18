@@ -1,5 +1,5 @@
 local basicNeedsConfig = {
 	
-	hungerDebuffID = "debuff_Starvation_"
+	--Currently unused, will reuse when transitioning from config
 
 }

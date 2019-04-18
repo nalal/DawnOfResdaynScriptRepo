@@ -34,7 +34,7 @@ end
 
 function menuHelper.conditions.requireCustomSkill(inputName, inputValue)
     local condition = {
-        conditionType = "customSkill",
+        conditionType = "craftSkills",
         customSkillName = inputName,
         customSkillValue = inputValue
     }
