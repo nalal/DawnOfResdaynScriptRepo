@@ -63,7 +63,7 @@ local craftSkills = {}
 			end
 		else
 			message0 = "Skill provided for function 'increaseSkill' was invalid/nil."
-			message1 = "skill provided is nil"
+			message1 = "Skill provided is nil"
 			if skill ~= nil then
 				message1 = "Skill provided = " .. skill
 			end
@@ -76,6 +76,7 @@ local craftSkills = {}
 	function craftSkills.checkIngreds(item)
 		if craftingRecipie[item] ~= nil then
 			--Still working on this part
+			craftSkillsLog("Called checkIngred but function is not complete so nothing happened", "debug")
 		else
 			if item ~= nil then
 				message0 = "Item is not in recipies."
@@ -85,7 +86,6 @@ local craftSkills = {}
 			end
 			craftSkillsLog(message0, "error")
 			craftSkillsLog("Item called: " .. item, "debug")
-			
 		end
 	end
 	
