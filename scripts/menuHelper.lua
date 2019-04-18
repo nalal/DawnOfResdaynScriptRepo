@@ -1,5 +1,6 @@
 require("config")
 inventoryHelper = require("inventoryHelper")
+craftingFunctions = require("craftingFunctions")
 
 local menuHelper = {}
 menuHelper.conditions = {}

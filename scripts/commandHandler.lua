@@ -1117,18 +1117,45 @@ function commandHandler.ProcessCommand(pid, cmd)
 
     elseif cmd[1] == "createrecord" and cmd[2] ~= nil and admin then
         commandHandler.CreateRecord(pid, cmd)
+		
+	elseif cmd[1] == addRole and cmd[2] ~= nil and cmd[3] ~= nil and moderator then
+		pidt = cmd[2]
+		Role = cmd[3]
+		if tableHelper.containsValue(Players[pidt].data.playerRoles, Role) ~= true and logicHandler.CheckPlayerValidity(pidt, pid) then
+			if tableHelper.containsValue(config.activeRoles, Player[pid].name .. " gave " .. Player[pidt].name .. " the role " Role) == true then
+				tes3mp.LogMessage(enumerations.log.INFO, "" )
+				tes3mp.SendMessage(pid, color.Aqua .. "Player " .. Players[pidt].name .. " was given the role " .. Role .. ".\n", false)
+				tes3mp.SendMessage(pidt, color.Aqua .. "You have been given the role " .. Role .. ".\n", false)
+				table.insert(Players[pidt].data.playerRoles, roleName)
+			else
+				tes3mp.SendMessage(pid, color.Aqua .. Role .. " is not a valid role.\n", false)
+				tes3mp.LogMessage(enumerations.log.INFO, Player[pid].name .. " tried to give player " .. Player[pid].name .. " the role " .. Role .. " but it's not a valid role")	
+			end
+		else
+			tes3mp.SendMessage(pid, color.Aqua .. "Player " .. Players[pidt].name .. " already has the role " .. Role .. ".\n", false)
+		end
+	
 
+	elseif cmd[1] == removeRole and cmd[2] ~= nil and cmd[3] ~= nil and moderator then
+		pidt = cmd[2]
+		Role = cmd[3]
+		if tableHelper.containsValue(config.activeRoles, Role) == true and logicHandler.CheckPlayerValidity(pidt, pid) then
+			tes3mp.SendMessage(pid, color.Aqua .. "Player " .. Players[pidt].name .. " has had the role " .. Role .. " removed.\n", false)
+			tes3mp.SendMessage(pidt, color.Aqua .. "You have lost the role " .. Role .. ".\n", false)
+			tableHelper.removeValue(Players[pidt].data.playerRoles, roleName)
+		else
+			tes3mp.SendMessage(pid, color.Aqua .. "Player " .. Players[pidt].name .. " does not have the role " .. Role .. ".\n", false)
+		end
+	
     elseif cmd[1] == "help" then
-
         -- Check "scripts/menu/help.lua" if you want to change the contents of the help menus
         Players[pid].currentCustomMenu = "help player"
         menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
 
     elseif cmd[1] == "craft" then
-
         -- Check "scripts/menu/defaultCrafting.lua" if you want to change the example craft menu
-        -- Players[pid].currentCustomMenu = "default crafting origin"
-        -- menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
+        Players[pid].currentCustomMenu = "default crafting origin"
+        menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
 		tes3mp.SendMessage(pid, color.Aqua .. "Crafting is disabled is disabled.\n", false)
 		
     --[[elseif (cmd[1] == "advancedexample" or cmd[1] == "advex") and moderator then

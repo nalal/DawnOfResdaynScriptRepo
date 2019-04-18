@@ -105,6 +105,7 @@ function BasePlayer:__init(pid, playerName)
 			armorSmithing = 0,
 			weaponSmithing = 0
 		},
+		playerRoles = { },
 		debugMode = false,
 		debugFlags = {
 			haltTracking = false
@@ -197,6 +198,12 @@ function BasePlayer:initData()
 			armorSmithing = 0,
 			weaponSmithing = 0
 		}
+		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. "'s playerdata was repaired. ")
+	end
+	if self.data.playerRoles == nil then
+		self:Message(color.Aqua .. "[SYSTEM]: You were missing save data for 'playerRoles', this has been fixed.\n")
+		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'playerRoles', repairing now. ")
+		self.data.playerRoles = { }
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. "'s playerdata was repaired. ")
 	end
 end
