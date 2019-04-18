@@ -32,6 +32,17 @@ function menuHelper.conditions.requireAttribute(inputName, inputValue)
     return condition
 end
 
+function menuHelper.conditions.requireCustomSkill(inputName, inputValue)
+    local condition = {
+        conditionType = "customSkill",
+        customSkillName = inputName,
+        customSkillValue = inputValue
+    }
+
+    return condition
+end
+
+
 function menuHelper.conditions.requireSkill(inputName, inputValue)
     local condition = {
         conditionType = "skill",

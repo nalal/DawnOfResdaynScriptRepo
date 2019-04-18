@@ -75,6 +75,13 @@ function commandHandler.ProcessCommand(pid, cmd)
 		else
 			tes3mp.SendMessage(pid, "Invalid debugMode flag, please use enable/disable\n", false)
 		end
+
+	elseif cmd[1] == "craftskill" then
+		local armorSmithVal = Players[pid].data.craftSkills["armorSmithing"]
+		local weaponSmithVal = Players[pid].data.craftSkills["weaponSmithing"]
+        tes3mp.SendMessage(pid, color.Aqua .. "===================================================\n" .. "Your crafting skills are currently:\n" .. "------------------------------------------------" .. "\nArmor Smithing: " .. armorSmithVal .. "\n" .. "Weapon Smithing: " .. weaponSmithVal .. "\n" .. "===================================================\n")
+
+	
 	
 	elseif cmd[1] == "disableHunger" and config.debugMode == true and Players[pid].data.debugMode == true then
 		Players[pid].data.debugFlags.haltTracking = true

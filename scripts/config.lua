@@ -140,7 +140,7 @@ config.rankColors = { serverOwner = color.Orange, admin = color.Red, moderator =
 config.customMenuIds = { menuHelper = 9001, confiscate = 9002, recordPrint = 9003 }
 
 -- The menu files that should be loaded for menuHelper, from the scripts/menu subfolder
-config.menuHelperFiles = { "help", "defaultCrafting", "advancedExample" }
+config.menuHelperFiles = { "help", "FTCCrafting", "advancedExample" }
 
 -- What the difference in ping needs to be in favor of a new arrival to a cell or region
 -- compared to that cell or region's current player authority for the new arrival to become
