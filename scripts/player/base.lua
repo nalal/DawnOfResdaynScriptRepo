@@ -179,7 +179,8 @@ function BasePlayer:initData()
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. "'s playerdata was repaired. ")
 	end
 	if self.data.craftSkills == nil then
-		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'playerResting', repairing now. ")
+		self:Message(color.Aqua .. "[SYSTEM]: You were missing save data for 'craftSkills', this has been fixed.\n")\
+		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'craftSkills', repairing now. ")
 		craftSkills = {
 			armorSmithing = 0
 			weaponSmithing = 0
@@ -193,7 +194,6 @@ function BasePlayer:Destroy()
         tes3mp.StopTimer(self.loginTimerId)
         self.loginTimerId = nil
     end
-
     self.loggedIn = false
     self.hasAccount = nil
 end
