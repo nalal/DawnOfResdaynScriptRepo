@@ -1151,12 +1151,17 @@ function commandHandler.ProcessCommand(pid, cmd)
         -- Check "scripts/menu/help.lua" if you want to change the contents of the help menus
         Players[pid].currentCustomMenu = "help player"
         menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
+		
 
     elseif cmd[1] == "craft" then
-        -- Check "scripts/menu/defaultCrafting.lua" if you want to change the example craft menu
-        Players[pid].currentCustomMenu = "default crafting origin"
-        menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
-		tes3mp.SendMessage(pid, color.Aqua .. "Crafting is disabled is disabled.\n", false)
+		if config.craftEnabled == true then
+			-- Check "scripts/menu/defaultCrafting.lua" if you want to change the example craft menu
+			--Players[pid].currentCustomMenu = "default crafting origin"
+			--menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
+		else
+			tes3mp.LogMessage(enumerations.log.INFO, Player[pid].name .. " tried to open crafing menu but it's disabled.")
+			tes3mp.SendMessage(pid, color.Aqua .. "Crafting is disabled is disabled.\n", false)
+		end
 		
     --[[elseif (cmd[1] == "advancedexample" or cmd[1] == "advex") and moderator then
 

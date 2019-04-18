@@ -320,8 +320,12 @@ config.worldKeyOrder = { "general", "time", "topics", "kills", "journal", "custo
     "index", "quest", "actorRefId", "year", "month", "day", "hour", "daysPassed", "timeScale" }
 
 config.activeRoles = { "Guard" }
-	
+
+--Toggle for debug mode features
 config.debugMode = true
+
+--Toggle for crafting
+config.craftEnabled = false
 
 -- Toggle for basicNeeds
 config.needsToggle = true
