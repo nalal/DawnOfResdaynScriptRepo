@@ -1,7 +1,9 @@
 craftingSkillsConfig = require("craftingFunctionsConfig")
+craftingRecipie = require("craftingRecipies")
 
 
 --Global functions
+--logger function
 craftSkillsLog = function(message, debugFlag)
 	if debugFlag == "debug" then
 		message = "[CS-DEBUG]: " .. message
@@ -10,22 +12,29 @@ craftSkillsLog = function(message, debugFlag)
 	elseif debugFlag == "error" then
 		message = "[CS-ERROR]: " .. message
 	else
+		message1 = "[CS-DEBUG]: Improperly flagged log = " .. message
 		message = "[CS-ERROR]: Log was called but was given invalid debug flag, take a break and get some coffee, Nac"
 	end
+	
 	tes3mp.LogMessage(enumerations.log.INFO, message)
+	
+	if message1 ~= nil then
+		tes3mp.LogMessage(enumerations.log.INFO, message1)
+	end
 end
 
+--Chat PM function
 craftSkillsMessage = function(message, pid)
-	message = "[CraftSkill]: " .. message
+	message = color.Cyan .. "[Crafting]: " .. color.LightCyan .. message .. "\n"
 	tes3mp.SendMessage(pid, message, false)
 end
 
-
 --Call functions
 local craftSkills = {}
-
+	--Increase player skill
 	function craftSkills.increaseSkill(diffValue, skill, pid)
 		if Players[pid].data.craftSkillsProgress[skill] ~= nil then
+			pName = Players[pid].name
 			if diffValue - Players[pid].data.craftSkillsProgress[skill] <= 0 then
 				xpValue = 1
 			else
@@ -35,12 +44,16 @@ local craftSkills = {}
 				Players[pid].data.customSkillsProgress[skill] = Players[pid].data.craftSkillsProgress[skill] + xpValue
 			else
 				if Players[pid].data.craftSkills[skill] == raftingSkillsConfig.maxSkill then
-					Players[pid].data.craftSkills[skill] = 10
+					message = "Player " .. pName .. " has reached maxSkill in " .. skill
+					craftSkillsLog(message)
+					Players[pid].data.craftSkills[skill] = raftingSkillsConfig.maxSkill
 				else
 					skillName = craftingSkillsConfig.skillNames[skill]
 					if skillName ~= nil then
+						logMessage = "Increasing skill " .. skill .. " for " .. pname
+						craftSkillsLog(logMessage)
 						message = "You have become more proficient in " .. skillName .. ".\n" 
-						tes3mp.SendMessage(pid, message, false)
+						craftSkillsMessage(message, pid)
 					else
 						craftSkillsLog("Skill name for " .. skill .. " is a nil, remember to set this in 'skillName'", "error")
 					end
@@ -56,6 +69,23 @@ local craftSkills = {}
 			end
 			craftSkillsLog(message0, "error")
 			craftSkillsLog(message1, "debug")
+		end
+	end
+	
+	--Pass ingredients for item
+	function craftSkills.checkIngreds(item)
+		if craftingRecipie[item] ~= nil then
+			--Still working on this part
+		else
+			if item ~= nil then
+				message0 = "Item is not in recipies."
+			else
+				message1 = "checkIngreds called with nil item"
+				item = "N/A"
+			end
+			craftSkillsLog(message0, "error")
+			craftSkillsLog("Item called: " .. item, "debug")
+			
 		end
 	end
 	

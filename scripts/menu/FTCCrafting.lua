@@ -16,30 +16,8 @@ Menus["default crafting start"] = {
 
 Menus["default crafting origin"] = {
     text = color.Orange .. "What would you like to craft?\n" ..
-            color.Yellow .. "White pillow" .. color.White .. " - 1 per 2 folded cloth\n" ..
-            color.Yellow .. "Hammock pillow" .. color.White .. " - 15 per 1 bolt of cloth\n" ..
             color.Yellow .. "Guarskin drum" .. color.White .. " - 1 per 3 guar hides",
     buttons = {
-        { caption = "White pillow",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting pillow white",
-                {
-                    menuHelper.conditions.requireItem("misc_de_foldedcloth00", 2),
-					menuHelper.conditions.requireCustomSkill("Tailoring", 0)
-                })
-            }
-        },
-        { caption = "Hammock pillow",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting pillow hammock",
-                {
-                    menuHelper.conditions.requireItem({"misc_clothbolt_01", "misc_clothbolt_02", "misc_clothbolt_03"}, 1),
-					menuHelper.conditions.requireCustomSkill("Tailoring", 1)
-                })
-            }
-        },
         { caption = "Guarskin drum",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
