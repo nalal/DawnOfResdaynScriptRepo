@@ -97,6 +97,10 @@ function BasePlayer:__init(pid, playerName)
 			fatigue = 0
 		},
 		playerResting = false,
+		craftSkills = {
+			armorSmithing = 0,
+			weaponSmithing = 0
+		},
 		debugMode = false,
 		debugFlags = {
 			haltTracking = false
@@ -170,7 +174,17 @@ function BasePlayer:initData()
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. "'s playerdata was repaired. ")
 	end
 	if self.data.playerResting == nil then
+		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'playerResting', repairing now. ")
 		self.data.playerResting = false
+		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. "'s playerdata was repaired. ")
+	end
+	if self.data.craftSkills == nil then
+		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. " was missing key player data from 'playerResting', repairing now. ")
+		craftSkills = {
+			armorSmithing = 0
+			weaponSmithing = 0
+		}
+		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(self.pid) .. "'s playerdata was repaired. ")
 	end
 end
 
