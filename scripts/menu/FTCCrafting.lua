@@ -39,7 +39,7 @@ Menus["default crafting iron sword"] = {
     buttons = {
         { caption = "yes",
             destinations = {
-                menuHelper.destinations.setDefault("reward generic singular"),
+                menuHelper.destinations.setDefault("lack of materials"),
 				menuHelper.destinations.setConditional("reward generic singular",	
 				{menuHelper.conditions.requireItem("ingred_iron_1", 3),
 				menuHelper.conditions.requireItem("ingred_leather_1", 1)},{		
