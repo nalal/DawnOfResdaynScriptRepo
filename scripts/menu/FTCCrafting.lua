@@ -23,9 +23,9 @@ Menus["default crafting origin"] = {
                 menuHelper.destinations.setDefault("lack of materials"),
                 menuHelper.destinations.setConditional("default crafting iron sword",
                 {
-                    menuHelper.conditions.requireItem("$ingred_iron_1", 3),
-					menuHelper.conditions.requireItem("$ingred_leather_1", 1),
-					menuHelper.conditions.requireCustomSkill("weaponSmithing", 0)
+                    menuHelper.conditions.requireItem("ingred_iron_1", 3),
+					menuHelper.conditions.requireItem("ingred_leather_1", 1)
+					--menuHelper.conditions.requireCustomSkill("weaponSmithing", 0)
                 })
             }
         },
@@ -39,10 +39,14 @@ Menus["default crafting iron sword"] = {
     buttons = {
         { caption = "yes",
             destinations = {
-                menuHelper.destinations.setDefault("lack of materials",                     
-				menuHelper.effects.removeItem("ingred_guar_hide_01", 3),
-                menuHelper.effects.giveItem("misc_de_drum_02", 1),
-				menuHelper.effects.runPlayerFunction("weaponSmithing", { 1 }),
+                menuHelper.destinations.setDefault("reward generic singular"),
+				menuHelper.destinations.setConditional("reward generic singular",	
+				{menuHelper.conditions.requireItem("ingred_iron_1", 3),
+				menuHelper.conditions.requireItem("ingred_leather_1", 1)},{		
+				menuHelper.effects.removeItem("ingred_iron_1", 3),
+				menuHelper.effects.removeItem("ingred_leather_1", 1),
+                menuHelper.effects.giveItem("iron longsword", 1),
+				menuHelper.effects.runGlobalFunction("craftSkills", "increaseSkill",  { menuHelper.variables.currentPid(), 1, "weaponSmithing"})})
             }
         },
         { caption = "No",

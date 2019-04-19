@@ -1,6 +1,6 @@
 require("config")
 inventoryHelper = require("inventoryHelper")
-craftingFunctions = require("craftingFunctions")
+craftSkills = require("craftingFunctions")
 
 local menuHelper = {}
 menuHelper.conditions = {}
@@ -33,9 +33,9 @@ function menuHelper.conditions.requireAttribute(inputName, inputValue)
     return condition
 end
 
-function menuHelper.conditions.requireCustomSkill(inputName, inputValue, typeOfSkill)
+function menuHelper.conditions.requireCustomSkill(inputName, inputValue)
     local condition = {
-        conditionType = typeOfSkill,
+        conditionType = "craftSkills",
         customSkillName = inputName,
         customSkillValue = inputValue
     }
