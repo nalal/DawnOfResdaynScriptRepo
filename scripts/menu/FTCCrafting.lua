@@ -4,7 +4,7 @@ Menus["default crafting start"] = {
 	    buttons = {
 			{caption = "Craft",
 				destinations = {
-                menuHelper.destinations.setDefault("default crafting origin")
+                menuHelper.destinations.setDefault("default crafting select")
 			}},
 			{caption = "See crafting skills",
 				destinations = {
@@ -14,14 +14,77 @@ Menus["default crafting start"] = {
 		}
 }
 
-Menus["default crafting origin"] = {
+Menus["default crafting select"] = {
+	text = color.Orange .. "Crafting Menu\n" ..
+		"What would you like to do?",
+	    buttons = {
+			{caption = "Smithing",
+				destinations = {
+                menuHelper.destinations.setDefault("default crafting origin")
+			}},
+			{caption = "Tailoring",
+				destinations = {
+                menuHelper.destinations.setDefault("default crafting tailoring")
+			}},
+			{caption = "Cooking",
+				destinations = {
+                menuHelper.destinations.setDefault("default crafting cooking")
+			}},
+			{caption = "Back", destinations = { menuHelper.destinations.setDefault("default crafting start") } },
+			{caption = "Exit", destinations = nil}
+		}
+}
+
+Menus["default crafting cooking"] = {
+    text = color.Orange .. "What would you like to craft?\n" ..
+			"There is currently no items in cooking."
+            --color.Yellow .. "Iron Sword" .. color.White .. " - 1 per 3 Iron and 1 Ragged Leather",
+    buttons = --[[{
+        { caption = "Iron Sword",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("crafting iron sword",
+                {
+                    menuHelper.conditions.requireItem("ingred_iron_1", 3),
+					menuHelper.conditions.requireItem("ingred_leather_1", 1)
+					--menuHelper.conditions.requireCustomSkill("weaponSmithing", 0)
+                })
+            }
+        },]]--
+		{ caption = "Back", destinations = { menuHelper.destinations.setDefault("default crafting start") } },
+        { caption = "Exit", destinations = nil }
+    }
+}
+
+Menus["default crafting tailoring"] = {
+    text = color.Orange .. "What would you like to craft?\n" ..
+			"There are currently no items in tailoring."
+            --color.Yellow .. "Iron Sword" .. color.White .. " - 1 per 3 Iron and 1 Ragged Leather",
+    buttons = {
+        --[[{ caption = "Iron Sword",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("crafting iron sword",
+                {
+                    menuHelper.conditions.requireItem("ingred_iron_1", 3),
+					menuHelper.conditions.requireItem("ingred_leather_1", 1)
+					--menuHelper.conditions.requireCustomSkill("weaponSmithing", 0)
+                })
+            }
+        },]]--
+		{ caption = "Back", destinations = { menuHelper.destinations.setDefault("default crafting start") } },
+        { caption = "Exit", destinations = nil }
+    }
+}
+
+Menus["default crafting smithing"] = {
     text = color.Orange .. "What would you like to craft?\n" ..
             color.Yellow .. "Iron Sword" .. color.White .. " - 1 per 3 Iron and 1 Ragged Leather",
     buttons = {
         { caption = "Iron Sword",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting iron sword",
+                menuHelper.destinations.setConditional("crafting iron sword",
                 {
                     menuHelper.conditions.requireItem("ingred_iron_1", 3),
 					menuHelper.conditions.requireItem("ingred_leather_1", 1)
@@ -34,7 +97,7 @@ Menus["default crafting origin"] = {
     }
 }
 
-Menus["default crafting iron sword"] = {
+Menus["crafting iron sword"] = {
     text = "Are you sure you want to craft an Iron Sword?",
     buttons = {
         { caption = "yes",
