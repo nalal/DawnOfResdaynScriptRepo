@@ -1165,10 +1165,23 @@ function commandHandler.ProcessCommand(pid, cmd)
 		
 	elseif cmd[1] == "shutdown" and cmd[2] ~= nil and admin then
 		if cmd[2] == "restart" then
-			tes3mp.LogMessage(enumerations.log.INFO, Players[pid].name .. " called for a server reload.")
-			tes3mp.SendMessage(pid, color.Red .. "[SYSTEM]: Server will shutdown for a requested restart in 5 minutes.\n", true)
-		elseif cmd[2] == "syshalt"
-			tes3mp.LogMessage(enumerations.log.INFO, Players[pid].name .. " called for an emergency server halt, terminating process safely now.")
+			tes3mp.LogMessage(enumerations.log.INFO, Players[pid].name .. " called for a server reload, this cannot be aborted, executing restart in 300000 miliseconds.")
+			tes3mp.SendMessage(pid, color.Aqua .. "[SYSTEM]:" .. color.Red .. " Server will shutdown for a requested restart in 5 minutes.\n", true)
+			if shutdownTimer == nil then
+				shutdownTimer = tes3mp.CreateTimerEx("terminateCall", 300000, "")
+				tes3mp.StartTimer(shutdownTimer)
+			else
+				tes3mp.SendMessage(pid, color.Aqua .. "[SYSTEM]:" .. color.Red .. " There is already a shutdown timer in progress.\n", false)
+			end
+		elseif cmd[2] == "syshalt" then
+			if cmd[3] == "CONFIRM" then
+				tes3mp.SendMessage(pid, color.Aqua .. "[SYSTEM]:" .. color.Red .. " EMERGENCY SERVER HALT CALLED.\n", true)
+				tes3mp.LogMessage(enumerations.log.INFO, Players[pid].name .. " called for an emergency server halt, terminating process safely now.")
+				shutdownTimer = tes3mp.CreateTimerEx("terminateCall", 300, "")
+				tes3mp.StartTimer(shutdownTimer)
+			else
+				tes3mp.SendMessage(pid, color.Aqua .. "[SYSTEM]:" .. color.Green .. " Failed to confirm halt, ignoring shutdown request.\n", false)
+			end
 		end
 		
     --[[elseif (cmd[1] == "advancedexample" or cmd[1] == "advex") and moderator then
@@ -1177,6 +1190,16 @@ function commandHandler.ProcessCommand(pid, cmd)
         Players[pid].currentCustomMenu = "advanced example origin"
         menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)]]--
     end
+end
+
+terminateCall = function()
+	tes3mp.SendMessage(pid, color.Aqua .. "[SYSTEM]:" .. color.Red .. " SERVER SHUTTING DOWN.\n", true)
+	execTimer = tes3mp.CreateTimerEx("terminateFinal", 300, "")
+	tes3mp.StartTimer(execTimer)
+end
+
+terminateFinal = function()
+	tes3mp.StopServer(1)
 end
 
 function commandHandler.StoreRecord(pid, cmd)
