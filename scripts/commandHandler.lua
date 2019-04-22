@@ -1156,7 +1156,7 @@ function commandHandler.ProcessCommand(pid, cmd)
     elseif cmd[1] == "craft" then
 		if config.craftEnabled == true then
 			-- Check "scripts/menu/defaultCrafting.lua" if you want to change the example craft menu
-			Players[pid].currentCustomMenu = "default crafting origin"
+			Players[pid].currentCustomMenu = "default crafting start"
 			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
 		else
 			tes3mp.LogMessage(enumerations.log.INFO, Players[pid].name .. " tried to open crafing menu but it's disabled.")
