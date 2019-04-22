@@ -296,7 +296,7 @@ local basicNeeds = {}
 			listName = playerName .. pid
 			basicNeedsLogDebug("listName " .. listName .. " created for hungerTic.")
 			if tableHelper.containsValue(activeHungerTimers, listName) ~= true then
-				hungerTime = tes3mp.CreateTimerEx("basicNeedsLogic", config.needsTimer, "sisssss", listName, pid, "hungerTic", "hunger", "hungry", "starving")
+				hungerTime = tes3mp.CreateTimerEx("basicNeedsLogic", config.needsTimer, "sissss", listName, pid, "hungerTic", "hunger", "hungry", "starving")
 				basicNeedsLog("Running hunger timer for player " .. logicHandler.GetChatName(pid) .. ".")
 				tes3mp.StartTimer(hungerTime)
 				basicNeedsLog("PlayerID " .. listName .. " added to activeHungerTimers list")
@@ -313,7 +313,7 @@ local basicNeeds = {}
 			listName = playerName .. pid
 			basicNeedsLogDebug("listName " .. listName .. " created for thirstTic.")
 			if tableHelper.containsValue(activeThirstTimers, listName) ~= true then
-				thirstTime = tes3mp.CreateTimerEx("basicNeedsLogic", config.needsTimer, "sisssss", listName, pid, "thirstTic", "thirst", "thirsty", "dehydrated")
+				thirstTime = tes3mp.CreateTimerEx("basicNeedsLogic", config.needsTimer, "sissss", listName, pid, "thirstTic", "thirst", "thirsty", "dehydrated")
 				basicNeedsLog("Running thirst timer for player " .. logicHandler.GetChatName(pid) .. ".")
 				tes3mp.StartTimer(thirstTime)
 				basicNeedsLog("PlayerID " .. listName .. " added to activeThirstTimers list")

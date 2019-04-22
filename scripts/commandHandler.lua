@@ -1163,6 +1163,14 @@ function commandHandler.ProcessCommand(pid, cmd)
 			tes3mp.SendMessage(pid, color.Aqua .. "[SYSTEM]: Crafting is disabled.\n", false)
 		end
 		
+	elseif cmd[1] == "shutdown" and cmd[2] ~= nil and admin then
+		if cmd[2] == "restart" then
+			tes3mp.LogMessage(enumerations.log.INFO, Players[pid].name .. " called for a server reload.")
+			tes3mp.SendMessage(pid, color.Red .. "[SYSTEM]: Server will shutdown for a requested restart in 5 minutes.\n", true)
+		elseif cmd[2] == "syshalt"
+			tes3mp.LogMessage(enumerations.log.INFO, Players[pid].name .. " called for an emergency server halt, terminating process safely now.")
+		end
+		
     --[[elseif (cmd[1] == "advancedexample" or cmd[1] == "advex") and moderator then
 
         -- Check "scripts/menu/advancedExample.lua" if you want to change the advanced menu example
