@@ -3,11 +3,15 @@ local eventHandler = {}
 commandHandler = require("commandHandler")
 scriptLoader = require("scriptLoader")
 basicNeeds = require("basicNeeds")
+Mailbox = require("Mailbox")
 
 local consoleKickMessage = " has been kicked for using the console despite not having the permission to do so.\n"
 
 eventHandler.OnPlayerConnect = function(pid, playerName)
-
+	if config.mailToggle == true then
+		Mailbox.Init(pid)
+		Mailbox.CheckInbox(pid)
+	end
     tes3mp.SetDifficulty(pid, config.difficulty)
     tes3mp.SetConsoleAllowed(pid, config.allowConsole)
     tes3mp.SetBedRestAllowed(pid, config.allowBedRest)

@@ -1,5 +1,7 @@
 local commandHandler = {}
 
+Mailbox = require("Mailbox")
+
 function commandHandler.ProcessCommand(pid, cmd)
     if cmd[1] == nil then
         local message = "Please use a command after the / symbol.\n"
@@ -45,6 +47,11 @@ function commandHandler.ProcessCommand(pid, cmd)
 		targetCell = tes3mp.GetCell(pid)
 		basicNeeds.rest(pid, targetCell)
 		
+	elseif cmd[1] == "mbcheck" and config.mailToggle == true then Mailbox.CheckInbox(pid) 
+	elseif cmd[1] == "mbread" and config.mailToggle == true then Mailbox.ReadMessage(pid, cmd[2]) 
+	elseif cmd[1] == "mbsend" and config.mailToggle == true then Mailbox.SendMessage(pid, tableHelper.concatenateFromIndex(cmd, 2)) 
+	elseif cmd[1] == "mbdelete" and config.mailToggle == true then Mailbox.DeleteMessage(pid, cmd[2])
+	
 	elseif cmd[1] == "showneeds" then
 		hunger = tonumber(Players[pid].data.playerNeeds.hunger)
 		thirst = tonumber(Players[pid].data.playerNeeds.thirst)

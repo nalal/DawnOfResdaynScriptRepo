@@ -321,6 +321,9 @@ config.worldKeyOrder = { "general", "time", "topics", "kills", "journal", "custo
 
 config.activeRoles = { "Guard" }
 
+--Toggle for teamFOSSs mail script
+config.mailToggle = false
+
 --Toggle for debug mode features
 config.debugMode = true
 
