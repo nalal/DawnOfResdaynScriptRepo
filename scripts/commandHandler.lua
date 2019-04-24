@@ -1,6 +1,7 @@
 local commandHandler = {}
 
 Mailbox = require("Mailbox")
+testDB = require("testDB")
 
 function commandHandler.ProcessCommand(pid, cmd)
     if cmd[1] == nil then
@@ -79,6 +80,8 @@ function commandHandler.ProcessCommand(pid, cmd)
 			basicNeeds.spellInit(pid)
 		elseif cmd[2] == "cleanSpells" then
 			basicNeeds.spellClean(pid)
+		elseif cmd[2] == "testDB" then
+			testDB.testQuerry()
 		else
 			tes3mp.SendMessage(pid, "Invalid debugMode flag, please use enable/disable\n", false)
 		end

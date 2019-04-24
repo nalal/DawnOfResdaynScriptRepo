@@ -321,6 +321,10 @@ config.worldKeyOrder = { "general", "time", "topics", "kills", "journal", "custo
 
 config.activeRoles = { "Guard" }
 
+config.DBUSER = nil
+
+config.DBPASS = nil
+
 --Toggle for teamFOSSs mail script
 config.mailToggle = false
 
