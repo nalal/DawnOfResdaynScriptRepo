@@ -5,7 +5,7 @@ local mysqlHandler = {}
 env = assert (driver.mysql())
 
 --Note, none of this is escaped so be real careful what you execute
-function testDB.manualQuery(query)
+function mysqlHandler.manualQuery(query)
 	if config.DBUSER ~= nil and config.DBPASS ~= nil then
 		con = assert (env:connect( "testDB", config.DBUSER, config.DBPASS, "localhost", "3306"))
 		con:execute(string.format(query))
