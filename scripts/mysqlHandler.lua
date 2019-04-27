@@ -28,4 +28,4 @@ function mysqlHandler.queryLog(message)
 	tes3mp.LogMessage(enumerations.log.INFO, "System executed query (" .. message .. ")")
 end
 	
-return testDB
+return mysqlHandler
