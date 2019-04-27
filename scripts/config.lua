@@ -1,7 +1,7 @@
 config = {}
 
 -- The game mode displayed for this server in the server browser
-config.gameMode = "Roleplay"
+config.gameMode = "Default"
 
 -- Time to login, in seconds
 config.loginTime = 60
@@ -30,46 +30,46 @@ config.allowConsole = false
 config.allowBedRest = true
 
 -- Whether players should be allowed to rest in the wilderness by default
-config.allowWildernessRest = false
+config.allowWildernessRest = true
 
 -- Whether players should be allowed to wait by default
 config.allowWait = true
 
 -- Whether journal entries should be shared across the players on the server or not
-config.shareJournal = false
+config.shareJournal = true
 
 -- Whether faction ranks should be shared across the players on the server or not
-config.shareFactionRanks = false
+config.shareFactionRanks = true
 
 -- Whether faction expulsion should be shared across the players on the server or not
 config.shareFactionExpulsion = false
 
 -- Whether faction reputation should be shared across the players on the server or not
-config.shareFactionReputation = false
+config.shareFactionReputation = true
 
 -- Whether dialogue topics should be shared across the players on the server or not
-config.shareTopics = false
+config.shareTopics = true
 
 -- Whether crime bounties should be shared across players on the server or not
 config.shareBounty = false
 
 -- Whether reputation should be shared across players on the server or not
-config.shareReputation = false
+config.shareReputation = true
 
 -- Whether map exploration should be shared across players on the server or not
 config.shareMapExploration = false
 
 -- Whether ingame videos should be played for other players when triggered by one player
-config.shareVideos = false
+config.shareVideos = true
 
 -- The cell that newly created players are teleported to
 config.defaultSpawnCell = "-3, -2"
 
 -- The X, Y and Z position that newly created players are teleported to
-config.defaultSpawnPos = {-23980.693359375, -15561.556640625, 505}
+config.defaultSpawnPos = {-23894.0, -15079.0, 505}
 
 -- The X and Z rotation that newly created players are assigned
-config.defaultSpawnRot = {-0.000152587890625, 1.6182196140289}
+config.defaultSpawnRot = {0, 1.2}
 
 -- The cell that players respawn in, unless overridden below by other respawn options
 config.defaultRespawnCell = "Balmora, Temple"
@@ -120,7 +120,8 @@ config.deathPenaltyJailDays = 5
 config.bountyResetOnDeath = false
 
 -- Whether players spend time in jail proportional to their bounty after dying
--- Note: Requires bountyResetOnDeath to be enabled
+-- Note: If deathPenaltyJailDays is also enabled, that penalty will be added to
+--       this one
 config.bountyDeathPenalty = false
 
 -- Whether players should be allowed to use the /suicide command
@@ -161,6 +162,9 @@ config.enforcedLogLevel = -1
 -- Note: In OpenMW, the physics framerate is 60 by default, but TES3MP has slightly higher
 --       system requirements that make a default of 30 more appropriate.
 config.physicsFramerate = 30
+
+-- Whether players are allowed to interact with containers located in unloaded cells.
+config.allowOnContainerForUnloadedCells = false
 
 -- Whether players should collide with other actors
 config.enablePlayerCollision = true
@@ -270,12 +274,12 @@ config.cellPacketTypes = { "delete", "place", "spawn", "lock", "trap", "scale", 
     "container", "equipment", "ai", "death", "actorList", "position", "statsDynamic", "cellChangeTo",
     "cellChangeFrom" }
 
--- Whether the server should enforce that all clients connect with a specific list of plugins
--- defined in data/pluginlist.json
+-- Whether the server should enforce that all clients connect with a specific list of data files
+-- defined in data/requiredDataFiles.json
 -- Warning: Only set this to false if you trust the people connecting and are sure they know
 --          what they're doing. Otherwise, you risk getting corrupt server data from
 --          their usage of unshared plugins.
-config.enforcePlugins = false
+config.enforceDataFiles = true
 
 -- Whether the server should avoid crashing when Lua script errors occur
 -- Warning: Only set this to true if you want to have a highly experimental server where
@@ -289,7 +293,7 @@ config.databaseType = "json"
 
 -- The location of the database file
 -- Note: Not applicable when using json
-config.databasePath = tes3mp.GetModDir() .. "/database.db" -- Path where database is stored
+config.databasePath = tes3mp.GetDataPath() .. "/database.db" -- Path where database is stored
 
 -- Disallow players from including the following in their own names or the names of their custom items
 -- Note: Unfortunately, these are based on real names that trolls have been using on servers
@@ -318,30 +322,5 @@ config.recordstoreKeyOrder = { "general", "permanentRecords", "generatedRecords"
 
 config.worldKeyOrder = { "general", "time", "topics", "kills", "journal", "customVariables", "type",
     "index", "quest", "actorRefId", "year", "month", "day", "hour", "daysPassed", "timeScale" }
-
-config.debugMode = true
-
--- Toggle for basicNeeds
-config.needsToggle = true
-
---Toggle for basicNeeds console output
-config.needsLogging = true
-
---Toggle for basicNeeds verbose logging used in debugging, if you're not modifying or troubleshooting you probably don't need this
-config.needsLoggingDebug = true
-
---Toggle for basicNeeds emote when someone maxes out a need stat
-config.needsEmote = true
-
---Toggle for basicNeeds debuff when someone maxes out a need stat
-config.needsDebuff = true
-
-config.needsTimer = 120000
-
-config.foodItems = { "ingred_ash_yam_01", "ingred_comberry_01", "ingred_bread_01", "ingred_crab_meat_01", "ingred_daedras_heart_01", "ingred_hound_meat_01", "food_kwama_egg_02", "ingred_kwama_cuttle_01", "ingred_rat_meat_01", "ingred_scrib_jelly_01", "food_kwama_egg_01", "ingred_trama_root_01", "ingred_6th_corprusmeat_05", "ingred_6th_corprusmeat_01", "ingred_6th_corprusmeat_06", "ingred_6th_corprusmeat_03", "ingred_6th_corprusmeat_07", "ingred_6th_corprusmeat_02", "ingred_6th_corprusmeat_04", "ingred_bread_01_UNI2", "ingred_human_meat_01", "ingred_bread_01_UNI3" }
-
-config.drinkItems = { "potion_local_liquor_01", "Potion_Local_Brew_01", "Potion_Cyro_Whiskey_01", "potion_ancient_brandy", "potion_cyro_brandy_01", "potion_nord_mead", "potion_comberry_brandy_01", "potion_comberry_wine_01", "potion_skooma_01", "p_vintagecornberrybrandy1" }
-
-config.restingCells = { "Balmora, South Wall Cornerclub" }
 
 return config
