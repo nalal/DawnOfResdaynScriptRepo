@@ -3,6 +3,15 @@ config = {}
 -- The game mode displayed for this server in the server browser
 config.gameMode = "Roleplay"
 
+--- Server Forums link
+config.website = "http://resdayn.boards.net/"
+
+--- ESP Download Link
+config.espDownload = "WIP"
+
+-- Discord Invite
+config.discordInvite = "https://discord.gg/aWSgHtR"
+
 -- Time to login, in seconds
 config.loginTime = 60
 

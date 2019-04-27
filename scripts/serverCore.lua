@@ -243,9 +243,9 @@ function OnServerPostInit()
         waitRuleString = "not " .. waitRuleString
     end
 
-    tes3mp.SetRuleString("Download ESP", "WIP")
-    tes3mp.SetRuleString("Website", "http://resdayn.boards.net/")
-    tes3mp.SetRuleString("Discord", "https://discord.gg/aWSgHtR")
+    tes3mp.SetRuleString("Download ESP", tostring(config.espDownload))
+    tes3mp.SetRuleString("Website", tostring(config.website))
+    tes3mp.SetRuleString("Discord", tostring(config.discordInvite))
     tes3mp.SetRuleString("enforcePlugins", tostring(config.enforcePlugins))
     tes3mp.SetRuleString("ignoreScriptErrors", tostring(config.ignoreScriptErrors))
     tes3mp.SetRuleValue("difficulty", config.difficulty)
