@@ -1,5 +1,5 @@
-craftingSkillsConfig = require("craftingFunctionsConfig")
-craftingRecipie = require("craftingRecipies")
+craftingSkillsConfig = require("custom/basicCrafting/craftingFunctionsConfig")
+craftingRecipie = require("custom/basicCrafting/craftingRecipies")
 
 local craftSkills = {}
 --Global functions

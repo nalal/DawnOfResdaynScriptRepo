@@ -1,4 +1,4 @@
-debugConfig = require("debugConfig")
+debugConfig = require("custom/debugMode/debugConfig")
 local debugMode = {}
 
 debugMode.OnPlayerFinishLogin = function(eventStatus, pid)

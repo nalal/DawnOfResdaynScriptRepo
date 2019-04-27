@@ -1,4 +1,4 @@
-craftModData = require("craftModData")
+craftModData = require("custom/basicCraftingSkills/craftModData")
 
 local craftMod = {}
 

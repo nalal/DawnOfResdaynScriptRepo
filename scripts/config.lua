@@ -1,7 +1,7 @@
 config = {}
 
 -- The game mode displayed for this server in the server browser
-config.gameMode = "Default"
+config.gameMode = "Roleplay"
 
 -- Time to login, in seconds
 config.loginTime = 60
@@ -30,46 +30,46 @@ config.allowConsole = false
 config.allowBedRest = true
 
 -- Whether players should be allowed to rest in the wilderness by default
-config.allowWildernessRest = true
+config.allowWildernessRest = false
 
 -- Whether players should be allowed to wait by default
 config.allowWait = true
 
 -- Whether journal entries should be shared across the players on the server or not
-config.shareJournal = true
+config.shareJournal = false
 
 -- Whether faction ranks should be shared across the players on the server or not
-config.shareFactionRanks = true
+config.shareFactionRanks = false
 
 -- Whether faction expulsion should be shared across the players on the server or not
 config.shareFactionExpulsion = false
 
 -- Whether faction reputation should be shared across the players on the server or not
-config.shareFactionReputation = true
+config.shareFactionReputation = false
 
 -- Whether dialogue topics should be shared across the players on the server or not
-config.shareTopics = true
+config.shareTopics = false
 
 -- Whether crime bounties should be shared across players on the server or not
 config.shareBounty = false
 
 -- Whether reputation should be shared across players on the server or not
-config.shareReputation = true
+config.shareReputation = false
 
 -- Whether map exploration should be shared across players on the server or not
 config.shareMapExploration = false
 
 -- Whether ingame videos should be played for other players when triggered by one player
-config.shareVideos = true
+config.shareVideos = false
 
 -- The cell that newly created players are teleported to
 config.defaultSpawnCell = "-3, -2"
 
 -- The X, Y and Z position that newly created players are teleported to
-config.defaultSpawnPos = {-23894.0, -15079.0, 505}
+config.defaultSpawnPos = {-23980.693359375, -15561.556640625, 505}
 
 -- The X and Z rotation that newly created players are assigned
-config.defaultSpawnRot = {0, 1.2}
+config.defaultSpawnRot = {-0.000152587890625, 1.6182196140289}
 
 -- The cell that players respawn in, unless overridden below by other respawn options
 config.defaultRespawnCell = "Balmora, Temple"
@@ -120,8 +120,7 @@ config.deathPenaltyJailDays = 5
 config.bountyResetOnDeath = false
 
 -- Whether players spend time in jail proportional to their bounty after dying
--- Note: If deathPenaltyJailDays is also enabled, that penalty will be added to
---       this one
+-- Note: Requires bountyResetOnDeath to be enabled
 config.bountyDeathPenalty = false
 
 -- Whether players should be allowed to use the /suicide command
@@ -141,7 +140,7 @@ config.rankColors = { serverOwner = color.Orange, admin = color.Red, moderator =
 config.customMenuIds = { menuHelper = 9001, confiscate = 9002, recordPrint = 9003 }
 
 -- The menu files that should be loaded for menuHelper, from the scripts/menu subfolder
-config.menuHelperFiles = { "help", "defaultCrafting", "advancedExample" }
+config.menuHelperFiles = { "help", "FTCCrafting", "advancedExample" }
 
 -- What the difference in ping needs to be in favor of a new arrival to a cell or region
 -- compared to that cell or region's current player authority for the new arrival to become
@@ -162,9 +161,6 @@ config.enforcedLogLevel = -1
 -- Note: In OpenMW, the physics framerate is 60 by default, but TES3MP has slightly higher
 --       system requirements that make a default of 30 more appropriate.
 config.physicsFramerate = 30
-
--- Whether players are allowed to interact with containers located in unloaded cells.
-config.allowOnContainerForUnloadedCells = false
 
 -- Whether players should collide with other actors
 config.enablePlayerCollision = true
@@ -274,12 +270,12 @@ config.cellPacketTypes = { "delete", "place", "spawn", "lock", "trap", "scale", 
     "container", "equipment", "ai", "death", "actorList", "position", "statsDynamic", "cellChangeTo",
     "cellChangeFrom" }
 
--- Whether the server should enforce that all clients connect with a specific list of data files
--- defined in data/requiredDataFiles.json
+-- Whether the server should enforce that all clients connect with a specific list of plugins
+-- defined in data/pluginlist.json
 -- Warning: Only set this to false if you trust the people connecting and are sure they know
 --          what they're doing. Otherwise, you risk getting corrupt server data from
 --          their usage of unshared plugins.
-config.enforceDataFiles = true
+config.enforcePlugins = false
 
 -- Whether the server should avoid crashing when Lua script errors occur
 -- Warning: Only set this to true if you want to have a highly experimental server where
@@ -293,7 +289,7 @@ config.databaseType = "json"
 
 -- The location of the database file
 -- Note: Not applicable when using json
-config.databasePath = tes3mp.GetDataPath() .. "/database.db" -- Path where database is stored
+config.databasePath = tes3mp.GetModDir() .. "/database.db" -- Path where database is stored
 
 -- Disallow players from including the following in their own names or the names of their custom items
 -- Note: Unfortunately, these are based on real names that trolls have been using on servers
