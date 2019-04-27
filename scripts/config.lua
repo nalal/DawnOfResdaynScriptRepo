@@ -7,7 +7,7 @@ config.gameMode = "Roleplay"
 config.website = "http://resdayn.boards.net/"
 
 --- ESP Download Link
-config.espDownload = "WIP"
+config.espDownload = "https://tinyurl.com/y8g7vpbv"
 
 -- Discord Invite
 config.discordInvite = "https://discord.gg/aWSgHtR"
