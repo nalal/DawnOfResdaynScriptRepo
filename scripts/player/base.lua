@@ -84,8 +84,32 @@ function BasePlayer:__init(pid, playerName)
         mapExplored = {},
         ipAddresses = {},
         recordLinks = {},
-        customVariables = {}
-    }
+        customVariables = {},
+		playerNeedsDebuffs = {
+			startving = false,
+			dehydrated = false,
+			exausted = false
+		},
+		playerNeeds = {
+			hunger = 0,
+			thirst = 0,
+			fatigue = 0
+		},
+		playerResting = false,
+		craftSkills = {
+			armorSmithing = 0,
+			weaponSmithing = 0
+		},
+		craftSkillsProgress = {
+			armorSmithing = 0,
+			weaponSmithing = 0
+		},
+		playerRoles = { },
+		debugMode = false,
+		debugFlags = {
+			haltTracking = false
+		}
+}
 
     for index = 0, (tes3mp.GetAttributeCount() - 1) do
         local attributeName = tes3mp.GetAttributeName(index)
