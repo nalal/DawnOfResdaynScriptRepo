@@ -1,4 +1,4 @@
-basicNeedsConfig = require("custom/basicNeedsConfig")
+basicNeedsConfig = require("basicNeedsConfig")
 
 activeHungerTimers = { }
 activeThirstTimers = { }
