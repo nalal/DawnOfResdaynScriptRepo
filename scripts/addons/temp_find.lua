@@ -1,0 +1,45 @@
+   -- elseif cmd[1] == "find" then
+    -- 	if cmd[2] and logicHandler.CheckPlayerValidity(pid,cmd[2]) then
+    -- 		local pX = tes3mp.GetPosX(pid)
+    -- 		local pZ = tes3mp.GetPosY(pid)
+    -- 		local pX2 = tes3mp.GetPosX(tonumber(cmd[2]))
+    -- 		local pZ2 = tes3mp.GetPosY(tonumber(cmd[2]))
+    -- 		local dist = math.sqrt(math.pow(pX2 - pX, 2) + math.pow(pZ2 - pZ, 2))
+    -- 		if dist <= 36000 then
+    -- 			local degrees = math.deg(math.atan2(pX2 - pX, pZ2 - pZ))
+    -- 			local angle = (degrees + 360) % 360
+    -- 			local directionText=""
+    -- 			if angle > 337.5 or angle < 22.5 then
+    -- 				directionText = "N"
+    -- 			elseif angle >= 22.5 and angle <= 67.5 then
+    -- 				directionText = "NE"
+    -- 			elseif angle > 67.5 and angle < 112.5 then
+    -- 				directionText = "E"
+    -- 			elseif angle >= 112.5 and angle <= 157.5 then
+    -- 				directionText = "SE"
+    -- 			elseif angle > 157.5 and angle < 202.5 then
+    -- 				directionText = "S"
+    -- 			elseif angle >= 202.5 and angle <= 247.5 then
+    -- 				directionText = "SW"
+    -- 			elseif angle > 247.5 and angle < 292.5 then
+    -- 				directionText = "W"
+    -- 			elseif angle >= 292.5 and angle <= 337.5 then
+    -- 				directionText = "NW"
+    -- 			end
+    -- 			local trackText = ""
+    -- 			if dist <= 36000 and dist > 20000 then
+    -- 				trackText = "nearly indistinguishable"
+    -- 			elseif dist <= 20000 and dist > 10000 then
+    -- 				trackText = "noticable"
+    -- 			elseif dist <= 10000 and dist > 5000 then
+    -- 				trackText = "fresh"
+    -- 			elseif dist <= 5000 then
+    -- 				trackText = "brand new"
+    -- 			end
+    -- 			tes3mp.SendMessage(pid, color.DarkGray.."You found "..color.Yellow..trackText..color.DarkGray.." tracks for "..color.Yellow..Players[tonumber(cmd[2])].name..color.DarkGray..", it seems they are, "..color.Yellow..directionText..color.DarkGray.." from you.\n"..color.Default, false)
+    -- 		else
+    -- 			tes3mp.SendMessage(pid, color.DarkGray.."You could not find tracks for "..color.Yellow..Players[tonumber(cmd[2])].name.."\n"..color.Default, false)
+    -- 		end
+    -- 	else
+    -- 		tes3mp.SendMessage(pid, color.Red.."Invalid PID.\n", false)
+    -- 	end

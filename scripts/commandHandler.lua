@@ -4,6 +4,7 @@ Mailbox = require("Mailbox")
 mysqlHandler = require("mysqlHandler")
 
 function commandHandler.ProcessCommand(pid, cmd)
+
     if cmd[1] == nil then
         local message = "Please use a command after the / symbol.\n"
         tes3mp.SendMessage(pid, color.Error .. message .. color.Default, false)
@@ -31,10 +32,8 @@ function commandHandler.ProcessCommand(pid, cmd)
     if cmd[1] == "message" or cmd[1] == "msg" then
         if pid == tonumber(cmd[2]) then
             tes3mp.SendMessage(pid, "You can't message yourself.\n")
-
         elseif cmd[3] == nil then
             tes3mp.SendMessage(pid, "You cannot send a blank message.\n")
-
         elseif logicHandler.CheckPlayerValidity(pid, cmd[2]) then
             local targetPid = tonumber(cmd[2])
             local targetName = Players[targetPid].name
@@ -44,61 +43,7 @@ function commandHandler.ProcessCommand(pid, cmd)
             tes3mp.SendMessage(targetPid, message, false)
         end
 
-	elseif cmd[1] == "rest" then
-		targetCell = tes3mp.GetCell(pid)
-		basicNeeds.rest(pid, targetCell)
-		
-	elseif cmd[1] == "mbcheck" and config.mailToggle == true then Mailbox.CheckInbox(pid) 
-	elseif cmd[1] == "mbread" and config.mailToggle == true then Mailbox.ReadMessage(pid, cmd[2]) 
-	elseif cmd[1] == "mbsend" and config.mailToggle == true then Mailbox.SendMessage(pid, tableHelper.concatenateFromIndex(cmd, 2)) 
-	elseif cmd[1] == "mbdelete" and config.mailToggle == true then Mailbox.DeleteMessage(pid, cmd[2])
-	
-	elseif cmd[1] == "showneeds" then
-		hunger = tonumber(Players[pid].data.playerNeeds.hunger)
-		thirst = tonumber(Players[pid].data.playerNeeds.thirst)
-		fatigue = tonumber(Players[pid].data.playerNeeds.fatigue)
-		message = color.Aqua .. "[Basic Needs]:" .. color.White .. " Your hunger is currently at " .. color.Orange .. "\n" .. hunger .. color.Aqua .. "\n[Basic Needs]:" .. color.White .. " Your thirst is currently at " .. color.Orange .. "\n" .. thirst .. color.Aqua .. "\n[Basic Needs]:" .. color.White .. " Your fatigue is currently at " .. color.Orange .. "\n" .. fatigue .. "\n"
-		tes3mp.SendMessage(pid, message, false)
-	
-	elseif cmd[1] == "debug" and config.debugMode == true then
-		if cmd[2] == "enable" then
-			Players[pid].data.debugMode = true
-			tes3mp.SendMessage(pid, color.Cyan .. "[SYSTEM]: " .. color.White .. "debugMode enabled\n", false)
-		elseif cmd[2] == "disable" then
-			Players[pid].data.debugMode = false
-			tes3mp.SendMessage(pid, color.Cyan ..  "[SYSTEM]: " .. color.White .. "debugMode disabled\n", false)
-		elseif cmd[2] == "hunger" and Players[pid].data.debugMode == true then
-			if cmd[3] == "enable" then
-				Players[pid].data.debugFlags.haltTracking = false
-				tes3mp.SendMessage(pid, color.Cyan ..  "[SYSTEM]: " .. color.White .. "Needs tracking enabled", false)
-				basicNeeds.startTic(pid)
-			elseif cmd[3] == "disable" then
-				Players[pid].data.debugFlags.haltTracking = true
-				tes3mp.SendMessage(pid, color.Cyan ..  "[SYSTEM]: " .. color.White .. "Needs tracking disable", false)
-			end
-		elseif cmd[2] == "bakeSpells" then
-			basicNeeds.spellInit(pid)
-		elseif cmd[2] == "cleanSpells" then
-			basicNeeds.spellClean(pid)
-		elseif cmd[2] == "query" and cmd[3] ~= nil and admin then
-			estDB.manualQuery(cmd[3])
-		else
-			tes3mp.SendMessage(pid, "Invalid debugMode flag, please use enable/disable\n", false)
-		end
-
-	elseif cmd[1] == "craftskill" then
-		local armorSmithVal = Players[pid].data.craftSkills["armorSmithing"]
-		local weaponSmithVal = Players[pid].data.craftSkills["weaponSmithing"]
-        tes3mp.SendMessage(pid, color.Aqua .. "===================================================\n" .. "Your crafting skills are currently:\n" .. "------------------------------------------------" .. "\nArmor Smithing: " .. armorSmithVal .. "\n" .. "Weapon Smithing: " .. weaponSmithVal .. "\n" .. "===================================================\n")
-
-	
-	
-	elseif cmd[1] == "disableHunger" and config.debugMode == true and Players[pid].data.debugMode == true then
-		Players[pid].data.debugFlags.haltTracking = true
-		
-
-	
-    --[[elseif cmd[1] == "me" and cmd[2] ~= nil then
+    elseif cmd[1] == "me" and cmd[2] ~= nil then
         local message = logicHandler.GetChatName(pid) .. " " .. tableHelper.concatenateFromIndex(cmd, 2) .. "\n"
         tes3mp.SendMessage(pid, message, true)
 
@@ -112,7 +57,7 @@ function commandHandler.ProcessCommand(pid, cmd)
                 message = message .. tableHelper.concatenateFromIndex(cmd, 2) .. "\n"
                 tes3mp.SendMessage(visitorPid, message, false)
             end
-        end]]--
+        end
 
     elseif (cmd[1] == "greentext" or cmd[1] == "gt") and cmd[2] ~= nil then
         local message = logicHandler.GetChatName(pid) .. ": " .. color.GreenText ..
@@ -285,7 +230,7 @@ function commandHandler.ProcessCommand(pid, cmd)
             else
                 message = logicHandler.GetChatName(targetPid) .. " was kicked from the server by " ..
                     logicHandler.GetChatName(pid) .. ".\n"
-                tes3mp.SendMessage(pid, message, false)
+                tes3mp.SendMessage(pid, message, true)
                 Players[targetPid]:Kick()
             end
         end
@@ -301,9 +246,9 @@ function commandHandler.ProcessCommand(pid, cmd)
                 tes3mp.SendMessage(pid, message, false)
             else
                 message = targetName .. " was promoted to Admin!\n"
-                tes3mp.SendMessage(pid, message, false)
+                tes3mp.SendMessage(pid, message, true)
                 Players[targetPid].data.settings.staffRank = 2
-                Players[targetPid]:Save()
+                Players[targetPid]:QuicksaveToDrive()
             end
         end
 
@@ -318,9 +263,9 @@ function commandHandler.ProcessCommand(pid, cmd)
                 tes3mp.SendMessage(pid, message, false)
             elseif Players[targetPid]:IsAdmin() then
                 message = targetName .. " was demoted from Admin to Moderator!\n"
-                tes3mp.SendMessage(pid, message, false)
+                tes3mp.SendMessage(pid, message, true)
                 Players[targetPid].data.settings.staffRank = 1
-                Players[targetPid]:Save()
+                Players[targetPid]:QuicksaveToDrive()
             else
                 message = targetName .. " is not an Admin.\n"
                 tes3mp.SendMessage(pid, message, false)
@@ -343,7 +288,7 @@ function commandHandler.ProcessCommand(pid, cmd)
                 message = targetName .. " was promoted to Moderator!\n"
                 tes3mp.SendMessage(pid, message, true)
                 Players[targetPid].data.settings.staffRank = 1
-                Players[targetPid]:Save()
+                Players[targetPid]:QuicksaveToDrive()
             end
         end
 
@@ -358,9 +303,9 @@ function commandHandler.ProcessCommand(pid, cmd)
                 tes3mp.SendMessage(pid, message, false)
             elseif Players[targetPid]:IsModerator() then
                 message = targetName .. " was demoted from Moderator!\n"
-                tes3mp.SendMessage(pid, message, false)
+                tes3mp.SendMessage(pid, message, true)
                 Players[targetPid].data.settings.staffRank = 0
-                Players[targetPid]:Save()
+                Players[targetPid]:QuicksaveToDrive()
             else
                 message = targetName .. " is not a Moderator.\n"
                 tes3mp.SendMessage(pid, message, false)
@@ -427,7 +372,7 @@ function commandHandler.ProcessCommand(pid, cmd)
 
                     local message = targetName .. "'s " .. tes3mp.GetAttributeName(attrId) ..
                         " is now " .. value .. "\n"
-                    tes3mp.SendMessage(pid, message, false)
+                    tes3mp.SendMessage(pid, message, true)
                     Players[targetPid]:SaveAttributes()
                 end
             end
@@ -454,7 +399,7 @@ function commandHandler.ProcessCommand(pid, cmd)
 
                     local message = targetName .. "'s " .. tes3mp.GetSkillName(skillId) ..
                         " is now " .. value .. "\n"
-                    tes3mp.SendMessage(pid, message, false)
+                    tes3mp.SendMessage(pid, message, true)
                     Players[targetPid]:SaveSkills()
                 end
             end
@@ -761,7 +706,7 @@ function commandHandler.ProcessCommand(pid, cmd)
 
             if inputValue >= 0 and inputValue < 24 then
                 WorldInstance.data.time.hour = inputValue
-                WorldInstance:Save()
+                WorldInstance:QuicksaveToDrive()
                 WorldInstance:LoadTime(pid, true)
                 hourCounter = inputValue
             else
@@ -779,7 +724,7 @@ function commandHandler.ProcessCommand(pid, cmd)
 
             if inputValue <= daysInMonth then
                 WorldInstance.data.time.day = inputValue
-                WorldInstance:Save()
+                WorldInstance:QuicksaveToDrive()
                 WorldInstance:LoadTime(pid, true)
             else
                 tes3mp.SendMessage(pid, "There are only " .. daysInMonth .. " days in the current month.\n", false)
@@ -792,7 +737,7 @@ function commandHandler.ProcessCommand(pid, cmd)
 
         if type(inputValue) == "number" then
             WorldInstance.data.time.month = inputValue
-            WorldInstance:Save()
+            WorldInstance:QuicksaveToDrive()
             WorldInstance:LoadTime(pid, true)
         end
 
@@ -802,7 +747,7 @@ function commandHandler.ProcessCommand(pid, cmd)
 
         if type(inputValue) == "number" then
             WorldInstance.data.time.timeScale = inputValue
-            WorldInstance:Save()
+            WorldInstance:QuicksaveToDrive()
             WorldInstance:LoadTime(pid, true)
             frametimeMultiplier = inputValue / WorldInstance.defaultTimeScale
         end
@@ -879,6 +824,69 @@ function commandHandler.ProcessCommand(pid, cmd)
 
         logicHandler.SendConfigCollisionOverrides(pid, true)
         Players[pid]:Message(message .. " for " .. refId .. " in newly loaded cells\n")
+
+    elseif cmd[1] == "load" and admin then
+
+        local scriptName = cmd[2]
+
+        if scriptName == nil then
+            Players[pid]:Message("Use /load <scriptName>\n")
+        else
+            local wasLoaded = false
+
+            if package.loaded[scriptName] then
+                Players[pid]:Message(scriptName .. " was already loaded, so it is being reloaded.\n")
+                wasLoaded = true
+            end
+
+            local result
+
+            if wasLoaded then
+
+                -- Local objects that use functions from the script we are reloading
+                -- will keep their references to the old versions of those functions if
+                -- we do this:
+                --
+                -- package.loaded[scriptName] = nil
+                -- require(scriptName)
+                --
+                -- To get around that, we load up the script with dofile() instead and
+                -- then update the function references in package.loaded[scriptName], which
+                -- in turn also changes them in the local objects
+                --
+                local scriptPath = package.searchpath(scriptName, package.path)
+                result = dofile(scriptPath)
+
+                for key, value in pairs(package.loaded[scriptName]) do
+                    if result[key] == nil then
+                        package.loaded[scriptName][key] = nil
+                    end
+                end
+
+                for key, value in pairs(result) do
+                    package.loaded[scriptName][key] = value
+                end
+            else
+                result = prequire(scriptName)
+            end
+
+            if result then
+                Players[pid]:Message(scriptName .. " was successfully loaded.\n")
+            else
+                Players[pid]:Message(scriptName .. " could not be found.\n")
+            end
+        end
+
+    elseif cmd[1] == "resetkills" and moderator then
+
+        -- Set all currently recorded kills to 0 for connected players
+        for refId, killCount in pairs(WorldInstance.data.kills) do
+            WorldInstance.data.kills[refId] = 0
+        end
+
+        WorldInstance:QuicksaveToDrive()
+        WorldInstance:LoadKills(pid, true)
+        tes3mp.SendMessage(pid, "All the kill counts for creatures and NPCs have been reset.\n", true)
 
     elseif cmd[1] == "suicide" then
         if config.allowSuicideCommand == true then
@@ -996,12 +1004,16 @@ function commandHandler.ProcessCommand(pid, cmd)
                 validList .. "\n", false)
         end
 
-    elseif (cmd[1] == "speech" or cmd[1] == "s") and cmd[2] ~= nil and cmd[3] ~= nil and
-        type(tonumber(cmd[3])) == "number" then
-        local isValid = speechHelper.PlaySpeech(pid, cmd[2], tonumber(cmd[3]))
+    elseif cmd[1] == "speech" or cmd[1] == "s" then
+
+        local isValid = false
+
+        if cmd[2] ~= nil and cmd[3] ~= nil and type(tonumber(cmd[3])) == "number" then
+            isValid = speechHelper.PlaySpeech(pid, cmd[2], tonumber(cmd[3]))
+        end
 
         if not isValid then
-            local validList = speechHelper.GetValidList(pid)
+            local validList = speechHelper.GetPrintableValidListForPid(pid)
             tes3mp.SendMessage(pid, "That is not a valid speech. Try one of the following:\n"
                 .. validList .. "\n", false)
         end
@@ -1164,41 +1176,20 @@ function commandHandler.ProcessCommand(pid, cmd)
 		
 
     elseif cmd[1] == "craft" then
-		if config.craftEnabled == true then
-			-- Check "scripts/menu/defaultCrafting.lua" if you want to change the example craft menu
-			Players[pid].currentCustomMenu = "default crafting start"
-			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
-		else
-			tes3mp.LogMessage(enumerations.log.INFO, Players[pid].name .. " tried to open crafing menu but it's disabled.")
-			tes3mp.SendMessage(pid, color.Aqua .. "[SYSTEM]: Crafting is disabled.\n", false)
-		end
-		
-	elseif cmd[1] == "shutdown" and cmd[2] ~= nil and admin then
-		if cmd[2] == "restart" then
-			tes3mp.LogMessage(enumerations.log.INFO, Players[pid].name .. " called for a server reload, this cannot be aborted, executing restart in 300000 miliseconds.")
-			tes3mp.SendMessage(pid, color.Aqua .. "[SYSTEM]:" .. color.Red .. " Server will shutdown for a requested restart in 5 minutes.\n", true)
-			if shutdownTimer == nil then
-				shutdownTimer = tes3mp.CreateTimerEx("terminateCall", 300000, "")
-				tes3mp.StartTimer(shutdownTimer)
-			else
-				tes3mp.SendMessage(pid, color.Aqua .. "[SYSTEM]:" .. color.Red .. " There is already a shutdown timer in progress.\n", false)
-			end
-		elseif cmd[2] == "syshalt" then
-			if cmd[3] == "CONFIRM" then
-				tes3mp.SendMessage(pid, color.Aqua .. "[SYSTEM]:" .. color.Red .. " EMERGENCY SERVER HALT CALLED.\n", true)
-				tes3mp.LogMessage(enumerations.log.INFO, Players[pid].name .. " called for an emergency server halt, terminating process safely now.")
-				shutdownTimer = tes3mp.CreateTimerEx("terminateCall", 300, "")
-				tes3mp.StartTimer(shutdownTimer)
-			else
-				tes3mp.SendMessage(pid, color.Aqua .. "[SYSTEM]:" .. color.Green .. " Failed to confirm halt, ignoring shutdown request.\n", false)
-			end
-		end
-		
-    --[[elseif (cmd[1] == "advancedexample" or cmd[1] == "advex") and moderator then
+
+        -- Check "scripts/menu/defaultCrafting.lua" if you want to change the example craft menu
+        Players[pid].currentCustomMenu = "default crafting origin"
+        menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
+
+    elseif (cmd[1] == "advancedexample" or cmd[1] == "advex") and moderator then
 
         -- Check "scripts/menu/advancedExample.lua" if you want to change the advanced menu example
         Players[pid].currentCustomMenu = "advanced example origin"
-        menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)]]--
+        menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
+
+    else
+        local message = "Not a valid command. Type /help for more info.\n"
+        tes3mp.SendMessage(pid, color.Error .. message .. color.Default, false)
     end
 end
 
@@ -1423,7 +1414,7 @@ function commandHandler.CreateRecord(pid, cmd)
 
     if storedTable == nil then
         Players[pid]:Message("Record type " .. inputType .. " is invalid. Please use one of the following " ..
-            "valid types instead: " .. tableHelper.concatenateTableIndexes(config.validRecordSettings, ", "))
+            "valid types instead: " .. tableHelper.concatenateTableIndexes(config.validRecordSettings, ", ") .. "\n")
         return
     end
 
@@ -1528,14 +1519,14 @@ function commandHandler.CreateRecord(pid, cmd)
         -- If so, add a link to this record for that enchantment record
         if hasGeneratedEnchantment then
             enchantmentStore:AddLinkToRecord(savedTable.enchantmentId, id, inputType)
-            enchantmentStore:Save()
+            enchantmentStore:QuicksaveToDrive()
         end
     else
         message = message .. "permanent record that you'll have to remove manually when you no longer need it.\n"
         recordStore.data.permanentRecords[id] = savedTable
     end
 
-    recordStore:Save()
+    recordStore:QuicksaveToDrive()
 
     tes3mp.ClearRecords()
     tes3mp.SetRecordType(enumerations.recordType[string.upper(inputType)])

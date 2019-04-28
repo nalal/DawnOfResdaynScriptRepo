@@ -1,6 +1,4 @@
-require("enumerations")
 require("patterns")
-require("utils")
 
 contentFixer = require("contentFixer")
 tableHelper = require("tableHelper")
@@ -114,7 +112,7 @@ function BaseCell:AddLinkToRecord(storeType, recordId, uniqueIndex)
         end
 
         recordStore:AddLinkToCell(recordId, self)
-        recordStore:Save()
+        recordStore:QuicksaveToDrive()
     end
 end
 
@@ -140,7 +138,7 @@ function BaseCell:RemoveLinkToRecord(storeType, recordId, uniqueIndex)
                 recordLinks[storeType][recordId] = nil
 
                 recordStore:RemoveLinkToCell(recordId, self)
-                recordStore:Save()
+                recordStore:QuicksaveToDrive()
             end
         end
     end
@@ -452,7 +450,7 @@ function BaseCell:SaveObjectsPlaced(pid)
         end
     end
 
-    self:Save()
+    self:QuicksaveToDrive()
 
     if not tableHelper.isEmpty(containerUniqueIndexesRequested) then
         self:RequestContainers(pid, containerUniqueIndexesRequested)
@@ -689,6 +687,13 @@ function BaseCell:SaveContainers(pid)
         local uniqueIndex = tes3mp.GetObjectRefNum(objectIndex) .. "-" .. tes3mp.GetObjectMpNum(objectIndex)
         local refId = tes3mp.GetObjectRefId(objectIndex)
 
+        -- Deny players using "take all" on actors while sneaking
+        if tes3mp.GetSneakState(pid) and subAction == enumerations.containerSub.TAKE_ALL then
+            if tableHelper.containsValue(self.data.packets.actorList, uniqueIndex) then
+                return
+            end
+        end
+
         tes3mp.LogAppend(enumerations.log.INFO, "- " .. uniqueIndex .. ", refId: " .. refId)
 
         self:InitializeObjectData(uniqueIndex, refId)
@@ -791,7 +796,7 @@ function BaseCell:SaveContainers(pid)
         tes3mp.SendContainer(true, false)
     end
 
-    self:Save()
+    self:QuicksaveToDrive()
 
     if action == enumerations.container.SET then
         self.isRequestingContainers = false
@@ -815,7 +820,7 @@ function BaseCell:SaveActorList(pid)
         tableHelper.insertValueIfMissing(self.data.packets.actorList, uniqueIndex)
     end
 
-    self:Save()
+    self:QuicksaveToDrive()
 
     self.isRequestingActorList = false
 end
@@ -920,7 +925,7 @@ function BaseCell:SaveActorEquipment(pid)
         end
     end
 
-    self:Save()
+    self:QuicksaveToDrive()
 end
 
 function BaseCell:SaveActorDeath(pid)
@@ -989,7 +994,7 @@ function BaseCell:SaveActorDeath(pid)
         self:RequestContainers(pid, containerUniqueIndexesRequested)
     end
 
-    self:Save()
+    self:QuicksaveToDrive()
 end
 
 function BaseCell:SaveActorCellChanges(pid)
@@ -1135,7 +1140,7 @@ function BaseCell:SaveActorCellChanges(pid)
         logicHandler.UnloadCell(newCellDescription)
     end
 
-    self:Save()
+    self:QuicksaveToDrive()
 end
 
 function BaseCell:LoadActorPackets(pid, objectData, uniqueIndexArray)

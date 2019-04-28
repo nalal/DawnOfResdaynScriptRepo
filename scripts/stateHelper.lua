@@ -1,4 +1,3 @@
-require("enumerations")
 StateHelper = class("StateHelper")
 
 function StateHelper:LoadJournal(pid, stateObject)
@@ -145,9 +144,9 @@ function StateHelper:LoadMap(pid, stateObject)
 
     for index, cellDescription in pairs(stateObject.data.mapExplored) do
 
-        local filePath = tes3mp.GetModDir() .. "/map/" .. cellDescription .. ".png"
+        local filePath = tes3mp.GetDataPath() .. "/map/" .. cellDescription .. ".png"
 
-        if tes3mp.DoesFileExist(filePath) then
+        if tes3mp.DoesFilePathExist(filePath) then
 
             local cellX, cellY
             _, _, cellX, cellY = string.find(cellDescription, patterns.exteriorCell)
@@ -200,7 +199,7 @@ function StateHelper:SaveJournal(pid, stateObject)
         end
     end
 
-    stateObject:Save()
+    stateObject:QuicksaveToDrive()
 end
 
 function StateHelper:SaveFactionRanks(pid, stateObject)
@@ -215,7 +214,7 @@ function StateHelper:SaveFactionRanks(pid, stateObject)
         stateObject.data.factionRanks[factionId] = tes3mp.GetFactionRank(pid, i)
     end
 
-    stateObject:Save()
+    stateObject:QuicksaveToDrive()
 end
 
 function StateHelper:SaveFactionExpulsion(pid, stateObject)
@@ -230,7 +229,7 @@ function StateHelper:SaveFactionExpulsion(pid, stateObject)
         stateObject.data.factionExpulsion[factionId] = tes3mp.GetFactionExpulsionState(pid, i)
     end
 
-    stateObject:Save()
+    stateObject:QuicksaveToDrive()
 end
 
 function StateHelper:SaveFactionReputation(pid, stateObject)
@@ -245,7 +244,7 @@ function StateHelper:SaveFactionReputation(pid, stateObject)
         stateObject.data.factionReputation[factionId] = tes3mp.GetFactionReputation(pid, i)
     end
 
-    stateObject:Save()
+    stateObject:QuicksaveToDrive()
 end
 
 function StateHelper:SaveTopics(pid, stateObject)
@@ -263,7 +262,7 @@ function StateHelper:SaveTopics(pid, stateObject)
         end
     end
 
-    stateObject:Save()
+    stateObject:QuicksaveToDrive()
 end
 
 function StateHelper:SaveBounty(pid, stateObject)
@@ -274,7 +273,7 @@ function StateHelper:SaveBounty(pid, stateObject)
 
     stateObject.data.fame.bounty = tes3mp.GetBounty(pid)
 
-    stateObject:Save()
+    stateObject:QuicksaveToDrive()
 end
 
 function StateHelper:SaveReputation(pid, stateObject)
@@ -285,7 +284,7 @@ function StateHelper:SaveReputation(pid, stateObject)
 
     stateObject.data.fame.reputation = tes3mp.GetReputation(pid)
 
-    stateObject:Save()
+    stateObject:QuicksaveToDrive()
 end
 
 function StateHelper:SaveMapExploration(pid, stateObject)

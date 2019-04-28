@@ -319,42 +319,4 @@ config.recordstoreKeyOrder = { "general", "permanentRecords", "generatedRecords"
 config.worldKeyOrder = { "general", "time", "topics", "kills", "journal", "customVariables", "type",
     "index", "quest", "actorRefId", "year", "month", "day", "hour", "daysPassed", "timeScale" }
 
-config.activeRoles = { "Guard" }
-
-config.DBUSER = nil
-
-config.DBPASS = nil
-
---Toggle for teamFOSSs mail script
-config.mailToggle = false
-
---Toggle for debug mode features
-config.debugMode = true
-
---Toggle for crafting
-config.craftEnabled = true
-
--- Toggle for basicNeeds
-config.needsToggle = true
-
---Toggle for basicNeeds console output
-config.needsLogging = true
-
---Toggle for basicNeeds verbose logging used in debugging, if you're not modifying or troubleshooting you probably don't need this
-config.needsLoggingDebug = true
-
---Toggle for basicNeeds emote when someone maxes out a need stat
-config.needsEmote = true
-
---Toggle for basicNeeds debuff when someone maxes out a need stat
-config.needsDebuff = true
-
-config.needsTimer = 120000
-
-config.foodItems = { "ingred_ash_yam_01", "ingred_comberry_01", "ingred_bread_01", "ingred_crab_meat_01", "ingred_daedras_heart_01", "ingred_hound_meat_01", "food_kwama_egg_02", "ingred_kwama_cuttle_01", "ingred_rat_meat_01", "ingred_scrib_jelly_01", "food_kwama_egg_01", "ingred_trama_root_01", "ingred_6th_corprusmeat_05", "ingred_6th_corprusmeat_01", "ingred_6th_corprusmeat_06", "ingred_6th_corprusmeat_03", "ingred_6th_corprusmeat_07", "ingred_6th_corprusmeat_02", "ingred_6th_corprusmeat_04", "ingred_bread_01_UNI2", "ingred_human_meat_01", "ingred_bread_01_UNI3" }
-
-config.drinkItems = { "potion_local_liquor_01", "Potion_Local_Brew_01", "Potion_Cyro_Whiskey_01", "potion_ancient_brandy", "potion_cyro_brandy_01", "potion_nord_mead", "potion_comberry_brandy_01", "potion_comberry_wine_01", "potion_skooma_01", "p_vintagecornberrybrandy1" }
-
-config.restingCells = { "Balmora, South Wall Cornerclub" }
-
 return config
