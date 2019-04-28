@@ -3,6 +3,22 @@ craftingRecipie = require("custom/basicCrafting/craftingRecipies")
 
 local craftSkills = {}
 --Global functions
+
+--Craft function
+craftSkills.craft = function(pid, items)
+--Still working out the math on this one
+end
+
+--Init menu
+craftSkills.menu = function(pid)
+	craftSkillsLog("Player " .. tes3mp.GetName(pid) .. " called for crafting menu.")
+	tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.main, "What would you like to do?", "Manage craft skills;Craft;Close")
+end
+
+craftSkills.menuSkills = function(pid)
+	tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.skill, "What would you like to do?", "Learn skill;Unlearn skill;Close")
+end
+
 --logger function
 craftSkillsLog = function(message, debugFlag)
 	if debugFlag == "debug" then
@@ -89,4 +105,22 @@ end
 		end
 	end
 	
+	function craftSkills.OnGUIAction(eventStatus, pid, idGui, data)
+		if idGui == craftingSkillsConfig.menuIDs.main then
+			if tonumber(data) == 0 then
+				craftSkills.menuSkills(pid)
+			elseif tonumber(data) == 1 then
+				--crafting menu goes here
+			end
+		elseif idGui == craftingSkillsConfig.menuIDs.skill then
+			if tonumber(data) == 0 then
+				--Learn skill menu
+			elseif tonumber(data) == 1 then
+				--Unlearn skill menu
+			end
+		end
+	end
+	
+	customEventHooks.registerHandler("OnGUIAction", craftSkills.OnGUIAction)
+	customCommandHooks.registerCommand("craft", craftSkills.menu)
 return craftSkills
