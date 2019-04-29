@@ -88,8 +88,23 @@ craftSkills.learnSkill = function(pid, inputData)
 	end
 end
 
-craftSkills.unlearnSkill = function(pid, skill)
+craftSkills.unlearnSkill = function(pid, inputID)
+	skillUnlearn = craftSkills.getSkillUnlearn(pid, inputID)
+	craftSkillsLog("skillUnlearn IS CURRENTLY " .. skillUnlearn, "debug")
+	Players[pid].data.craftSkills[skillUnlearn] = nil
+end
 
+craftSkills.getSkillUnlearn = function(pid, i)
+	local message = "noSkillFound"
+	local count = 0
+	for index in pairs(Players[pid].data.craftSkills) do
+		if count == tonumber(i) then
+			craftSkillsLog("GOT STRING " .. tostring(index) .. " FOR RETURN", "debug")
+			message = tostring(index)
+		end
+		count = count + 1
+	end
+	return message
 end
 --logger function
 craftSkillsLog = function(message, debugFlag)
@@ -203,6 +218,8 @@ end
 			end
 		elseif idGui == craftingSkillsConfig.menuIDs.skillSelect then
 			craftSkills.learnSkill(pid, tonumber(data))
+		elseif idGui == craftingSkillsConfig.menuIDs.skillUnselect then
+			craftSkills.unlearnSkill(pid, tonumber(data))
 		end
 	end
 	
