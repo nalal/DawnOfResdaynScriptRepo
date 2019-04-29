@@ -13,12 +13,20 @@ local craftingSkillsConfig = {}
 	--IDNumbers for menus
 	craftingSkillsConfig.menuIDs = {
 		main = 10000,
-		skill = 10001
+		skill = 10001,
+		skillSelect = 10002,
+		skillUnselect = 10003,
+		maxSkills = 10004
 	}
 	
 	--Skill names and their corresponding data value
 	craftingSkillsConfig.skillNames = {
-		smithing = "Black Smithing"
+		mining = "Mining",
+		skinning = "Skinning",
+		tailoring = "Tailoring",
+		smithing = "Blacksmithing",
+		leatherworking = "Leatherworking",
+		cooking = "Cooking"
 	}
 
 return craftingSkillsConfig

@@ -97,12 +97,8 @@ function BasePlayer:__init(pid, playerName)
 		},
 		playerResting = false,
 		craftSkills = {
-			armorSmithing = 0,
-			weaponSmithing = 0
 		},
 		craftSkillsProgress = {
-			armorSmithing = 0,
-			weaponSmithing = 0
 		},
 		playerRoles = { },
 		debugMode = false,
@@ -150,6 +146,7 @@ function BasePlayer:Destroy()
         tes3mp.StopTimer(self.loginTimerId)
         self.loginTimerId = nil
     end
+
     self.loggedIn = false
     self.hasAccount = nil
 end

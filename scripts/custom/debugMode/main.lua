@@ -9,7 +9,9 @@ debugMode.OnPlayerFinishLogin = function(eventStatus, pid)
 	end
 	if Players[pid].data.debugFlags == nil then
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(Players[pid].pid) .. " was missing key player data from 'debugFlags', repairing now. ")
-		Players[pid].data.debugFlags = {}
+		Players[pid].data.debugFlags = {
+			haltTracking == false 
+		}
 		tes3mp.LogMessage(enumerations.log.INFO, "Player " .. logicHandler.GetChatName(Players[pid].pid) .. "'s playerdata was repaired. ")
 	end
 

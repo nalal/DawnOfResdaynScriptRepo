@@ -16,9 +16,81 @@ craftSkills.menu = function(pid)
 end
 
 craftSkills.menuSkills = function(pid)
-	tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.skill, "What would you like to do?", "Learn skill;Unlearn skill;Close")
+	skills = craftSkills.getLearnedSkillsNames(pid)
+	tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.skill, "What would you like to do?\nYou may only know 2 crafting skills at once.\nYour current crafting skills are:\n" .. skills, "Learn skill;Unlearn skill;Close")
 end
 
+craftSkills.menuLearnSkill = function(pid)
+	tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.skillSelect, "Please select a skill to learn.", "Mining;Skinning;Tailoring;Blacksmithing;Leatherworking;Cooking;Close")
+end
+
+craftSkills.menuUnlearnSkill = function(pid)
+	skills = craftSkills.getLearnedSkills(pid)
+	if skills ~= "" then
+		tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.skillUnselect, "Please select a skill to Unlearn.\nBe aware, this is a permanent change, you will lose all your knowledge in this skill.", skills .. "Close")
+	else
+		tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.skillUnselect, "You have no skills to unlearn.", "Close")
+	end
+end
+
+craftSkills.menuMaxSkills = function(pid)
+	tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.maxSkills, "You cannot learn any more skills.", "Close")
+end
+
+craftSkills.getLearnedSkills = function(pid)
+	local message = ""
+	for index in pairs(Players[pid].data.craftSkills) do
+		message = message .. index .. ";"
+	end
+	return message
+end
+
+craftSkills.getLearnedSkillsNames = function(pid)
+	local message = ""
+	for index in pairs(Players[pid].data.craftSkills) do
+		message = message .. index .. "\n"
+	end
+	return message
+end
+
+--Ugly system for getting skill name because for SOME reason I can't call to the index of array skillNames without getting a nil return
+craftSkills.getSkillName = function(i)
+	if i == 0 then
+		iname = "mining"
+	elseif i == 1 then
+		iname = "skinning"
+	elseif i == 2 then
+		iname = "tailoring"
+	elseif i == 3 then
+		iname = "smithing"
+	elseif i == 4 then
+		iname = "leatherworking"
+	elseif i == 5 then
+		iname = "cooking"
+	end
+	return iname
+end
+
+--Skill management
+craftSkills.learnSkill = function(pid, inputData)
+	if inputData ~= nil then
+		skillCall = craftSkills.getSkillName(inputData)
+		skill = craftingSkillsConfig.skillNames[skillCall]
+	else
+		craftSkillsLog("Got learnSkill call with null inputData, aborting learnSkill", "error")
+	end
+	if skill ~= nil then
+		Players[pid].data.craftSkills[skill] = 0
+		Players[pid].data.craftSkillsProgress[skill] = 0
+		craftSkillsLog("Added skill " .. skill .. " to player " .. tes3mp.GetName(pid))
+	else
+		craftSkillsLog("Got learnSkill call and inputData was not nil, but skill was, aborting learnSkill", "error")
+	end
+end
+
+craftSkills.unlearnSkill = function(pid, skill)
+
+end
 --logger function
 craftSkillsLog = function(message, debugFlag)
 	if debugFlag == "debug" then
@@ -80,6 +152,13 @@ craftSkills.increaseSkill = function(pid, diffValue, skill)
 	end
 end
 
+--Count function
+tablelength = function(T)
+  local count = 0
+  for index in pairs(T) do count = count + 1 end
+  return count
+end
+
 --Chat PM function
 craftSkillsMessage = function(message, pid)
 	message = color.Cyan .. "[Crafting]: " .. color.LightCyan .. message .. "\n"
@@ -113,11 +192,17 @@ end
 				--crafting menu goes here
 			end
 		elseif idGui == craftingSkillsConfig.menuIDs.skill then
-			if tonumber(data) == 0 then
-				--Learn skill menu
+			if tonumber(data) == 0 and Players[pid].data.craftSkills ~= nil then
+				if tablelength(Players[pid].data.craftSkills) < 2 then
+					craftSkills.menuLearnSkill(pid)
+				else
+					craftSkills.menuMaxSkills(pid)
+				end
 			elseif tonumber(data) == 1 then
-				--Unlearn skill menu
+				craftSkills.menuUnlearnSkill(pid)
 			end
+		elseif idGui == craftingSkillsConfig.menuIDs.skillSelect then
+			craftSkills.learnSkill(pid, tonumber(data))
 		end
 	end
 	

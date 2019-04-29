@@ -392,15 +392,17 @@ local basicNeeds = {}
 		end
 	end
 	
-	function basicNeeds.OnPlayerCellChange(pid)
-		local cell = tes3mp.GetCell(pid)
-		basicNeedsLogDebug("PID " .. pid .. " changed cells with rest timer running.")
-		if not tableHelper.containsValue(basicNeedsConfig.restingCells, cell) then
-			Players[pid].data.playerResting = false
-			basicNeedsMessage(pid, "You are no longer resting.")
-			basicNeedsLogDebug("PID " .. pid .. " entered an invalid rest cell, ending timer.")
-		else
-			basicNeedsLogDebug("PID " .. pid .. " did not enter an invalid rest cell, maintaining timer.")
+	function basicNeeds.OnPlayerCellChange(eventStatus, pid)
+		if  Players[pid].data.playerResting == true then
+			local cell = tes3mp.GetCell(pid)
+			basicNeedsLogDebug("PID " .. pid .. " changed cells with rest timer running.")
+			if tableHelper.containsValue(basicNeedsConfig.restingCells, cell) ~= true then
+				Players[pid].data.playerResting = false
+				basicNeedsMessage(pid, "You are no longer resting.")
+				basicNeedsLogDebug("PID " .. pid .. " entered an invalid rest cell, ending timer.")
+			else
+				basicNeedsLogDebug("PID " .. pid .. " did not enter an invalid rest cell, maintaining timer.")
+			end
 		end
 	end
 	
