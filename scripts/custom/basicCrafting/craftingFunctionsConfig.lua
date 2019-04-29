@@ -4,6 +4,12 @@ local craftingSkillsConfig = {}
 	--How much progress is required for increasing crafting skill
 	craftingSkillsConfig.maxSkillProgress = 10
 	
+	craftingSkillsConfig.craftableSkills = {
+		"Blacksmithing",
+		"Leatherworking",
+		"Tailoring",
+		"Cooking"
+	}
 	--The level caps for skills
 	craftingSkillsConfig.maxSkill = 10
 	
@@ -16,7 +22,9 @@ local craftingSkillsConfig = {}
 		skill = 10001,
 		skillSelect = 10002,
 		skillUnselect = 10003,
-		maxSkills = 10004
+		maxSkills = 10004,
+		craft = 10005,
+		craftSelect = 10006
 	}
 	
 	--Skill names and their corresponding data value

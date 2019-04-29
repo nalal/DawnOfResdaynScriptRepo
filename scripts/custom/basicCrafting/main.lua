@@ -9,6 +9,11 @@ craftSkills.craft = function(pid, items)
 --Still working out the math on this one
 end
 
+craftSkills.menuCraftType = function(pid, skill)
+	items = craftSkills.getCraftItems(pid, skill)
+	tes3mp.ListBox(pid, craftingSkillsConfig.menuIDs.craftSelect, "Item's you can craft with your current " .. skill .. " skill.", items)
+end
+
 --Init menu
 craftSkills.menu = function(pid)
 	craftSkillsLog("Player " .. tes3mp.GetName(pid) .. " called for crafting menu.")
@@ -35,6 +40,69 @@ end
 
 craftSkills.menuMaxSkills = function(pid)
 	tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.maxSkills, "You cannot learn any more skills.", "Close")
+end
+
+craftSkills.menuCraft = function(pid)
+	types = craftSkills.getCraftableSkillsButton(pid)
+	tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.craft, "What kind of crafting would you like to do?", types .. "Close")
+end
+
+craftSkills.getCraftItems = function(pid, skill)
+	local items = ""
+	if skill == "Blacksmithing" then
+		for index, ID in pairs(craftingRecipie.smithing) do
+			if craftingRecipie.smithing[index].diff <= Players[pid].data.craftSkills[skill] then
+				items = items .. tostring(craftingRecipie.smithing[index].name) .. "\n"
+			end
+			craftSkillsLog("ITEM NAME IS " .. tostring(craftingRecipie.smithing[index].name), "debug")
+			craftSkillsLog("PLAYER SKILL IS " .. tostring(Players[pid].data.craftSkills[skill]), "debug")
+		end
+	elseif skill == "Leatherworking" then
+		for index, ID in pairs(craftingRecipie.leather) do
+			if craftingRecipie.smithing[index].diff <= Players[pid].data.craftSkills[skill] then
+				items = items .. tostring(craftingRecipie.smithing[index].name) .. "\n"
+			end
+			craftSkillsLog("ITEM NAME IS " .. tostring(craftingRecipie.smithing[index].name), "debug")
+			craftSkillsLog("PLAYER SKILL IS " .. tostring(Players[pid].data.craftSkills[skill]), "debug")
+		end
+	elseif skill == "Tailoring" then
+		for index, ID in pairs(craftingRecipie.tailor) do
+			if craftingRecipie.smithing[index].diff <= Players[pid].data.craftSkills[skill] then
+				items = items .. tostring(craftingRecipie.smithing[index].name) .. "\n"
+			end
+			craftSkillsLog("ITEM NAME IS " .. tostring(craftingRecipie.smithing[index].name), "debug")
+			craftSkillsLog("PLAYER SKILL IS " .. tostring(Players[pid].data.craftSkills[skill]), "debug")
+		end
+	elseif skill == "Cooking" then
+		for index, ID in pairs(craftingRecipie.cook) do
+			if craftingRecipie.smithing[index].diff <= Players[pid].data.craftSkills[skill] then
+				items = items .. tostring(craftingRecipie.smithing[index].name) .. "\n"
+			end
+			craftSkillsLog("ITEM NAME IS " .. tostring(craftingRecipie.smithing[index].name), "debug")
+			craftSkillsLog("PLAYER SKILL IS " .. tostring(Players[pid].data.craftSkills[skill]), "debug")
+		end
+	end 
+	return items
+end
+
+craftSkills.getCraftableSkillsArray = function(pid)
+	local message = {}
+	for index in pairs(Players[pid].data.craftSkills) do
+		if tableHelper.containsValue(craftingSkillsConfig.craftableSkills, index) then
+			table.insert(message, index)
+		end
+	end
+	return message
+end
+
+craftSkills.getCraftableSkillsButton = function(pid)
+	local message = ""
+	for index in pairs(Players[pid].data.craftSkills) do
+		if tableHelper.containsValue(craftingSkillsConfig.craftableSkills, index) then
+			message = message .. index .. ";"
+		end
+	end
+	return message
 end
 
 craftSkills.getLearnedSkills = function(pid)
@@ -92,6 +160,7 @@ craftSkills.unlearnSkill = function(pid, inputID)
 	skillUnlearn = craftSkills.getSkillUnlearn(pid, inputID)
 	craftSkillsLog("skillUnlearn IS CURRENTLY " .. skillUnlearn, "debug")
 	Players[pid].data.craftSkills[skillUnlearn] = nil
+	Players[pid].data.craftSkillsProgress[skillUnlearn] = nil
 end
 
 craftSkills.getSkillUnlearn = function(pid, i)
@@ -106,6 +175,20 @@ craftSkills.getSkillUnlearn = function(pid, i)
 	end
 	return message
 end
+
+craftSkills.getSkillTarget = function(array, target)
+	local message = "noSkillFound"
+	local count = 1
+	for index, ID in pairs(array) do
+		if count == tonumber(target) then
+			craftSkillsLog("GOT STRING " .. tostring(ID) .. " FOR RETURN", "debug")
+			message = tostring(ID)
+		end
+		count = count + 1
+	end
+	return message
+end
+
 --logger function
 craftSkillsLog = function(message, debugFlag)
 	if debugFlag == "debug" then
@@ -204,7 +287,7 @@ end
 			if tonumber(data) == 0 then
 				craftSkills.menuSkills(pid)
 			elseif tonumber(data) == 1 then
-				--crafting menu goes here
+				craftSkills.menuCraft(pid)
 			end
 		elseif idGui == craftingSkillsConfig.menuIDs.skill then
 			if tonumber(data) == 0 and Players[pid].data.craftSkills ~= nil then
@@ -220,6 +303,14 @@ end
 			craftSkills.learnSkill(pid, tonumber(data))
 		elseif idGui == craftingSkillsConfig.menuIDs.skillUnselect then
 			craftSkills.unlearnSkill(pid, tonumber(data))
+		elseif idGui == craftingSkillsConfig.menuIDs.craft then
+			skillList = craftSkills.getCraftableSkillsArray(pid)
+			craftingSkills = tablelength(skillList)
+			if tonumber(data) ~= tonumber(craftingSkills) then
+				target = tonumber(data) + 1
+				craftSkillName = craftSkills.getSkillTarget(skillList, target)
+				craftSkills.menuCraftType(pid, craftSkillName)
+			end
 		end
 	end
 	
