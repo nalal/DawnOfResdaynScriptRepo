@@ -24,7 +24,8 @@ local craftingSkillsConfig = {}
 		skillUnselect = 10003,
 		maxSkills = 10004,
 		craft = 10005,
-		craftSelect = 10006
+		craftSelect = 10006,
+		menuMainCraftID = 10007
 	}
 	
 	--Skill names and their corresponding data value

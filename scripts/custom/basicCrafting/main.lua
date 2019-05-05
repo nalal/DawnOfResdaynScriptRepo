@@ -1,17 +1,20 @@
 craftingSkillsConfig = require("custom/basicCrafting/craftingFunctionsConfig")
 craftingRecipie = require("custom/basicCrafting/craftingRecipies")
+craftingItems = require("custom/basicCrafting/craftingItems")
 
 local craftSkills = {}
 --Global functions
-
+local craftMats = {}
 --Craft function
 craftSkills.craft = function(pid, items)
 --Still working out the math on this one
 end
 
+
+
 craftSkills.menuCraftType = function(pid, skill)
 	items = craftSkills.getCraftItems(pid, skill)
-	tes3mp.ListBox(pid, craftingSkillsConfig.menuIDs.craftSelect, "Item's you can craft with your current " .. skill .. " skill.", items)
+	return tes3mp.ListBox(pid, craftingSkillsConfig.menuIDs.craftSelect, "Item's you can craft with your current " .. skill .. " skill.", items)
 end
 
 --Init menu
@@ -45,6 +48,58 @@ end
 craftSkills.menuCraft = function(pid)
 	types = craftSkills.getCraftableSkillsButton(pid)
 	tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.craft, "What kind of crafting would you like to do?", types .. "Close")
+end
+
+craftSkills.menuMainCraft = function(pid, name)
+	tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.menuMainCraftID, "Please select the materials you would like to craft the " .. name .. " with.\n Required materials:\n".. craftSkills.getCraftMatNames("smithing", "iron_longsword") .. " SYSTEM IS CURRENTLY INCOMPLETE, ANY INPUT WILL CLOSE THIS MENU", "Close")
+end
+
+craftSkills.getCraftMatNames = function(skill, item)
+	local message = ""
+	craftSkillsLog("get CALL RETURNS " .. tostring(craftingRecipie[skill][item].name), "debug" ) 
+	for i, ID in pairs(craftingRecipie[skill][item].ingreds) do
+		craftSkillsLog("INGRED NAME IS " .. tostring(i))
+		message = message .. craftingItems[tostring(i)].name .. ": " .. ID .. "\n"
+	end
+	return message
+end
+
+craftSkills.getCraftItemsArray = function(pid, skill)
+	local items = {}
+	if skill == "Blacksmithing" then
+		for index, ID in pairs(craftingRecipie.smithing) do
+			if craftingRecipie.smithing[index].diff <= Players[pid].data.craftSkills[skill] then
+				table.insert(items, tostring(craftingRecipie.smithing[index].name))
+			end
+			craftSkillsLog("ITEM NAME IS " .. tostring(craftingRecipie.smithing[index].name), "debug")
+			craftSkillsLog("PLAYER SKILL IS " .. tostring(Players[pid].data.craftSkills[skill]), "debug")
+		end
+	elseif skill == "Leatherworking" then
+		for index, ID in pairs(craftingRecipie.leather) do
+			if craftingRecipie.smithing[index].diff <= Players[pid].data.craftSkills[skill] then
+				table.insert(items, tostring(craftingRecipie.smithing[index].name))
+			end
+			craftSkillsLog("ITEM NAME IS " .. tostring(craftingRecipie.smithing[index].name), "debug")
+			craftSkillsLog("PLAYER SKILL IS " .. tostring(Players[pid].data.craftSkills[skill]), "debug")
+		end
+	elseif skill == "Tailoring" then
+		for index, ID in pairs(craftingRecipie.tailor) do
+			if craftingRecipie.smithing[index].diff <= Players[pid].data.craftSkills[skill] then
+				table.insert(items, tostring(craftingRecipie.smithing[index].name))
+			end
+			craftSkillsLog("ITEM NAME IS " .. tostring(craftingRecipie.smithing[index].name), "debug")
+			craftSkillsLog("PLAYER SKILL IS " .. tostring(Players[pid].data.craftSkills[skill]), "debug")
+		end
+	elseif skill == "Cooking" then
+		for index, ID in pairs(craftingRecipie.cook) do
+			if craftingRecipie.smithing[index].diff <= Players[pid].data.craftSkills[skill] then
+				table.insert(items, tostring(craftingRecipie.smithing[index].name))
+			end
+			craftSkillsLog("ITEM NAME IS " .. tostring(craftingRecipie.smithing[index].name), "debug")
+			craftSkillsLog("PLAYER SKILL IS " .. tostring(Players[pid].data.craftSkills[skill]), "debug")
+		end
+	end 
+	return items
 end
 
 craftSkills.getCraftItems = function(pid, skill)
@@ -209,6 +264,7 @@ craftSkillsLog = function(message, debugFlag)
 	end
 end
 
+
 --Increase player skill
 craftSkills.increaseSkill = function(pid, diffValue, skill)
 	if Players[pid].data.craftSkillsProgress[skill] ~= nil then
@@ -309,7 +365,27 @@ end
 			if tonumber(data) ~= tonumber(craftingSkills) then
 				target = tonumber(data) + 1
 				craftSkillName = craftSkills.getSkillTarget(skillList, target)
+				skillName = craftSkillName
 				craftSkills.menuCraftType(pid, craftSkillName)
+			end
+		elseif idGui == craftingSkillsConfig.menuIDs.craftSelect then
+			if data ~= nil then
+				local craftItem = ""
+				local target = tonumber(data) + 1
+				skillList = craftSkills.getCraftableSkillsArray(pid)
+				craftItemNames = craftSkills.getCraftItemsArray(pid, skillName)
+				for index, ID in pairs(craftItemNames) do
+				targetIndex = 1
+				craftSkillsLog("INDEX " .. index, "debug")
+				craftSkillsLog("ID " .. ID, "debug")
+					if targetIndex == target then
+						craftItem = tostring(ID)
+					else
+						targetIndex = targetIndex + 1
+					end
+				end
+				craftSkillsLog("DATA OUTPUT FOR craftSelect RETURNED RAW DATA " .. craftItem, "debug")
+				craftSkills.menuMainCraft(pid, craftItem)
 			end
 		end
 	end
