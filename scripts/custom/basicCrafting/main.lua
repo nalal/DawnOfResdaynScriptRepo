@@ -1,16 +1,136 @@
 craftingSkillsConfig = require("custom/basicCrafting/craftingFunctionsConfig")
 craftingRecipie = require("custom/basicCrafting/craftingRecipies")
 craftingItems = require("custom/basicCrafting/craftingItems")
-
+gatheringData = require("custom/basicCrafting/gatheringData")
+oreDictionary = require("custom/basicCrafting/oreDictionary")
+local activeTimers = {}
+--Timers for skills with time delays
 local craftSkills = {}
 --Global functions
 local craftMats = {}
 --Craft function
+
 craftSkills.craft = function(pid, items)
 --Still working out the math on this one
 end
 
+craftSkills.mineMenu = function(pid)
+	tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.menuMineID, "What material would you like to mine?", craftSkills.getAvailableOres(pid) .. "Close")
+end
 
+craftSkills.metalMenu = function(pid)
+	tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.menuMetalID, "What would you like to do?", "Mine;Smelt;Close")
+end
+
+craftSkills.smeltMenu = function(pid)
+	tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.menuMineID, "What material would you like to smelt?", craftSkills.getAvailableOres(pid) .. "Close")
+end
+
+craftSkills.getAvailableOresCount = function(pid)
+	oreCount = 0
+	for index, ID in pairs(gatheringData) do
+		if Players[pid].data.craftSkills.Mining <= 1 then
+			skillVal = 1
+		else
+			skillval = Players[pid].data.craftSkills.Mining
+		end
+		if gatheringData[index] <= skillVal then
+			oreCount = oreCount + 1
+		end
+		craftSkillsLog("getAvailableOresCount RETURNED INT " .. oreCount ,"debug")
+	end
+	return oreCount
+end
+
+craftSkills.getAvailableOres = function(pid)
+	buttons = ""
+	for index, ID in pairs(gatheringData) do
+		if Players[pid].data.craftSkills.Mining <= 1 then
+			skillVal = 1
+		else
+			skillval = Players[pid].data.craftSkills.Mining
+		end
+		if gatheringData[index] <= skillVal then
+			buttons = buttons .. index .. ";"
+		end
+		craftSkillsLog("getAvailableOres RETURNED BUTTON LIST " .. buttons ,"debug")
+	end
+	return buttons
+end
+
+craftSkills.mine = function(pid, material)
+	local message = "You do not have the mining skill, you cannot mine.\n"
+	if Players[pid].data.craftSkills.Mining ~= nil then
+		if tableHelper.containsValue(craftingSkillsConfig.mineCells, tes3mp.GetCell(pid)) and tableHelper.containsValue(activeTimers, pid .. Players[pid].name .. "mining") ~= true then
+			message = "You begin mining...\n"
+			miningTime = tes3mp.CreateTimerEx("execMine", craftingSkillsConfig.mineTime, "sis", tes3mp.GetCell(pid), pid, material)
+			craftSkillsLog("Starting mining timer for " .. Players[pid].name)
+			table.insert(activeTimers, pid .. Players[pid].name .. "mining")
+			tes3mp.StartTimer(miningTime)
+			craftSkillsLog("TIMER ID IS " .. miningTime,"debug")
+		elseif tableHelper.containsValue(activeTimers, pid .. Players[pid].name .. "mining") then
+			craftSkillsLog("Player " .. Players[pid].name .. " tried to mine but already has a timer.")
+			message = "You are already mining.\n"
+		else
+			message = "You are not in a mine, you cannot mine here.\n"
+		end
+	end
+	craftSkillsMessage(message, pid)
+end
+
+craftSkills.catchLogout = function(eventStatus, pid, name, data)
+	if tableHelper.containsValue(activeTimers, pid .. name .. "mining") then
+		craftSkillsLog("Player " .. name .. " quit with a running timer, cleaning timer from array.")
+		tableHelper.removeValue(activeTimers, pid .. name .. "mining")
+	end
+end
+
+craftSkills.returnMine = function(pid, material)
+	local quantity = 0
+	if logicHandler.CheckPlayerValidity(pid, pid) then
+		if Players[pid].data.craftSkills.mining == 0 then
+			quantity = 1
+		else
+			quantity = Players[pid].data.craftSkills.Mining - gatheringData[material]
+			if quantity <= 0 then
+				quantity = 1
+			end
+		end
+		inventoryHelper.addItem(Players[pid].data.inventory, oreDictionary[material], quantity)
+		diff = gatheringData[material] * quantity
+		craftSkills.increaseSkill(pid, diff, "mining")
+		craftSkills.gemRoll(pid)
+	end
+	craftSkillsLog("TOTAL ITEMS RETURNED FROM MINING IS " .. quantity,"debug")
+end
+
+craftSkills.gemRoll = function(pid)
+	local skill = 0
+	if Players[pid].data.craftSkills.Mining ~= 0 then
+	skill = Players[pid].data.craftSkills.Mining
+	else
+	skill = 1
+	end
+	rollCap = 10000 / skill
+	rollCap = rollCap - (10000 % skill)
+	roll = math.random(1, rollCap)
+	craftSkillsLog (Players[pid].name .. " ROLLED " .. roll .. " FOR gemRoll","debug")
+	if roll == 1 then
+		inventoryHelper.addItem(Players[pid].data.inventory, "Ingred_Diamond_01 ", quantity)
+	end
+end
+
+execMine = function(cell, pid, material)
+	if logicHandler.CheckPlayerValidity(pid, pid) and tableHelper.containsValue(activeTimers, pid .. Players[pid].name .. "mining") then
+		craftSkillsLog("Completing mining timer for " .. Players[pid].name)
+		message = "You did a mining.\n"
+		craftSkills.returnMine(pid, material)
+		craftSkillsMessage(message, pid)
+	else
+		craftSkillsLog("Mining timer for PID " .. pid .. " called but either no player with PID exists or timer no matching timer in array.")
+	end
+	tableHelper.removeValue(activeTimers, pid .. Players[pid].name .. "mining")
+end
 
 craftSkills.menuCraftType = function(pid, skill)
 	items = craftSkills.getCraftItems(pid, skill)
@@ -171,7 +291,7 @@ end
 craftSkills.getLearnedSkillsNames = function(pid)
 	local message = ""
 	for index in pairs(Players[pid].data.craftSkills) do
-		message = message .. index .. "\n"
+		message = message .. index .. " : " .. Players[pid].data.craftSkills[index] .. "\n"
 	end
 	return message
 end
@@ -267,32 +387,44 @@ end
 
 --Increase player skill
 craftSkills.increaseSkill = function(pid, diffValue, skill)
-	if Players[pid].data.craftSkillsProgress[skill] ~= nil then
-		pName = Players[pid].name
-		if diffValue - Players[pid].data.craftSkillsProgress[skill] <= 0 then
+	local skillName = craftingSkillsConfig.skillNames[skill]
+	local pName = Players[pid].name
+	craftSkillsLog ("skillName IS SET TO " .. skillName, "debug")
+	craftSkillsLog ("pName IS SET TO " .. pName, "debug")
+	if skillName ~= nil then
+		if diffValue - Players[pid].data.craftSkillsProgress[skillName] <= 0 then
 			xpValue = 1
 		else
-			xpValue = diffValue - Players[pid].data.craftSkillsProgress[skill]
+			xpValue = diffValue - Players[pid].data.craftSkillsProgress[skillName]
 		end
-		if Players[pid].data.craftSkillsProgress[skill] < craftingSkillsConfig.maxSkillProgress then
-			Players[pid].data.craftSkillsProgress[skill] = Players[pid].data.craftSkillsProgress[skill] + xpValue
+		if Players[pid].data.craftSkillsProgress[skillName] < craftingSkillsConfig.maxSkillProgress * Players[pid].data.craftSkills[skillName] then
+			Players[pid].data.craftSkillsProgress[skillName] = Players[pid].data.craftSkillsProgress[skillName] + xpValue
+			logMessage = "Increasing skillProgress " .. skill .. " for " .. pName
+			craftSkillsLog(logMessage)
+			if Players[pid].data.craftSkillsProgress[skillName] >=  craftingSkillsConfig.maxSkillProgress * Players[pid].data.craftSkills[skillName] then
+				logMessage = "Increasing skill " .. skill .. " for " .. pName
+				craftSkillsLog(logMessage)
+				message = "You have become more proficient in " .. skillName .. ".\n" 
+				craftSkillsMessage(message, pid)
+				Players[pid].data.craftSkills[skillName] = Players[pid].data.craftSkills[skillName] + 1 --(Players[pid].data.craftSkillsProgress[skill] / 3)
+				Players[pid].data.craftSkillsProgress[skillName] = 0
+			end
 		else
-			if Players[pid].data.craftSkills[skill] == raftingSkillsConfig.maxSkill then
+			if Players[pid].data.craftSkills[skill] == craftingSkillsConfig.maxSkill then
 				message = "Player " .. pName .. " has reached maxSkill in " .. skill
 				craftSkillsLog(message)
-				Players[pid].data.craftSkills[skill] = raftingSkillsConfig.maxSkill
+				Players[pid].data.craftSkills[skillName] = craftingSkillsConfig.maxSkill
 			else
-				skillName = craftingSkillsConfig.skillNames[skill]
 				if skillName ~= nil then
-					logMessage = "Increasing skill " .. skill .. " for " .. pname
+					logMessage = "Increasing skill " .. skill .. " for " .. pName
 					craftSkillsLog(logMessage)
 					message = "You have become more proficient in " .. skillName .. ".\n" 
 					craftSkillsMessage(message, pid)
 				else
 					craftSkillsLog("Skill name for " .. skill .. " is a nil, remember to set this in 'skillName'", "error")
 				end
-				Players[pid].data.craftSkills[skill] = Players[pid].data.craftSkills[skill] + (Players[pid].data.craftSkillsProgress[skill] / 3)
-				Players[pid].data.craftSkillsProgress[skill] = 0
+				Players[pid].data.craftSkills[skillName] = Players[pid].data.craftSkills[skillName] + 1 --(Players[pid].data.craftSkillsProgress[skill] / 3)
+				Players[pid].data.craftSkillsProgress[skillName] = 0
 			end
 		end
 	else
@@ -387,9 +519,32 @@ end
 				craftSkillsLog("DATA OUTPUT FOR craftSelect RETURNED RAW DATA " .. craftItem, "debug")
 				craftSkills.menuMainCraft(pid, craftItem)
 			end
+		elseif idGui == craftingSkillsConfig.menuIDs.menuMetalID then
+			if tonumber(data) == 0 then
+				craftSkills.mineMenu(pid)
+			elseif tonumber(data) == 1 then
+				craftSkills.smeltMenu(pid)
+			end
+		elseif idGui == craftingSkillsConfig.menuIDs.menuMineID then
+			local mat = ""
+				oreTotal = craftSkills.getAvailableOresCount(pid)
+			if tonumber(data) == 0 and oreTotal ~= tonumber(data) then
+				mat = "Copper"
+			elseif tonumber(data) == 1 and oreTotal ~= tonumber(data) then
+				mat = "Tin"
+			elseif tonumber(data) == 2 and oreTotal ~= tonumber(data) then
+				mat = "Iron"
+			else
+			end
+			
+			if mat ~= "" then
+				craftSkills.mine(pid, mat) 
+			end
 		end
 	end
 	
+	customEventHooks.registerHandler("OnPlayerDisconnect", craftSkills.catchLogout)
 	customEventHooks.registerHandler("OnGUIAction", craftSkills.OnGUIAction)
 	customCommandHooks.registerCommand("craft", craftSkills.menu)
+	customCommandHooks.registerCommand("mine", craftSkills.metalMenu)
 return craftSkills
