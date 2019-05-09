@@ -103,10 +103,10 @@ craftSkills.getAvailableMetals = function(pid)
 end
 
 craftSkills.mine = function(pid, material)
-	local message = "You do not have the mining skill, you cannot mine.\n"
+	local message = "You do not have the mining skill, you cannot mine."
 	if Players[pid].data.craftSkills.Mining ~= nil then
 		if tableHelper.containsValue(craftingSkillsConfig.mineCells, tes3mp.GetCell(pid)) and tableHelper.containsValue(activeTimers, pid .. Players[pid].name .. "mining") ~= true then
-			message = "You begin mining...\n"
+			message = "You begin mining..."
 			miningTime = tes3mp.CreateTimerEx("execMine", craftingSkillsConfig.mineTime, "sis", tes3mp.GetCell(pid), pid, material)
 			craftSkillsLog("Starting mining timer for " .. Players[pid].name)
 			table.insert(activeTimers, pid .. Players[pid].name .. "mining")
@@ -114,9 +114,9 @@ craftSkills.mine = function(pid, material)
 			craftSkillsLog("TIMER ID IS " .. miningTime,"debug")
 		elseif tableHelper.containsValue(activeTimers, pid .. Players[pid].name .. "mining") then
 			craftSkillsLog("Player " .. Players[pid].name .. " tried to mine but already has a timer.")
-			local message = "You are already mining.\n"
+			local message = "You are already mining."
 		else
-			message = "You are not in a mine, you cannot mine here.\n"
+			message = "You are not in a mine, you cannot mine here."
 		end
 	end
 	craftSkillsMessage(message, pid)
@@ -158,6 +158,19 @@ craftSkills.returnMine = function(pid, material)
 	craftSkillsLog("TOTAL ITEMS RETURNED FROM MINING IS " .. quantity,"debug")
 end
 
+craftSkills.getGem = function()
+	local val = math.random(1,3)
+	local gem = ""
+	if val == 1 then
+		gem = "Ingred_Ruby_01"
+	elseif val == 2 then
+		gem = "Ingred_Emerald_01"
+	elseif val == 3 then
+		gem = "Ingred_Pearl_01"
+	end
+	return gemName
+end
+
 craftSkills.gemRoll = function(pid)
 	local skill = 0
 	if Players[pid].data.craftSkills.Mining ~= 0 then
@@ -170,7 +183,24 @@ craftSkills.gemRoll = function(pid)
 	roll = math.random(1, rollCap)
 	craftSkillsLog (Players[pid].name .. " ROLLED " .. roll .. " FOR gemRoll","debug")
 	if roll == 1 then
-		inventoryHelper.addItem(Players[pid].data.inventory, "Ingred_Diamond_01 ", quantity)
+		local message = "You found a very rare gem while mining!"
+		craftSkillsMessage(message, pid)
+		inventoryHelper.addItem(Players[pid].data.inventory, "Ingred_Diamond_01", 1)
+	end
+	if roll <= 5 and roll > 1 then
+		local quantity = math.random(1,10)
+		local message = ""
+		if quantity == 1 then
+			message = "You found a gem while mining!"
+		else
+			message = "You found several gems while mining!"
+		end
+		local i = 0
+		craftSkillsMessage(message, pid)
+		while(i < quantity) do
+			local gotGem = craftSkills.getGem
+			inventoryHelper.addItem(Players[pid].data.inventory, gotGem, quantity)
+		end
 	end
 end
 
