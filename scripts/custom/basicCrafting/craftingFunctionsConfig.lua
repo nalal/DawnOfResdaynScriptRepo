@@ -28,7 +28,8 @@ local craftingSkillsConfig = {}
 		craftSelect = 10006,
 		menuMainCraftID = 10007,
 		menuMineID = 10008,
-		menuMetalID = 10009
+		menuMetalID = 10009,
+		menuSmeltID = 10010
 	}
 	
 	craftingSkillsConfig.mineCells = {

@@ -3,6 +3,7 @@ craftingRecipie = require("custom/basicCrafting/craftingRecipies")
 craftingItems = require("custom/basicCrafting/craftingItems")
 gatheringData = require("custom/basicCrafting/gatheringData")
 oreDictionary = require("custom/basicCrafting/oreDictionary")
+metalDictionary = require("custom/basicCrafting/metalDictionary")
 local activeTimers = {}
 --Timers for skills with time delays
 local craftSkills = {}
@@ -23,12 +24,18 @@ craftSkills.metalMenu = function(pid)
 end
 
 craftSkills.smeltMenu = function(pid)
-	tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.menuMineID, "What material would you like to smelt?", craftSkills.getAvailableOres(pid) .. "Close")
+	buttons = craftSkills.getAvailableMetals(pid)
+	if buttons ~= "" then
+		tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.menuSmeltID, "What material would you like to smelt?", craftSkills.getAvailableMetals(pid) .. "Close")
+	else
+		tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.menuSmeltID, "You do not know how to smelt any metals, try mining for a bit to see if you can learn anything.", "Close")
+	end
 end
 
 craftSkills.getAvailableOresCount = function(pid)
 	oreCount = 0
 	for index, ID in pairs(gatheringData) do
+		local skillVal
 		if Players[pid].data.craftSkills.Mining <= 1 then
 			skillVal = 1
 		else
@@ -42,19 +49,56 @@ craftSkills.getAvailableOresCount = function(pid)
 	return oreCount
 end
 
-craftSkills.getAvailableOres = function(pid)
-	buttons = ""
-	for index, ID in pairs(gatheringData) do
+craftSkills.getAvailableMetalsCount = function(pid)
+	oreCount = 0
+	for index, ID in pairs(metalDictionary) do
 		if Players[pid].data.craftSkills.Mining <= 1 then
 			skillVal = 1
 		else
-			skillval = Players[pid].data.craftSkills.Mining
+			skillVal = Players[pid].data.craftSkills.Mining
+		end
+		if metalDictionary[index].skill <= skillVal then
+			oreCount = oreCount + 1
+		end
+		craftSkillsLog("getAvailableOresCount RETURNED INT " .. oreCount ,"debug")
+	end
+	return oreCount
+end
+
+craftSkills.getAvailableOres = function(pid)
+	buttons = ""
+	for index, ID in pairs(gatheringData) do
+		local skillVal = 0
+		if Players[pid].data.craftSkills.Mining <= 1 then
+			skillVal = 1
+		else
+			skillVal = Players[pid].data.craftSkills.Mining
 		end
 		if gatheringData[index] <= skillVal then
 			buttons = buttons .. index .. ";"
 		end
 		craftSkillsLog("getAvailableOres RETURNED BUTTON LIST " .. buttons ,"debug")
 	end
+	return buttons
+end
+
+craftSkills.getAvailableMetals = function(pid)
+	buttons = ""
+	for index, ID in pairs(metalDictionary) do
+		craftSkillsLog("INDEX IS " .. index  ,"debug")
+		local skillVal = 0
+		if Players[pid].data.craftSkills.Mining <= 1 then
+			skillVal = 1
+		else
+			skillVal = tonumber(Players[pid].data.craftSkills.Mining)
+		end
+		local skillnum = metalDictionary[index].skill
+		craftSkillsLog("skillVal IS " .. skillVal ,"debug")
+		if skillnum <= skillVal then
+			buttons = buttons .. index .. ";"
+		end
+	end
+	craftSkillsLog("getAvailableOres RETURNED BUTTON LIST " .. buttons ,"debug")
 	return buttons
 end
 
@@ -70,12 +114,16 @@ craftSkills.mine = function(pid, material)
 			craftSkillsLog("TIMER ID IS " .. miningTime,"debug")
 		elseif tableHelper.containsValue(activeTimers, pid .. Players[pid].name .. "mining") then
 			craftSkillsLog("Player " .. Players[pid].name .. " tried to mine but already has a timer.")
-			message = "You are already mining.\n"
+			local message = "You are already mining.\n"
 		else
 			message = "You are not in a mine, you cannot mine here.\n"
 		end
 	end
 	craftSkillsMessage(message, pid)
+end
+
+craftSkills.smelt = function(pid, mat)
+	craftSkillsLog("SMELT CALLED WITH MAT " .. mat ,"debug")
 end
 
 craftSkills.catchLogout = function(eventStatus, pid, name, data)
@@ -96,6 +144,12 @@ craftSkills.returnMine = function(pid, material)
 				quantity = 1
 			end
 		end
+		if quantity == 1 then
+			message = "You gathered " .. quantity .. " chunk of " .. material .. "."
+		else
+			message = "You gathered " .. quantity .. " chunks of " .. material .. "."
+		end
+		craftSkillsMessage(message, pid)
 		inventoryHelper.addItem(Players[pid].data.inventory, oreDictionary[material], quantity)
 		diff = gatheringData[material] * quantity
 		craftSkills.increaseSkill(pid, diff, "mining")
@@ -123,9 +177,9 @@ end
 execMine = function(cell, pid, material)
 	if logicHandler.CheckPlayerValidity(pid, pid) and tableHelper.containsValue(activeTimers, pid .. Players[pid].name .. "mining") then
 		craftSkillsLog("Completing mining timer for " .. Players[pid].name)
-		message = "You did a mining.\n"
-		craftSkills.returnMine(pid, material)
+		local message = "You finished mining.\n"
 		craftSkillsMessage(message, pid)
+		craftSkills.returnMine(pid, material)
 	else
 		craftSkillsLog("Mining timer for PID " .. pid .. " called but either no player with PID exists or timer no matching timer in array.")
 	end
@@ -536,9 +590,25 @@ end
 				mat = "Iron"
 			else
 			end
-			
 			if mat ~= "" then
 				craftSkills.mine(pid, mat) 
+			end
+		elseif idGui == craftingSkillsConfig.menuIDs.menuSmeltID then
+			local metalTotal = craftSkills.getAvailableMetalsCount(pid)
+			local mat = ""
+			if tonumber(data) == 0 and oreTotal ~= tonumber(data) then
+				mat = "Copper"
+			elseif tonumber(data) == 1 and oreTotal ~= tonumber(data) then
+				mat = "Tin"
+			elseif tonumber(data) == 2 and oreTotal ~= tonumber(data) then
+				mat = "Bronze"
+			elseif tonumber(data) == 3 and oreTotal ~= tonumber(data) then
+				mat = "Iron"
+			elseif tonumber(data) == 4 and oreTotal ~= tonumber(data) then
+				mat = "Steel"
+			end
+			if mat ~= "" then
+				craftSkills.smelt(pid, mat)
 			end
 		end
 	end
