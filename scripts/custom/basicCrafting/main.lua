@@ -705,7 +705,7 @@ end
 		end
 	end
 	
-	function craftSkills.loadRecords(eventStatus, pid)
+	function craftSkills.loadRecords(pid)
 		recordStore = RecordStores["miscellaneous"]
 		for index, id in pairs(recordStore.data.generatedRecords) do
 			craftSkillsLog("LOADED RECORD " .. tostring(index) .. " FOR PLAYERID " .. pid, "debug")
@@ -715,8 +715,11 @@ end
 		Players[pid]:LoadEquipment()
 	end
 	
+	function craftSkills.loginHandler(eventStatus, pid)
+		craftSkills.loadRecords(pid)
+	end
 	
-	customEventHooks.registerHandler("OnPlayerFinishLogin", craftSkills.loadRecords)
+	customEventHooks.registerHandler("OnPlayerFinishLogin", craftSkills.loginHandler)
 	customEventHooks.registerHandler("OnPlayerDisconnect", craftSkills.catchLogout)
 	customEventHooks.registerHandler("OnGUIAction", craftSkills.OnGUIAction)
 	customCommandHooks.registerCommand("craft", craftSkills.menu)
