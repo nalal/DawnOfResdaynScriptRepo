@@ -1012,9 +1012,10 @@ function BasePlayer:LoadInventory()
 
     for index, currentItem in pairs(self.data.inventory) do
 
-        if currentItem.count > 0 then
+        if currentItem.count ~= nil and currentItem.count > 0 then
             packetBuilder.AddPlayerInventoryItemChange(self.pid, currentItem)
         else
+			tes3mp.LogMessage(enumerations.log.INFO, "Caught nil or empty item in inventory for player " .. self.name .. " with item " .. tostring(currentItem) .. ", purging from data store.")
             self.data.inventory[index] = nil
         end
     end

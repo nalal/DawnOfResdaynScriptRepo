@@ -5,10 +5,7 @@ commandHandler = require("commandHandler")
 local consoleKickMessage = " has been kicked for using the console despite not having the permission to do so.\n"
 
 eventHandler.OnPlayerConnect = function(pid, playerName)
-	if config.mailToggle == true then
-		Mailbox.Init(pid)
-		Mailbox.CheckInbox(pid)
-	end
+
     tes3mp.SetDifficulty(pid, config.difficulty)
     tes3mp.SetConsoleAllowed(pid, config.allowConsole)
     tes3mp.SetBedRestAllowed(pid, config.allowBedRest)
@@ -60,6 +57,7 @@ end
 eventHandler.OnPlayerDisconnect = function(pid)
 
     if Players[pid] ~= nil then
+		local playerName = Players[pid].name
         if Players[pid]:IsLoggedIn() then
             local eventStatus = customEventHooks.triggerValidators("OnPlayerDisconnect", {pid})
             
@@ -96,7 +94,7 @@ eventHandler.OnPlayerDisconnect = function(pid)
                 Players[pid] = nil
             end
             
-            customEventHooks.triggerHandlers("OnPlayerDisconnect", eventStatus, {pid})
+            customEventHooks.triggerHandlers("OnPlayerDisconnect", eventStatus, {pid, playerName})
         end
     end
 end

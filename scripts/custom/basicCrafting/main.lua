@@ -20,7 +20,11 @@ craftSkills.mineMenu = function(pid)
 end
 
 craftSkills.metalMenu = function(pid)
-	tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.menuMetalID, "What would you like to do?", "Mine;Smelt;Close")
+	if Players[pid].data.craftSkills.Mining ~= nil then
+		tes3mp.CustomMessageBox(pid, craftingSkillsConfig.menuIDs.menuMetalID, "What would you like to do?", "Mine;Smelt;Close")
+	else
+		craftSkillsMessage("You do not have the 'Crafting' skill.", pid)
+	end
 end
 
 craftSkills.smeltMenu = function(pid)
@@ -35,11 +39,11 @@ end
 craftSkills.getAvailableOresCount = function(pid)
 	oreCount = 0
 	for index, ID in pairs(gatheringData) do
-		local skillVal
+		local skillVal = 0
 		if Players[pid].data.craftSkills.Mining <= 1 then
 			skillVal = 1
 		else
-			skillval = Players[pid].data.craftSkills.Mining
+			skillVal = Players[pid].data.craftSkills.Mining
 		end
 		if gatheringData[index] <= skillVal then
 			oreCount = oreCount + 1
@@ -52,6 +56,7 @@ end
 craftSkills.getAvailableMetalsCount = function(pid)
 	oreCount = 0
 	for index, ID in pairs(metalDictionary) do
+		local skillVal = 0
 		if Players[pid].data.craftSkills.Mining <= 1 then
 			skillVal = 1
 		else
@@ -122,8 +127,60 @@ craftSkills.mine = function(pid, material)
 	craftSkillsMessage(message, pid)
 end
 
+craftSkills.getQuality = function(id)
+	local qual = ""
+	local message = "qual RETURNED VALUE "
+	if id ~= nil then
+		qual = string.match(id, "qual.")
+		qual = string.sub(string.reverse(id), 1, 1)
+		qual = tonumber(qual)
+	else
+		message = "qual REQUESTED WITH NIL ID VALUE "
+	end
+	craftSkillsLog(message .. qual,"debug")
+	return qual
+end
+
 craftSkills.smelt = function(pid, mat)
 	craftSkillsLog("SMELT CALLED WITH MAT " .. mat ,"debug")
+	local recordStore = RecordStores["miscellaneous"]
+	local qualval = Players[pid].data.craftSkills.Mining / gatheringData[mat]
+	if qualval < 1 then
+		qualval = 1
+	end
+	local id = "ingred_" .. mat .. "_qual" .. qualval .. "_1"
+	id = string.lower(id)
+	if recordStore.data.generatedRecords[id] == nil then
+		local recordTable = {
+			name = "Grade " .. qualval .. " " .. mat,
+			value = qualval / 2,
+			weight = 1,
+			icon = "m/Tx_repair_A_01.tga",
+			model = "m/misc_hammer10.nif"
+		}
+		recordStore.data.generatedRecords[id] = recordTable
+		permID = "ingred_" .. mat .. "_1"
+		recordStore:Save()
+		craftSkills.sendRecord(id)
+	end
+	recordStore:Save()
+	recordStore:LoadGeneratedRecords(pid, recordStore.data.generatedRecords, {id})
+	--recordStore:Load()
+	inventoryHelper.addItem(Players[pid].data.inventory, id, 1, -1, -1, "")
+	craftSkills.getQuality(id)
+	Players[pid]:SaveEquipment()
+	Players[pid]:LoadInventory()
+	Players[pid]:LoadEquipment()
+	local message = "You have smelted " .. mat
+	craftSkillsMessage(message, pid)
+end
+
+craftSkills.sendRecord = function(id)
+	recordStore = RecordStores["miscellaneous"]
+	for index, pid in pairs(Players) do
+		craftSkillsLog("SENT RECORD " .. id .. " FOR PLAYERID " .. index, "debug")
+		recordStore:LoadGeneratedRecords(index, recordStore.data.generatedRecords, {id})
+	end
 end
 
 craftSkills.catchLogout = function(eventStatus, pid, name, data)
@@ -151,6 +208,8 @@ craftSkills.returnMine = function(pid, material)
 		end
 		craftSkillsMessage(message, pid)
 		inventoryHelper.addItem(Players[pid].data.inventory, oreDictionary[material], quantity)
+		Players[pid]:LoadInventory()
+		Players[pid]:LoadEquipment()
 		diff = gatheringData[material] * quantity
 		craftSkills.increaseSkill(pid, diff, "mining")
 		craftSkills.gemRoll(pid)
@@ -200,7 +259,10 @@ craftSkills.gemRoll = function(pid)
 		while(i < quantity) do
 			local gotGem = craftSkills.getGem
 			inventoryHelper.addItem(Players[pid].data.inventory, gotGem, quantity)
+			i = i + 1
 		end
+		Players[pid]:LoadInventory()
+		Players[pid]:LoadEquipment()
 	end
 end
 
@@ -643,6 +705,18 @@ end
 		end
 	end
 	
+	function craftSkills.loadRecords(eventStatus, pid)
+		recordStore = RecordStores["miscellaneous"]
+		for index, id in pairs(recordStore.data.generatedRecords) do
+			craftSkillsLog("LOADED RECORD " .. tostring(index) .. " FOR PLAYERID " .. pid, "debug")
+			recordStore:LoadGeneratedRecords(pid, recordStore.data.generatedRecords, {index})
+		end
+		Players[pid]:LoadInventory()
+		Players[pid]:LoadEquipment()
+	end
+	
+	
+	customEventHooks.registerHandler("OnPlayerFinishLogin", craftSkills.loadRecords)
 	customEventHooks.registerHandler("OnPlayerDisconnect", craftSkills.catchLogout)
 	customEventHooks.registerHandler("OnGUIAction", craftSkills.OnGUIAction)
 	customCommandHooks.registerCommand("craft", craftSkills.menu)
