@@ -155,7 +155,7 @@ local bankBuddy = {}
 	
 	function bankBuddy.bankMenu(pid)
 		bankBuddy.checkIntrest(pid)
-		--Do the menu thing
+		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.mainMenu, "Welcome to the Bank, what would you like to do?\nTHESE BUTTONS DO FUCKING NOTHING!", "Check Account;Transfer Gold;Withdraw;Deposit")
 		logHandler("bankMenu called by " .. Players[pid].name .. " but is not implemented.", "debug")
 	end
 
