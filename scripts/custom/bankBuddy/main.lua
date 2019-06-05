@@ -46,19 +46,19 @@ end
 
 local bankBuddy = {}
 
-	function bankBuddy.withdrawlGold(pid)
+	function bankBuddy.withdrawlGold(pid, total)
 		logHandler("withdrawlGold called by " .. Players[pid].name .. " but is not implemented.", "debug")
 	end
 
-	function bankBuddy.depositGold(pid)
+	function bankBuddy.depositGold(pid, total)
 		logHandler("depositGold called by " .. Players[pid].name .. " but is not implemented.", "debug")
 	end
 
-	function bankBuddy.addItem(pid)
+	function bankBuddy.addItem(pid, total, item)
 		logHandler("addItem called by " .. Players[pid].name .. " but is not implemented.", "debug")
 	end
 
-	function bankBuddy.withdrawlItem(pid)
+	function bankBuddy.withdrawlItem(pid, total, item)
 		logHandler("withdrawlItem called by " .. Players[pid].name .. " but is not implemented.", "debug")
 	end
 
@@ -66,7 +66,8 @@ local bankBuddy = {}
 		dateVal = {
 			day = tonumber(os.date("%d")),
 			month = tonumber(os.date("%m")),
-			year = tonumber(os.date("%y"))
+			year = tonumber(os.date("%y")),
+			POSIX = tonumber(os.time())
 		}
 		return dateVal
 		--logHandler("DAY IS " .. day, "debug")
@@ -83,7 +84,6 @@ local bankBuddy = {}
 			table.insert(accounts.accountList, accountName)
 			bankBuddyJson.saveAccounts(accounts)
 		end
-		--logHandler("loadBank called by " .. Players[pid].name .. " but is not implemented.", "debug")
 	end
 
 	function bankBuddy.loginHandler(eventStatus, pid)
@@ -106,14 +106,20 @@ local bankBuddy = {}
 		end
 	end
 
+	function bankBuddy.getPOSIXDate()
+		total = tonumber(os.time())
+		return total
+	end
+
 	function bankBuddy.getIntrestVal(accountDate, currentDate)
 		local total = 0
-		if(accountDate.year < currentDate.year)then
-			total = (currentDate.year - accountDate.year) * 12
-			total = total + (currentDate.month - accountDate.month)
-		elseif(accountDate.year >= currentDate.year and currentDate.month < accountDate.month)then
-			total = currentDate.month - accountDate.month
-		end
+		UTCNow = bankBuddy.getPOSIXDate()
+		UTCAccount = accountDate.POSIX
+		total = UTCNow - UTCAccount
+		total = ((total / 60) /60) /24
+		logHandler("TOTAL IS " .. total, "debug")
+		logHandler("UTCNow IS " .. UTCNow, "debug")
+		logHandler("UTCAccount IS " .. UTCAccount, "debug")
 		if(total <= 0)then
 			total = 1
 		end
