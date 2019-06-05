@@ -4,8 +4,10 @@ bankBuddyConfig = require("custom/bankBuddy/config")
 
 local bankBuddyJson = {}
 
-	function bankBuddyJson.CreateAccount(accountName, accountData)
+	--Create bank account
+	function bankBuddyJson.CreateAccount(accountName, accountData, dateNums)
 		accountData.accountHolder = accountName
+		accountData.lastUse = dateNums
 		hasAccount = jsonInterface.save("BankBuddy/accounts/" .. accountName .. ".json", accountData)
 
 		if hasAccount then
@@ -20,11 +22,21 @@ local bankBuddyJson = {}
 		end
 	end
 
-	function bankBuddyJson.loadPlayerAccount()
-		accountData = jsonInterface.load("BankBuddy/accounts/" .. accountFile .. ".json")
+	--Update lastUse date
+	function bankBuddyJson.dateUpdate(pid, dateSet)
+		account = bankBuddyJson.loadPlayerAccount(pid)
+		account.lastUse = nil
+		account.lastUse = dateSet
+		bankBuddyJson.savePlayerAccount(Players[pid].name, account)
+	end
 
-		-- JSON doesn't allow numerical keys, but we use them, so convert
-		-- all string number keys into numerical keys
+	function bankBuddyJson.savePlayerAccount(accountName, accountData)
+		jsonInterface.save("BankBuddy/accounts/" .. accountName .. ".json", accountData)
+	end
+
+	function bankBuddyJson.loadPlayerAccount(pid)
+		accountFile = Players[pid].name
+		accountData = jsonInterface.load("BankBuddy/accounts/" .. accountFile .. ".json")
 		tableHelper.fixNumericalKeys(accountData)
 		return accountData
 	end
@@ -33,7 +45,7 @@ local bankBuddyJson = {}
 		accountData = jsonInterface.load("BankBuddy/" .. bankBuddyConfig.accountTableFileName .. ".json")
 		return accountData
 	end
-	
+
 	function bankBuddyJson.saveAccounts(accounts)
 		jsonInterface.save("BankBuddy/" .. bankBuddyConfig.accountTableFileName .. ".json", accounts)
 	end
