@@ -18,7 +18,6 @@ local bankBuddyJson = {}
 			local message = "Failed to create JSON file for " .. accountName
 			tes3mp.LogMessage(enumerations.log.INFO, message)
 			tes3mp.SendMessage(self.pid, message, true)
-			--tes3mp.Kick(self.pid)
 		end
 	end
 

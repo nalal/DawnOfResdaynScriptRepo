@@ -10,7 +10,8 @@ local bankBuddyConfig = {}
 		withdrawMenu = 9903,
 		depositMenu = 9904,
 		depositGoldMenu = 9905,
-		withdrawGoldMenu = 9906
+		withdrawGoldMenu = 9906,
+		depositItemsMenu = 9907
 	}
 	--Database type, will try to work on a MySQL implementation for this one
 	bankBuddyConfig.dataBase = "json"
@@ -26,6 +27,8 @@ local bankBuddyConfig = {}
 	bankBuddyConfig.intrestRate = 5
 	--Allow transfers from account to account
 	bankBuddyConfig.allowTransfers = true
+	--Name that appears in chat when message is sent from script
+	bankBuddyConfig.chatName = "BankBuddy"
 	--Should players be in a specific cell to use the bank?
 	bankBuddyConfig.limitToCell = false
 	--List of whitelisted cells for banking

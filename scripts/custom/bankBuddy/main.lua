@@ -34,6 +34,8 @@ logHandler = function(message, handleType)
 		message = "[BankBuddy-DEBUG]: " .. message
 	elseif(handleType == "error") then
 		message = "[BankBuddy-ERROR]: " .. message
+	elseif(handleType == "alert")then
+		message = "[BankBuddy-!ALERT!]: " .. message
 	elseif(bankBuddyConfig.debugMode == false and handleType == "debug") then
 		--Do literally nothing, probably a right way to do it but w/e
 	else
@@ -46,12 +48,49 @@ end
 
 local bankBuddy = {}
 
+	function bankBuddy.getGoldInventory(pid)
+		local gold = 0
+		for Index, Value in pairs( Players[pid].data.inventory ) do
+			if(Value.refid == "gold_001")then
+				logHandler("FOUND GOLD IN INVENTORY.", "debug")
+				gold = tonumber(Value.count)
+				logHandler("GOLD VALUE IS " .. gold, "debug")
+			end
+		end
+		return gold
+	end
+	
+	function bankBuddy.setGoldInventory(pid, val)
+		local gold = 0
+		for Index, Value in pairs( Players[pid].data.inventory ) do
+			if(Value.refid == "gold_001")then
+				logHandler("FOUND GOLD IN INVENTORY.", "debug")
+				gold = tonumber(Value.count)
+				logHandler("GOLD VALUE IS " .. gold, "debug")
+			end
+		end
+		return gold
+	end
+	
+	function bankBuddy.hasGold(pid, total)
+		local isTrue = false
+		local goldInInventory = bankBuddy.getGoldInventory(pid)
+		if(goldInInventory > total)then
+			isTrue = true
+		end
+		return isTrue
+	end
+
 	function bankBuddy.withdrawlGold(pid, total)
 		logHandler("withdrawlGold called by " .. Players[pid].name .. " but is not implemented.", "debug")
 	end
 
 	function bankBuddy.depositGold(pid, total)
-		logHandler("depositGold called by " .. Players[pid].name .. " but is not implemented.", "debug")
+		if(bankBuddy.hasGold(pid, total))then
+			
+		else
+			logHandler("Player " .. Players[pid].name .. " tried to deposit more gold than they have.", "debug")
+		end
 	end
 
 	function bankBuddy.addItem(pid, total, item)
@@ -70,7 +109,6 @@ local bankBuddy = {}
 			POSIX = tonumber(os.time())
 		}
 		return dateVal
-		--logHandler("DAY IS " .. day, "debug")
 	end
 
 	function bankBuddy.loadBank(pid)
@@ -135,6 +173,28 @@ local bankBuddy = {}
 		return Count
 	end
 
+	function bankBuddy.getTotalInventoryItems(pid)
+		local Count = 0
+		index = Players[pid].data.inventory
+		for Index, Value in pairs( index ) do
+			Count = Count + 1
+		end
+		return Count
+	end
+	
+	function bankBuddy.getTotalArray(array)
+		local Count = 0
+		local dex = array
+		if(tostring(type(dex)) == "table" or tostring(type(dex)) == "function")then
+			for Index, Value in pairs( dex ) do
+				Count = Count + 1
+			end
+		else
+			logHandler("ARRAY IS NOT TABLE, VALUE IS " .. dex,"debug")
+		end
+		return Count
+	end
+
 	function bankBuddy.transferGold(pidFrom, pidTo, total)
 		fromAccount = bankBuddyJson.loadPlayerAccount(pidFrom)
 		toAccount = bankBuddyJson.loadPlayerAccount(pidTo)
@@ -179,14 +239,35 @@ local bankBuddy = {}
 		if(bankBuddy.getTotalItems(pid) > 0)then
 			local targetAccount = bankBuddyJson.loadPlayerAccount(pid)
 			for Index, Value in pairs( targetAccount.items ) do
-				itemList = itemList .. "-" .. Index .. Value .. "\n"
+				itemList = itemList .. "-" .. Index .. ":" .. Value .. "\n"
 			end
 		else
 			itemList = "*none*"
 		end
 		return itemList
 	end
-	
+
+	function bankBuddy.getItemList(pid)
+		local itemList = {
+			itemsShow = "",
+			itemsList = {}
+		}
+		if(bankBuddy.getTotalInventoryItems(pid) > 0)then
+			local targetInventory = Players[pid].data.inventory
+			for index, Value in pairs( targetInventory ) do
+				if(targetInventory[index].refId ~= "gold_001")then
+					logHandler("ITEM IS " .. targetInventory[index].refId,"debug")
+					itemList.itemsShow = itemList.itemsShow .. targetInventory[index].refId .. "\n"
+					itemAdd = targetInventory[index].refId
+					table.insert(itemList.itemsList, itemAdd)
+				end
+			end
+		else
+			itemList = "*none*"
+		end
+		return itemList
+	end	
+
 	function bankBuddy.accountInfoMenu(pid)
 		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.accountInfoMenu, "Here is your current account balance and items in safety deposit.\nGold: \n" .. bankBuddy.getGoldCount(pid) .. "\nItems: \n" .. bankBuddy.getItemsStored(pid), "Back;Close")
 	end
@@ -207,6 +288,9 @@ local bankBuddy = {}
 	end
 
 	function bankBuddy.depositItemsMenu(pid)
+		logHandler("GETTING INVENTORY LIST", "debug")
+		items = bankBuddy.getItemList(pid)
+		tes3mp.ListBox(pid, bankBuddyConfig.menuIDArray.depositItemsMenu, "What item would you like to deposit?", items.itemsShow)
 	end
 
 	function bankBuddy.depositGoldMenu(pid)
@@ -232,7 +316,11 @@ local bankBuddy = {}
 			return true
 		end
 	end
-
+	
+	function bankBuddy.adminMenu(pid)
+		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.withdrawMenu, "Nothin here but us frogs.", "Close")
+	end
+	
 	function bankBuddy.bankMenu(pid)
 		if(bankBuddyConfig.limitToCell and tableHelper.containsValue(bankBuddyConfig.cellList, Players[pid].data.location.cell))then
 			bankBuddy.checkIntrest(pid)
@@ -252,14 +340,56 @@ local bankBuddy = {}
 		accounts = bankBuddyJson.loadAccounts()
 	end
 
+	function bankBuddy.messageCompiler(pid, message, colorOverride)
+		if colorOverride == nil then
+			Players[pid]:Message(color.Cyan .. "[" .. bankBuddyConfig.chatName .. "]: " .. color.White .. message)
+		else
+			Players[pid]:Message(color.Cyan .. "[" .. bankBuddyConfig.chatName .. "]: " .. color[colorOverride] .. message)
+		end
+	end
+
+	function bankBuddy.commandHandler(pid,cmds)
+		if(cmds[2] ~= nil)then
+			if(cmds[2] == "account")then
+				if(cmds[3] == "info")then
+					message = "Gold: \n" .. bankBuddy.getGoldCount(pid) .. "\nItems: \n" .. bankBuddy.getItemsStored(pid) .. "\n"
+					bankBuddy.messageCompiler(pid, message)
+				else
+					message = "Invalid bank account command"
+					bankBuddy.messageCompiler(pid, message)
+				end
+			elseif(cmds[2] == "admin")then
+				if(Players[pid].data.settings.staffRank > 2)then
+					bankBuddy.adminMenu(pid)
+				else
+				logHandler("!UNAUTHORIZED USER ATTEMPTED TO USE ADMIN MENU FOR BANK!", "alert")
+					message = "You do not have the permission required for this menus, this has been logged."
+					local accountsFile = bankBuddyJson.loadAccounts()
+					local reportPacket = {
+						name = Players[pid].name,
+						dateOf = bankBuddy.getDate()
+					}
+					table.insert(accountsFile.unauthorizedAdminAccessRequests, reportPacket)
+					bankBuddy.messageCompiler(pid, message)
+					bankBuddyJson.saveAccounts(accountsFile)
+				end
+			else
+				message = "Invalid bank command"
+				bankBuddy.messageCompiler(pid, message, color.Red)
+			end
+		else
+			bankBuddy.bankMenu(pid)
+		end
+	end
+
 	function bankBuddy.OnGUIAction(eventStatus, pid, idGui, data)
 		if(idGui == bankBuddyConfig.menuIDArray.mainMenu)then
 			if(tonumber(data) == 0)then
 				bankBuddy.accountInfoMenu(pid)
 			elseif(tonumber(data) == 1)then
-				bankBuddy.withdrawMenu(pid)
-			elseif(tonumber(data) == 2)then
 				bankBuddy.depositMenu(pid)
+			elseif(tonumber(data) == 2)then
+				bankBuddy.withdrawMenu(pid)
 			elseif(tonumber(data) == 3)then
 				bankBuddy.transferMenu(pid)
 			else
@@ -275,21 +405,29 @@ local bankBuddy = {}
 			end
 		elseif(idGui == bankBuddyConfig.menuIDArray.depositMenu)then
 			if(tonumber(data) == 0)then
+				bankBuddy.depositGoldMenu(pid)
+			elseif(tonumber(data) == 1)then
+				bankBuddy.depositItemsMenu(pid)
+			else
+				logHandler("INVALID DATA INDEX VALUE " .. tonumber(data) .. "  FOR MENU ID " .. idGui,"error")
 			end
 		elseif(idGui == bankBuddyConfig.menuIDArray.withdrawGoldMenu)then
 			if(tonumber(data) == 0)then
 			end
 		elseif(idGui == bankBuddyConfig.menuIDArray.depositGoldMenu)then
 			if(tonumber(data) == 0)then
+				bankBuddy.depositGold(pid, "all")
+			elseif(tonumber(data) == 1)then
+				bankBuddy.totalInputGoldMenu(pid)
 			end
 		else
 			logHandler("INVALID idGui INDEX VALUE " .. idGui,"error")
 		end
 	end
-
+	
 	customEventHooks.registerHandler("OnGUIAction", bankBuddy.OnGUIAction)
 	customEventHooks.registerHandler("OnServerPostInit", bankBuddy.loadBankData)
 	customEventHooks.registerHandler("OnPlayerFinishLogin", bankBuddy.loginHandler)
 	customEventHooks.registerHandler("OnPlayerDisconnect", bankBuddy.logoutHandler)
-	customCommandHooks.registerCommand("bank", bankBuddy.bankMenu)
+	customCommandHooks.registerCommand("bank", bankBuddy.commandHandler)
 return bankBuddy
