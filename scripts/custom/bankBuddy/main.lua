@@ -120,6 +120,15 @@ local bankBuddy = {}
 		return total
 	end
 
+	function bankBuddy.getTotalItems(pid)
+		local Count = 0
+		index = bankBuddyJson.loadPlayerAccount(pid)
+		for Index, Value in pairs( index.items ) do
+			Count = Count + 1
+		end
+		return Count
+	end
+
 	function bankBuddy.transferGold(pidFrom, pidTo, total)
 		fromAccount = bankBuddyJson.loadPlayerAccount(pidFrom)
 		toAccount = bankBuddyJson.loadPlayerAccount(pidTo)
@@ -131,9 +140,9 @@ local bankBuddy = {}
 
 	function bankBuddy.checkIntrest(pid)
 		logHandler("Checking intrest for " .. Players[pid].name)
-		local account = bankBuddyJson.loadPlayerAccount(pid)
 		local canGetIntrest = bankBuddy.checkDate(pid)
-		if(canGetIntrest) then
+		if(canGetIntrest and bankBuddyConfig.intrestRateToggle) then
+			local account = bankBuddyJson.loadPlayerAccount(pid)
 			local dateVal = bankBuddy.getDate()
 			logHandler("USER CAN GET INTREST","debug")
 			bankBuddyJson.dateUpdate(pid, dateVal)
@@ -153,16 +162,126 @@ local bankBuddy = {}
 		return 0
 	end
 	
+	function bankBuddy.getGoldCount(pid)
+		local account = bankBuddyJson.loadPlayerAccount(pid)
+		local dosh = account.gold
+		return dosh
+	end
+	
+	function bankBuddy.getItemsStored(pid)
+		local itemList = ""
+		if(bankBuddy.getTotalItems(pid) > 0)then
+			local targetAccount = bankBuddyJson.loadPlayerAccount(pid)
+			for Index, Value in pairs( targetAccount.items ) do
+				itemList = itemList .. "-" .. Index .. Value .. "\n"
+			end
+		else
+			itemList = "*none*"
+		end
+		return itemList
+	end
+	
+	function bankBuddy.accountInfoMenu(pid)
+		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.accountInfoMenu, "Here is your current account balance and items in safety deposit.\nGold: \n" .. bankBuddy.getGoldCount(pid) .. "\nItems: \n" .. bankBuddy.getItemsStored(pid), "Back;Close")
+	end
+
+	function bankBuddy.withdrawMenu(pid)
+		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.withdrawMenu, "Would you like to withdraw gold or items?", "Gold;Items;Close")
+	end
+	
+	function bankBuddy.withdrawItemMenu(pid)
+	end
+	
+	function bankBuddy.withdrawGoldMenu(pid)
+		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.withdrawGoldMenu, "How much would you like to withdraw?", "All;Specific Ammount;Close")
+	end
+
+	function bankBuddy.depositMenu(pid)
+		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.depositMenu, "Would you like to deposit gold or items?", "Gold;Items;Close")
+	end
+
+	function bankBuddy.depositItemsMenu(pid)
+	end
+
+	function bankBuddy.depositGoldMenu(pid)
+		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.depositGoldMenu, "How much would you like to deposit?", "All;Specific Ammount;Close")
+	end
+
+	function bankBuddy.transferMenu(pid)
+		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.withdrawMenu, "How much would you like to transfer?", "Confirm;Back;Close")
+	end
+
+	function bankBuddy.getButtons()
+		local buttons = "Withdraw;Deposit;Check Account"
+		if(bankBuddyConfig.allowTransfers)then
+			buttons = buttons .. ";Transfer Gold"
+		end
+		return buttons
+	end
+
+	function bankBuddy.checkCell(pid)
+		if(tableHelper.containsValue(bankBuddyConfig.cellList, Players[pid].data.location.cell))then
+			return false
+		else
+			return true
+		end
+	end
+
 	function bankBuddy.bankMenu(pid)
-		bankBuddy.checkIntrest(pid)
-		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.mainMenu, "Welcome to the Bank, what would you like to do?\nTHESE BUTTONS DO FUCKING NOTHING!", "Check Account;Transfer Gold;Withdraw;Deposit")
-		logHandler("bankMenu called by " .. Players[pid].name .. " but is not implemented.", "debug")
+		if(bankBuddyConfig.limitToCell and tableHelper.containsValue(bankBuddyConfig.cellList, Players[pid].data.location.cell))then
+			bankBuddy.checkIntrest(pid)
+			logHandler("bankMenu called by " .. Players[pid].name .. " from valid cell.", "debug")
+			tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.mainMenu, "Welcome to the Bank, what would you like to do?", bankBuddy.getButtons())
+		elseif(bankBuddyConfig.limitToCell and bankBuddy.checkCell(pid))then
+			logHandler("bankMenu called by " .. Players[pid].name .. " but is prohibited from current cell.", "debug")
+			tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.invalidMenu, "You cannot check your bank from here.","Close")
+		else
+			bankBuddy.checkIntrest(pid)
+			logHandler("bankMenu called by " .. Players[pid].name .. ".", "debug")
+			tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.mainMenu, "Welcome to the Bank, what would you like to do?", bankBuddy.getButtons())
+		end
 	end
 
 	function bankBuddy.loadBankData()
 		accounts = bankBuddyJson.loadAccounts()
 	end
 
+	function bankBuddy.OnGUIAction(eventStatus, pid, idGui, data)
+		if(idGui == bankBuddyConfig.menuIDArray.mainMenu)then
+			if(tonumber(data) == 0)then
+				bankBuddy.accountInfoMenu(pid)
+			elseif(tonumber(data) == 1)then
+				bankBuddy.withdrawMenu(pid)
+			elseif(tonumber(data) == 2)then
+				bankBuddy.depositMenu(pid)
+			elseif(tonumber(data) == 3)then
+				bankBuddy.transferMenu(pid)
+			else
+				logHandler("INVALID DATA INDEX VALUE " .. tonumber(data) .. "  FOR MENU ID " .. idGui,"error")
+			end
+		elseif(idGui == bankBuddyConfig.menuIDArray.withdrawMenu)then
+			if(tonumber(data) == 0)then
+				withdrawGoldMenu(pid)
+			elseif(tonumber(data) == 1)then
+				withdrawItemMenu(pid)
+			else
+				logHandler("INVALID DATA INDEX VALUE " .. tonumber(data) .. "  FOR MENU ID " .. idGui,"error")
+			end
+		elseif(idGui == bankBuddyConfig.menuIDArray.depositMenu)then
+			if(tonumber(data) == 0)then
+			end
+		elseif(idGui == bankBuddyConfig.menuIDArray.withdrawGoldMenu)then
+			if(tonumber(data) == 0)then
+			end
+		elseif(idGui == bankBuddyConfig.menuIDArray.depositGoldMenu)then
+			if(tonumber(data) == 0)then
+			end
+		else
+			logHandler("INVALID idGui INDEX VALUE " .. idGui,"error")
+		end
+	end
+
+	customEventHooks.registerHandler("OnGUIAction", bankBuddy.OnGUIAction)
 	customEventHooks.registerHandler("OnServerPostInit", bankBuddy.loadBankData)
 	customEventHooks.registerHandler("OnPlayerFinishLogin", bankBuddy.loginHandler)
 	customEventHooks.registerHandler("OnPlayerDisconnect", bankBuddy.logoutHandler)
