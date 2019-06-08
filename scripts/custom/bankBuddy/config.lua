@@ -15,7 +15,8 @@ local bankBuddyConfig = {}
 		depositItemsTotalMenuID = 9908,
 		depositItemSpecificID = 9909,
 		depositItemErrorMenuID = 9910,
-		genericInfoBoxID = 9911
+		genericInfoBoxID = 9911,
+		depositGoldSpecificID = 9912
 	}
 	--Database type, will try to work on a MySQL implementation for this one
 	bankBuddyConfig.dataBase = "json"

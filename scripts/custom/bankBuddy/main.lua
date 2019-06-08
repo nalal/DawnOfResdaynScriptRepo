@@ -11,6 +11,9 @@ Init Date:(DMY)
 	
 Script Description:
 	Script is intended to act as a banking system for servers, settings can be found in the config.lua file in this scripts folder
+	
+Notes:
+	Holy shit Nac, need to add more comments, I can't tell what most shit here does and I wrote it
 ]]--
 bankBuddyJson = require("custom/bankBuddy/json")
 bankBuddyConfig = require("custom/bankBuddy/config")
@@ -59,7 +62,7 @@ local bankBuddy = {}
 		for Index, Value in pairs( Players[pid].data.inventory ) do
 			if(Value.refid == "gold_001")then
 				logHandler("FOUND GOLD IN INVENTORY.", "debug")
-				gold = tonumber(Value.count)
+				gold = Value.count
 				logHandler("GOLD VALUE IS " .. gold, "debug")
 			end
 		end
@@ -80,9 +83,12 @@ local bankBuddy = {}
 	
 	function bankBuddy.hasGold(pid, total)
 		local isTrue = false
-		local goldInInventory = bankBuddy.getGoldInventory(pid)
-		if(goldInInventory > total)then
+		local goldInInventory = bankBuddy.getTotalGold(pid)
+		if(goldInInventory >= total)then
 			isTrue = true
+			logHandler("Player " .. Players[pid].name ..  " has exactly or more than " .. total, "debug")
+		else
+			logHandler("Player " .. Players[pid].name .. " does not have " .. total, "debug")
 		end
 		return isTrue
 	end
@@ -92,10 +98,16 @@ local bankBuddy = {}
 	end
 
 	function bankBuddy.depositGold(pid, total)
-		if(bankBuddy.hasGold(pid, total))then
-			
+		logHandler("DEPOSITING " .. total .. " GOLD FOR " .. Players[pid].name, "debug")
+		if(bankBuddy.hasGold(pid, total) == true)then
+			local account = bankBuddyJson.loadPlayerAccount(pid)
+			account.gold = account.gold + total
+			inventoryHelper.removeItem(Players[pid].data.inventory, "gold_001", total)
+			bankBuddyJson.savePlayerAccount(Players[pid].name, account)
+			bankBuddy.genericInfoBox(pid, "You have deposited " .. total .. " gold.")
 		else
 			logHandler("Player " .. Players[pid].name .. " tried to deposit more gold than they have.", "debug")
+			bankBuddy.genericInfoBox(pid, "You do not have enough gold for that size of deposit.")
 		end
 	end
 
@@ -217,13 +229,17 @@ local bankBuddy = {}
 		return Count
 	end
 
-	function bankBuddy.transferGold(pidFrom, pidTo, total)
+	function bankBuddy.transferGold(pidFrom, playerTo, total)
 		fromAccount = bankBuddyJson.loadPlayerAccount(pidFrom)
-		toAccount = bankBuddyJson.loadPlayerAccount(pidTo)
-		fromAccount.gold = fromAccount.gold - total
-		toAccount.gold = toAccount.gold + total
-		bankBuddyJson.savePlayerAccount(Players[pidFrom].name, fromAccount)
-		bankBuddyJson.savePlayerAccount(Players[pidTo].name, toAccount)
+		if(fromAccount.gold >= total)then
+			toAccount = bankBuddyJson.loadPlayerAccount(nil,playerTo)
+			fromAccount.gold = fromAccount.gold - total
+			toAccount.gold = toAccount.gold + total
+			bankBuddyJson.savePlayerAccount(Players[pidFrom].name, fromAccount)
+			bankBuddyJson.savePlayerAccount(playerTo, toAccount)
+		else
+			logHandler("Player " .. Players[pid].name .. " attempted to transfer more gold than they have in their account.", "debug")
+		end
 	end
 
 	function bankBuddy.checkIntrest(pid)
@@ -291,6 +307,22 @@ local bankBuddy = {}
 		return itemList
 	end
 	
+	function bankBuddy.getTotalGold(pid)
+		local Count = -1
+		index = Players[pid].data.inventory
+		for Index, Value in pairs( index ) do
+			if(Value.refId == "gold_001")then
+				Count = Value.count
+			end
+		end
+		if(Count == -1)then
+			logHandler("Could not find gold in player inventory for " .. Players[pid].name .. ".", "error")
+		else
+			logHandler("FOUND " .. Count .. " GOLD ON PLAYER " .. Players[pid].name)
+		end
+		return Count
+	end
+
 	function bankBuddy.genericInfoBox(pid, info)
 		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.genericInfoBoxID, info, "Close")
 	end	
@@ -315,7 +347,7 @@ local bankBuddy = {}
 	end
 
 	function bankBuddy.depositItemsMenu(pid)
-		logHandler("GETTING INVENTORY LIST", "debug")
+		logHandler("GETTING INVENTORY LIST FOR " .. Players[pid].name, "debug")
 		items = bankBuddy.getItemList(pid)
 		tes3mp.ListBox(pid, bankBuddyConfig.menuIDArray.depositItemsMenu, "What item would you like to deposit?", items.itemsShow)
 	end
@@ -325,7 +357,17 @@ local bankBuddy = {}
 	end
 
 	function bankBuddy.depositGoldMenu(pid)
-		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.depositGoldMenu, "How much would you like to deposit?", "All;Specific Ammount;Close")
+		local total = bankBuddy.getTotalGold(pid)
+		if(total > 0)then
+			tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.depositGoldMenu, "How much would you like to deposit?", "All;Specific Ammount;Close")
+		else
+			bankBuddy.genericInfoBox(pid, "You have no gold in your account.")
+		end
+	end
+	
+	function bankBuddy.totalInputGoldMenu(pid)
+		logHandler("GETTING TOTAL GOLD FOR " .. Players[pid].name, "debug")
+		tes3mp.InputDialog(pid, bankBuddyConfig.menuIDArray.depositGoldSpecificID, "Please specify a total.", "Total gold you can deposit: " .. tostring(bankBuddy.getTotalGold(pid)))
 	end
 
 	function bankBuddy.transferMenu(pid)
@@ -402,7 +444,7 @@ local bankBuddy = {}
 	function bankBuddy.cleanOnUsers(pid)
 		for Index, Value in pairs(onUsers)do
 			if(Value.PID == pid)then
-				logHandler("Player " .. rVal .. " removed from list onUsers at index " .. Index .. ".")
+				logHandler("Player " .. Value.PID .. " removed from list onUsers at index " .. Index .. ".")
 				table.remove(onUsers, Index)
 			end
 		end
@@ -515,7 +557,7 @@ local bankBuddy = {}
 				count = count + 1
 			end
 		end
-		return "GET ITEM MAX ERROR"
+		return "GET ITEM REFID ERROR"
 	end
 
 	function bankBuddy.getButtons()
@@ -536,6 +578,12 @@ local bankBuddy = {}
 	
 	function bankBuddy.adminMenu(pid)
 		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.withdrawMenu, "Nothin here but us frogs.", "Close")
+	end
+	
+	function bankBuddy.depositAll(pid)
+		local item = bankBuddy.getItemRefId(pid)
+		local total = bankBuddy.getMaxItems(pid)
+		bankBuddy.depositItems(pid, total)
 	end
 	
 	function bankBuddy.bankMenu(pid)
@@ -614,9 +662,9 @@ local bankBuddy = {}
 			end
 		elseif(idGui == bankBuddyConfig.menuIDArray.withdrawMenu)then
 			if(tonumber(data) == 0)then
-				withdrawGoldMenu(pid)
+				bankBuddy.withdrawGoldMenu(pid)
 			elseif(tonumber(data) == 1)then
-				withdrawItemMenu(pid)
+				bankBuddy.withdrawItemMenu(pid)
 			else
 				logHandler("INVALID DATA INDEX VALUE " .. tonumber(data) .. "  FOR MENU ID " .. idGui,"error")
 			end
@@ -660,6 +708,12 @@ local bankBuddy = {}
 				bankBuddy.depositGold(pid, "all")
 			elseif(tonumber(data) == 1)then
 				bankBuddy.totalInputGoldMenu(pid)
+			end
+		elseif(idGui == bankBuddyConfig.menuIDArray.depositGoldSpecificID)then
+			if(tonumber(data))then
+				bankBuddy.depositGold(pid, tonumber(data))
+			else
+				bankBuddy.genericInfoBox(pid, "You must provide a valid number that is equal to or less than your total gold")
 			end
 		elseif(idGui ~= bankBuddyConfig.menuIDArray.genericInfoBoxID)then
 			logHandler("INVALID idGui INDEX VALUE " .. idGui,"error")
