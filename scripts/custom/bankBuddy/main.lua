@@ -141,7 +141,7 @@ end
 		return ID
 	end
 
-	function getIDMain()
+	function bankBuddy.getIDMain()
 		local ID = 0
 		local account = bankBuddyJson.loadAccounts()
 		for Index, Value in pairs(account.transactionHistory) do
@@ -181,10 +181,6 @@ end
 			logHandler("Player " .. Players[pid].name .. " tried to deposit more gold than they have.", "debug")
 			bankBuddy.genericInfoBox(pid, "You do not have enough gold for that size of deposit.")
 		end
-	end
-
-	function bankBuddy.depositItem(pid, total)
-		logHandler("depositItem called by " .. Players[pid].name .. " but is not implemented.", "debug")
 	end
 
 	function bankBuddy.withdrawlItem(pid, total, item)
@@ -419,6 +415,10 @@ end
 		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.withdrawItemCountTypeMenuID, "How many items would you like to withdraw?", "All;Specific Ammount;Close")
 	end
 	
+	function bankBuddy.withdrawSpecificItemMenu(pid)
+		tes3mp.InputDialog(pid, bankBuddyConfig.menuIDArray.withdrawSpecificItemMenu, "Please specify a total.", "Total number of items you can withdraw for this item: " .. tostring(bankBuddy.getMaxItemsW(pid)))
+	end
+	
 	function bankBuddy.withdrawGoldMenu(pid)
 		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.withdrawGoldMenu, "How much would you like to withdraw?", "All;Specific Ammount;Close")
 	end
@@ -463,52 +463,68 @@ end
 		tes3mp.CustomMessageBox(pid, bankBuddyConfig.menuIDArray.depositItemErrorMenuID, "You must use a number here.", "Back")
 	end
 
+	function bankBuddy.fixBrokenRemoveArtifacts(pid)
+		logHandler("Fixing retarded nulls in the inventory table for SOME REASON.")
+		for Index, Value in pairs(Players[pid].data.inventory)do
+			if(tostring(Value) == "null")then
+				table.remove(Players[pid].data.inventory, Index)
+			end
+		end
+		Players[pid]:SaveEquipment()
+		Players[pid]:SaveInventory()
+		Players[pid]:LoadInventory()
+		Players[pid]:LoadEquipment()
+	end
+
 	function bankBuddy.depositItems(pid, total)
 		local ItemID = bankBuddy.getItemRefId(pid)
-		if(ItemID ~= nil)then
-			logHandler("ItemID IS " .. ItemID,"debug")
-			local ind = bankBuddy.getIndex(pid, ItemID)
-			if(bankBuddy.isEquipped(pid, ItemID) ~= true or bankBuddy.stackTotal(pid, refId) > 1)then
-				if(bankBuddy.getMaxItems(pid) < total)then
-					logHandler("Total given to deposit for " .. Players[pid].name .. " is more than total items.","Error")
-				else
-					local account = bankBuddyJson.loadPlayerAccount(pid, ItemID)
-					if(bankBuddy.itemInAccount(pid, ItemID) ~= true)then
-						if(Players[pid].data.inventory[ind].count == total)then
-							local item = {
-								iTotal = total,
-								iName = ItemID
-							}
-							table.insert(account.items, item)
-							inventoryHelper.removeItem(Players[pid].data.inventory, ItemID, total)
-							bankBuddy.addTransactionHistory(pid, item, total, "deposit")
-						else
-							local item = {
-								iTotal = total,
-								iName = ItemID
-							}
-							table.insert(account.items, item)
-							inventoryHelper.removeItem(Players[pid].data.inventory, ItemID, total)
-							bankBuddy.addTransactionHistory(pid, item, total, "deposit")
-						end
+		if(total == "all")then
+			bankBuddy.depositItems(pid, bankBuddy.getMaxItems(pid))
+		else
+			if(ItemID ~= nil)then
+				logHandler("ItemID IS " .. ItemID,"debug")
+				local ind = bankBuddy.getIndex(pid, ItemID)
+				if(bankBuddy.isEquipped(pid, ItemID) ~= true or bankBuddy.stackTotal(pid, refId) > 1)then
+					if(bankBuddy.getMaxItems(pid) < total)then
+						logHandler("Total given to deposit for " .. Players[pid].name .. " is more than total items.","Error")
 					else
-						for Index, Value in pairs( account.items ) do
-							if(Value.refId == ItemID)then
-								acount.items[index].count = acount.items[index].count + total
+						local account = bankBuddyJson.loadPlayerAccount(pid, ItemID)
+						if(bankBuddy.itemInAccount(pid, ItemID) ~= true)then
+							if(Players[pid].data.inventory[ind].count == total)then
+								local item = {
+									iTotal = total,
+									iName = ItemID
+								}
+								table.insert(account.items, item)
+								inventoryHelper.removeItem(Players[pid].data.inventory, ItemID, total)
+							else
+								local item = {
+									iTotal = total,
+									iName = ItemID
+								}
+								table.insert(account.items, item)
 								inventoryHelper.removeItem(Players[pid].data.inventory, ItemID, total)
 							end
+						else
+							for Index, Value in pairs( account.items ) do
+								if(Value.refId == ItemID)then
+									acount.items[index].count = acount.items[index].count + total
+									inventoryHelper.removeItem(Players[pid].data.inventory, ItemID, total)
+								end
+							end
 						end
+						bankBuddy.fixBrokenRemoveArtifacts(pid)
 						bankBuddyJson.savePlayerAccount(Players[pid].name, account)
+						logHandler("Player " .. Players[pid].name .. " deposited " .. total .. " " .. ItemID .. "'s.")
+						bankBuddy.addTransactionHistory(pid, ItemID, total, "deposit")
 					end
-					logHandler("Player " .. Players[pid].name .. " deposited " .. total .. " " .. ItemID .. "'s.")
+				else
+					bankBuddy.genericInfoBox(pid, "You cannot deposit an item that is equipped.")
+					logHandler("Player " .. Players[pid].name .. " attempted to deposit an equipped item.","Error")
 				end
 			else
-				bankBuddy.genericInfoBox(pid, "You cannot deposit an item that is equipped.")
-				logHandler("Player " .. Players[pid].name .. " attempted to deposit an equipped item.","Error")
+				logHandler("ItemID for deposit is nil, terminating execution.","Error")
 			end
-		
-		else
-			logHandler("ItemID for deposit is nil, terminating execution.","Error")
 		end
 		bankBuddy.cleanDeposit(pid)
 	end
@@ -535,6 +551,34 @@ end
 		local mainAccount =  bankBuddyJson.loadAccounts()
 		table.insert(mainAccount.transactionHistory, transactionLogData)
 		bankBuddyJson.saveAccounts(mainAccount)
+	end
+
+	function bankBuddy.withdrawItem(pid, data)
+		if(data ~= "all")then
+			if(data <= bankBuddy.getMaxItemsW(pid))then
+				local account = bankBuddyJson.loadPlayerAccount(pid)
+				local targID
+				local UID = pid .. Players[pid].name
+				for Index, Value in pairs(activeWithdraws)do
+					if(Value.UID == UID)then
+						logHandler("targID IS " .. Value.IID, "debug")
+						targID = Value.IID
+					end
+				end
+				local item = account.items[targID].iName
+				if(account.items[targID].iTotal == data)then
+					table.remove(account.items[targID])
+				elseif(account.items[targID].iTotal > data)then
+					account.items[targID].iTotal = account.items[targID].iTotal - data
+				end
+				inventoryhelper.addItem(Players[pid].data.inventory, ItemID, data)
+				bankBuddy.addTransactionHistory(pid, item, data, "withdraw")
+			else
+				bankBuddy.genericInfoBox(pid, "You cannot withdraw more items than you have in the bank.")
+			end
+		elseif(data == "all")then
+			bankBuddy.withdrawItem(pid, bankBuddy.getMaxItemsW(pid))
+		end
 	end
 
 	function bankBuddy.getNameFromOnUsers(pid)
@@ -601,10 +645,10 @@ end
 	end
 
 	function bankBuddy.getIndex(pid, ItemID)
-		logHandler("CHECKING FOR " .. ItemID .. " IN ACCOUNT.","debug")
+		logHandler("CHECKING FOR " .. ItemID .. "'s INDEX IN INVENTORY.","debug")
 		for Index, Value in pairs(Players[pid].data.inventory)do
 			if(Value.refId == ItemID)then
-				logHandler("ITEM " .. ItemID .. " IS IN ACCOUNT ALREADY.","debug")
+				logHandler("ITEM " .. ItemID .. " IS IN INVENTORY.","debug")
 				logHandler("INDEX IS " .. Index .. " IN INVENTORY.","debug")
 				return Index
 			end
@@ -634,6 +678,27 @@ end
 		end
 	end
 
+	function bankBuddy.getMaxItemsW(pid)
+		local maxItems = 0
+		local UID = pid .. Players[pid].name
+		local IID
+		for Index, Value in pairs( activeWithdraws ) do
+			if(Value.UID == UID)then
+				IID = Value.IID
+			end
+		end
+		local count = 0
+		local account = bankBuddyJson.loadPlayerAccount(pid)
+		for Index, Value in pairs( account.items ) do
+			if(count == IID)then
+				maxItems = maxItems + Value.count
+				logHandler("maxItems IS " .. maxItems,"debug")
+			end
+			count = count + 1
+		end
+		return maxItems
+	end
+
 	function bankBuddy.getMaxItems(pid)
 		local maxItems = 0
 		local UID = pid .. Players[pid].name
@@ -647,6 +712,7 @@ end
 		for Index, Value in pairs( Players[pid].data.inventory ) do
 			if(count == IID)then
 				maxItems = maxItems + Value.count
+				count = count + 1
 				logHandler("maxItems IS " .. maxItems,"debug")
 			else
 				count = count + 1
@@ -666,11 +732,11 @@ end
 		end
 		local count = 0
 		for Index, Value in pairs( Players[pid].data.inventory ) do
-			if(count == IID)then
+			if(count == IID and Value.refId ~= "gold_001")then
 				ItemID = Value.refId
 				logHandler("ItemID IS " .. ItemID,"debug")
 				return ItemID
-			else
+			elseif(Value.refId ~= "gold_001")then
 				count = count + 1
 			end
 		end
@@ -742,19 +808,6 @@ end
 
 	function bankBuddy.loadBankData()
 		local accounts = bankBuddyJson.loadAccounts()
-		if(accounts.transactionHistory == nil)then
-			logHandler("Transaction data was missing from main register, repairing...","warn")
-			logHandler("If this it the first time you've loaded the script or have recently reset your account data file, this is perfectly normal.","warn")
-			accounts.transactionHistory = {{
-				tType = "Initialization date",
-				tItem = "N/A",
-				tTotal = "N/A",
-				tDate = bankBuddy.getDateString(),
-				tPlayer = "N/A",
-				tID = 0
-			}}
-		end
-		bankBuddyJson.saveAccounts(accounts)
 	end
 
 	function bankBuddy.messageCompiler(pid, message, colorOverride)
@@ -854,6 +907,9 @@ end
 			bankBuddy.depositItemSpecific(pid)
 		elseif(idGui == bankBuddyConfig.menuIDArray.withdrawGoldMenu)then
 			if(tonumber(data) == 0)then
+				bankBuddy.withdrawAllGold(pid)
+			elseif(tonumber(data))then
+				bankBuddy.withdrawSpecificGoldMenu(pid)
 			end
 		elseif(idGui == bankBuddyConfig.menuIDArray.depositGoldMenu)then
 			if(tonumber(data) == 0)then
@@ -876,7 +932,15 @@ end
 			table.insert(activeWithdraws, withdrawData)
 		elseif(idGui == bankBuddyConfig.menuIDArray.withdrawItemCountTypeMenuID)then
 			if(tonumber(data) == 0)then
-			elseif(tonumber(data) == 1)then
+				bankBuddy.withdrawItem(pid, "all")
+			elseif(tonumber(data))then
+				bankBuddy.withdrawSpecificItemMenu(pid)
+			end
+		elseif(idGui == bankBuddyConfig.menuIDArray.withdrawSpecificItemMenu)then
+			if(tonumber(data))then
+				bankBuddy.withdrawItem(pid, tonumber(data))
+			else
+				bankBuddy.genericInfoBox(pid, "Please use a number.")
 			end
 		elseif(idGui == bankBuddyConfig.menuIDArray.accountInfoMenu)then
 			if(tonumber(data) == 0)then
@@ -885,7 +949,7 @@ end
 				bankBuddy.bankMenu(pid)
 			end
 		elseif(idGui == bankBuddyConfig.menuIDArray.transactionLogMenuID)then
-			if(tonumber(data))then
+			if(tonumber(data) and tonumber(data) ~= 18446744073709551615)then
 				logHandler("LOADING HISTORY FOR " .. Players[pid].name, "debug")
 				bankBuddy.transactionInfoMenu(pid, tonumber(data))
 			end

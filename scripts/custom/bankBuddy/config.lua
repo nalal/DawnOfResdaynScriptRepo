@@ -20,7 +20,8 @@ local bankBuddyConfig = {}
 		withdrawItemsMenuID = 9913,
 		withdrawItemCountTypeMenuID = 9914,
 		transactionLogMenuID = 9915,
-		transactionLogShowMenuID = 9916
+		transactionLogShowMenuID = 9916,
+		withdrawSpecificItemMenu = 9917
 	}
 	--Database type, will try to work on a MySQL implementation for this one
 	bankBuddyConfig.dataBase = "json"
