@@ -23,6 +23,16 @@ local bankBuddyConfig = {}
 		transactionLogShowMenuID = 9916,
 		withdrawSpecificItemMenu = 9917
 	}
+	bankBuddyConfig.SQLData = {
+		SQLAcc = "tes3mpusr",
+		SQLPass = "1105",
+		SQLDB = "tes3mp",
+		SQLIP = "localhost",
+		SQLPort = nil
+	}
+	bankBuddyConfig.databaseNames = {
+		main = "bank_roster"
+	}
 	--Database type, will try to work on a MySQL implementation for this one
 	bankBuddyConfig.dataBase = "json"
 	--Debug mode, shows verbose messages on script opperations

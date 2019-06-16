@@ -16,6 +16,7 @@ Notes:
 	Holy shit Nac, need to add more comments, I can't tell what most shit here does and I wrote it
 ]]--
 bankBuddyJson = require("custom/bankBuddy/json")
+bankBuddyMySQL = require("custom/bankBuddy/mysql")
 bankBuddyConfig = require("custom/bankBuddy/config")
 
 local bankBuddy = {}
@@ -201,6 +202,14 @@ end
 	end
 
 	function bankBuddy.loginHandler(eventStatus, pid)
+		local hasAcc = bankBuddyMySQL.checkAccount(Players[pid].name)
+		if hasAcc == 0 then
+			bankBuddyMySQL.createAccount(Players[pid].name)
+		elseif hasAcc == 1 then
+			logHandler("Player " .. Players[pid].name .. " logged in with existing account")
+		else
+			logHandler ("PID " .. pid .. " is either tied to a null player name or something has gone really wrong...", "error")
+		end
 		logHandler("Loading bank info for " .. Players[pid].name .. ".", "debug")
 		bankBuddy.loadBank(pid)
 		local onUser = {
@@ -807,7 +816,8 @@ end
 	end
 
 	function bankBuddy.loadBankData()
-		local accounts = bankBuddyJson.loadAccounts()
+		bankBuddyMySQL.initDB()
+		--local accounts = bankBuddyJson.loadAccounts()
 	end
 
 	function bankBuddy.messageCompiler(pid, message, colorOverride)
