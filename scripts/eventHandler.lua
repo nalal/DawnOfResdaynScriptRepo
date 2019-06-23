@@ -2,7 +2,6 @@ local eventHandler = {}
 
 commandHandler = require("commandHandler")
 scriptLoader = require("scriptLoader")
-basicNeeds = require("basicNeeds")
 
 local consoleKickMessage = " has been kicked for using the console despite not having the permission to do so.\n"
 
@@ -51,12 +50,12 @@ eventHandler.OnPlayerConnect = function(pid, playerName)
 end
 
 eventHandler.OnPlayerDisconnect = function(pid)
-	Players[pid].data.playerResting = false
     if Players[pid] ~= nil then
-	--playerName = Players[pid].name
-	--basicNeeds.logoutCatch(playerName)
+        --playerName = Players[pid].name
+        --basicNeeds.logoutCatch(playerName)
         if Players[pid]:IsLoggedIn() then
-
+            Players[pid].data.playerResting = false
+            
             Players[pid]:DeleteSummons()
 
             -- Was this player confiscating from someone? If so, clear that
@@ -173,7 +172,6 @@ eventHandler.OnGUIAction = function(pid, idGui, data)
                     Players[pid]:FinishLogin()
                     scriptLoader.CallHook("OnPlayerLoginFinish", pid)
                     Players[pid]:Message("You have successfully logged in.\n" .. config.chatWindowInstructions)
-					basicNeeds.startTic(pid)
                 end
             elseif idGui == guiHelper.ID.REGISTER then
                 if data == nil then
@@ -183,7 +181,6 @@ eventHandler.OnGUIAction = function(pid, idGui, data)
                 end
                 Players[pid]:Register(data)
                 Players[pid]:Message("You have successfully registered.\n" .. config.chatWindowInstructions)
-				basicNeeds.startTic(pid)
             end
         end
     end
@@ -488,7 +485,6 @@ eventHandler.OnPlayerItemUse = function(pid)
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
         local itemRefId = tes3mp.GetUsedItemRefId(pid)
         tes3mp.LogMessage(enumerations.log.INFO, logicHandler.GetChatName(pid) .. " used inventory item " .. itemRefId)
-		basicNeeds.ingest(pid, itemRefId)
         -- Unilateral use of items is disabled on clients, so we need to send
         -- this packet back to the player before they can use the item
         tes3mp.SendItemUse(pid)
