@@ -210,11 +210,10 @@ function OnServerInit()
     logicHandler.PushPlayerList(Players)
 
     LoadBanList()
-    LoadPluginList()
 
     scriptLoader.LoadScripts()
 
-    tes3mp.SetPluginEnforcementState(config.enforcePlugins)
+    tes3mp.SetDataFileEnforcementState(config.enforceDataFiles)
     tes3mp.SetScriptErrorIgnoringState(config.ignoreScriptErrors)
 end
 
@@ -246,7 +245,7 @@ function OnServerPostInit()
     tes3mp.SetRuleString("Download ESP", "WIP")
     tes3mp.SetRuleString("Website", "http://resdayn.boards.net/")
     tes3mp.SetRuleString("Discord", "https://discord.gg/aWSgHtR")
-    tes3mp.SetRuleString("enforcePlugins", tostring(config.enforcePlugins))
+    tes3mp.SetRuleString("enforceDataFiles", tostring(config.enforceDataFiles))
     tes3mp.SetRuleString("ignoreScriptErrors", tostring(config.ignoreScriptErrors))
     tes3mp.SetRuleValue("difficulty", config.difficulty)
     tes3mp.SetRuleValue("deathPenaltyJailDays", config.deathPenaltyJailDays)
@@ -291,20 +290,20 @@ function OnServerExit(error)
     tes3mp.LogMessage(enumerations.log.ERROR, "OnServerExit Error: "..tostring(error))
 end
 
-function LoadPluginList()
-    local pluginList = {}
-    tes3mp.LogMessage(enumerations.log.WARN, "Reading pluginlist.json")
-
-    local jsonPluginList = jsonInterface.load("pluginlist.json")
-
+function LoadDataFileList(filename)
+    local dataFileList = {}
+    tes3mp.LogMessage(enumerations.log.WARN, "Reading " .. filename)
+    
+    local jsonDataFileList = jsonInterface.load(filename)
+    
     -- Fix numerical keys to print plugins in the correct order
-    tableHelper.fixNumericalKeys(jsonPluginList, true)
-
-    for listIndex, pluginEntry in ipairs(jsonPluginList) do
+    tableHelper.fixNumericalKeys(jsonDataFileList, true)
+    
+    for listIndex, pluginEntry in ipairs(jsonDataFileList) do
         for entryIndex, hashArray in pairs(pluginEntry) do
-
-            pluginList[listIndex] = {}
-            pluginList[listIndex].name = entryIndex
+            
+            dataFileList[listIndex] = {}
+            dataFileList[listIndex].name = entryIndex
 
             local hashes = {}
             local debugMessage = ("- %d: \"%s\": ["):format(listIndex, entryIndex)
@@ -314,21 +313,20 @@ function LoadPluginList()
                 debugMessage = debugMessage .. ("%X, "):format(tonumber(hash, 16))
                 table.insert(hashes, tonumber(hash, 16))
             end
-            pluginList[listIndex].hashes = hashes
-            table.insert(pluginList[listIndex], "")
+            dataFileList[listIndex].hashes = hashes
+            table.insert(dataFileList[listIndex], "")
 
             debugMessage = debugMessage .. "\b\b]"
             tes3mp.LogAppend(enumerations.log.WARN, debugMessage)
         end
     end
-
-    return pluginList
+    return dataFileList
 end
 
-function OnRequestPluginList()
-    local pluginList = LoadPluginList()
+function OnRequestDataFileList()
+    local dataFileList = LoadDataFileList("requiredDataFiles.json")
 
-    for _, entry in ipairs(pluginList) do
+    for _, entry in ipairs(dataFileList) do
         local name = entry.name
 
         if tableHelper.isEmpty(entry.hashes) then
@@ -339,6 +337,10 @@ function OnRequestPluginList()
             end
         end
     end
+end
+
+function OnRequestPluginList()
+    OnRequestDataFileList()
 end
 
 function OnPlayerConnect(pid)
