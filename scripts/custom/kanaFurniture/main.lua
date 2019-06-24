@@ -974,7 +974,7 @@ function init()
 	WorldInstance.data.customVariables.kanaFurniture.inventories = newInventories
 
 	WorldInstance:Save()
-	tes3mp.LogMessage(1, "[KANAFURNITURE]: kanaFurniture loaded (thorugh scriptHook).")
+	tes3mp.LogMessage(1, "[KANAFURNITURE]: kanaFurniture loaded (through scriptHook).")
 end
 
 function CMD(pid, cmd)

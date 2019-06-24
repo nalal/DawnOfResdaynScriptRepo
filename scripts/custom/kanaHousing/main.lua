@@ -1259,7 +1259,7 @@ function init()
 	else
 		Save()
 	end
-	tes3mp.LogMessage(1, "kanaHousing loaded (thorugh scriptHook).")
+	tes3mp.LogMessage(1, "[KANAHOUSING]: kanaHousing loaded (through scriptHook).")
 end
 
 function kanaOnGUIAction(eventStatus, pid, idGui, data)
