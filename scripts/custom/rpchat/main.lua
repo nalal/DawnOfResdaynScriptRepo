@@ -237,16 +237,16 @@ local rpchat = {}
 		end
 		rpchat.log("PLAYER COLOR IS " .. pColor, "debug")
 		if messageType == "ooc" then
-			message = rpconfig.colors.ooc  .. "[OOC]" .. pColor .. name .. color.White .. ": " .. rpchat.format(message) .. "\n"
+			message = rpconfig.colors.ooc  .. "[OOC] " .. pColor .. Players[pid].name .. color.White .. ": " .. rpchat.format(message) .. "\n"
 			tes3mp.SendMessage(pid, message, true)
 		elseif messageType == "looc" then
-			message = rpconfig.colors.looc .. "[LOOC]" .. pColor .. name .. color.White .. ": " .. rpchat.format(message) .. "\n"
+			message = rpconfig.colors.looc .. "[LOOC] " .. pColor .. Players[pid].name .. color.White .. ": " .. rpchat.format(message) .. "\n"
 			rpchat.localMessage(pid, message)
 		elseif messageType == "emote" then
 			message = pColor .. name .. rpconfig.colors.emote .. " " .. rpchat.formatP(message) .. "\n"
 			rpchat.localMessage(pid, message)
 		else
-			message = pColor .. name .. color.White .. ": " .. rpchat.format(message) .. "\n"
+			message = pColor .. name .. color.White .. ": \"" .. rpchat.format(message) .. "\"\n"
 			rpchat.localMessage(pid, message)
 		end
 	end
@@ -289,18 +289,14 @@ local rpchat = {}
 	end
 	function rpchat.commandHandler(pid, cmd)
 		if cmd[2] ~= nil then
-			if cmd[2] == "name" and Players[pid].data.settings.staffRank > 0 then
-				if cmd[3] ~= nil and logicHandler.CheckPlayerValidity(pid, cmd[3]) then
-					if cmd[4] ~= nil then
-						local newName = cmd[4]:gsub("^%l", string.upper)
-						rpchat.setName(tonumber(cmd[3]), newName, pid)
-					else
-						rpchat.systemMessage(pid, "Invalid name.")
-					end
+			if cmd[2] == "name" then
+				if cmd[3] ~= nil then
+					local newName = cmd[3]:gsub("^%l", string.upper)
+					rpchat.setName(pid, newName, pid)
 				else
-					rpchat.systemMessage(pid, "Invalid PID.")
+					rpchat.systemMessage(pid, "Invalid name.")
 				end
-			elseif cmd[2] == "color" then
+			elseif cmd[2] == "color" and Players[pid].data.settings.staffRank > 0 then
 				if cmd[3] ~= nil and logicHandler.CheckPlayerValidity(pid, cmd[3]) then
 					if cmd[4] ~= nil then
 						local newColor = cmd[4]
