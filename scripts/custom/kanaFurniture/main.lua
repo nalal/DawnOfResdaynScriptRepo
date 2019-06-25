@@ -1047,5 +1047,6 @@ function GUI(eventStatus, pid, idGui, data)
 end
 
 customCommandHooks.registerCommand("furniture", CMD)
+customCommandHooks.registerCommand("furn", CMD)
 customEventHooks.registerHandler("OnGUIAction", GUI)
 customEventHooks.registerHandler("OnServerPostInit", init)

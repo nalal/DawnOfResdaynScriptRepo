@@ -1,33 +1,20 @@
-interactionConfig = require("custom/interactionMenu/config")
+interactionConfig = require("custom/interactionMenu/main")
 
 local interactionMenu = {}
 
 	function interactionMenu.OnObjectActivate(eventStatus, pid, cellDescription, objects, players)
-		if players[1] ~= nil then
-			local buffer = 1
-			local pressee = players[1].pid
-			local presser = players[1].activatingPid
-			if pressee ~= nil and presser ~= nil then
-				interactionMenu.logHandler("PRESSEE IS " .. pressee, "debug")
-				interactionMenu.logHandler("PRESSER IS " .. presser, "debug")
-			end
-			if pressee ~= nil and presser ~= nil then
-				local data = {
-					presseePid = pressee,
-					presserPid = presser
-				}
-				return data
-			end
-		end
+		interactionMenu.logHandler(tostring(type(eventStatus)), "debug")
+		interactionMenu.logHandler(tostring(type(pid)), "debug")
+		interactionMenu.logHandler(tostring(type(cellDescription)), "debug")
+		interactionMenu.logHandler(tostring(type(objects)), "debug")
+		interactionMenu.logHandler(tostring(type(players)), "debug")
 	end
 
 	function interactionMenu.logHandler(message, logType)
 		if logType == "normal" or nil then
 			message = "[I.-MENU]: " .. message
-		elseif logType == "debug" and interactionConfig.debug == true then
+		elseif logType == "debug" then
 			message = "[I.-MENU]DBG: " .. message
-		elseif logType == "debug" and interactionConfig.debug == false then
-			--do.thing("a thing")
 		elseif logType == "error" then
 			message = "[I.-MENU]ERR: " .. message
 		else
@@ -36,7 +23,6 @@ local interactionMenu = {}
 		end
 	tes3mp.LogMessage(enumerations.log.INFO, message)
 	end
-	
 	customEventHooks.registerHandler("OnObjectActivate", interactionMenu.OnObjectActivate)
 
 return interactionMenu

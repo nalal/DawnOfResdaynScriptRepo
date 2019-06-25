@@ -62,13 +62,13 @@ local rpchat = {}
 		local playerName = Players[pid].name
 		for index, value in pairs(names)do
 			if tostring(names[index].name) == playerName then
-				if hasName ~= true then
+				if hasName == false then
 					rpchat.log("Loading RPData for " .. playerName)
 					local pData = {
 						name = playerName,
 						color = names[index].color,
 						rpname = names[index].rpname,
-						pid = pid
+						nPid = pid
 					}
 					table.insert(users, pData)
 					rpchat.log("PID " .. pid .. " ADDED TO USERS." ,"debug")
@@ -78,7 +78,7 @@ local rpchat = {}
 				end
 			end
 		end
-		if hasName ~= true then
+		if hasName == false then
 			rpchat.log("Creating RPData for player " .. playerName)
 			rpchat.addPlayer(playerName, pid)
 		end
@@ -92,8 +92,13 @@ local rpchat = {}
 		}
 		local names = rpdata.load()
 		table.insert(names, pData)
-		pData.pid = pid
-		table.insert(users, pData)
+		local upData = {
+			name = playerName,
+			color = color.White,
+			rpname = rpchat.correctName(playerName),
+			nPid = pid
+		}
+		table.insert(users, upData)
 		rpchat.log("PID " .. pid .. " ADDED TO USERS." ,"debug")
 		rpdata.save(names)
 	end
@@ -101,8 +106,8 @@ local rpchat = {}
 	function rpchat.messageCatch(event, pid, message)
 		if message:sub(1,1) ~= "/" then
 			rpchat.messageHandler(pid, message)
-		end
-        return customEventHooks.makeEventStatus(false, nil)
+			return customEventHooks.makeEventStatus(false, nil)
+		end 
 	end
 	
 	function rpchat.ooc(pid, cmd)
@@ -227,6 +232,9 @@ local rpchat = {}
 	function rpchat.messageHandler(pid, message, messageType)
 		local name = rpchat.getName(pid)
 		local pColor = rpchat.getcolor(pid)
+		if pColor == nil then
+			pColor = color.White
+		end
 		rpchat.log("PLAYER COLOR IS " .. pColor, "debug")
 		if messageType == "ooc" then
 			message = rpconfig.colors.ooc  .. "[OOC]" .. pColor .. name .. color.White .. ": " .. rpchat.format(message) .. "\n"
@@ -312,6 +320,7 @@ local rpchat = {}
 	end
 	
 	customEventHooks.registerHandler("OnPlayerFinishLogin", rpchat.loginHandler)
+	customEventHooks.registerHandler("OnPlayerEndCharGen", rpchat.loginHandler)
 	customCommandHooks.registerCommand("rpchat", rpchat.commandHandler)
 	customCommandHooks.registerCommand("ooc", rpchat.ooc)
 	customCommandHooks.registerCommand("/", rpchat.ooc)
