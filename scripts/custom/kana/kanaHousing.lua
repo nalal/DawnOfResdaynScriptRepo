@@ -1,20 +1,25 @@
--- kanaHousing - Release 2.1 - For tes3mp 0.7-alpha
+-- modified by malic (removing karma check on buying house due to crash)
+-- MODIFIED BY JAKOB FOR USE WITH CUSTOM EVENT HANDLER
+
+-- kanaHousing - Release 1.5 - For tes3mp 0.7.0 for Ecarlate server
 
 --[[ INSTALLATION
-1) Save this file as "kanaHousing.lua" in server/scripts/custom
-2) Add [ kanaHousing = require("custom.kanaHousing") ] to the top of customScripts.lua
+1) Save this file as "kanaHousing.lua" in mp-stuff/scripts
+2) Add [ kanaHousing = require("kanaHousing") ] to the top of customScripts.lua
 
-n) If you have kanaFurniture installed, uncomment (remove the -- at the beginning) the line [ kanaFurniture = require("custom.kanaFurniture") ] that is after this installation info box. Requires kanaFurniture release 3 or later.
+
+n) If you have kanaFurniture installed, uncomment (remove the -- at the beginning) the line [ kanaFurniture = require("kanaFurniture") ] that is after this installation info box. Requires kanaFurniture release 2 or later.
+
 ]]
 
---kanaFurniture = require("custom.kanaFurniture")
+kanaFurniture = require("custom.kana.kanaFurniture")
 
 local config = {}
 
-config.defaultPrice = 5000 --The price a house defaults to when it's created
+config.defaultPrice = 1000 --The price a house defaults to when it's created
 config.requiredAdminRank = 1 --The admin rank required to use the admin GUI
-config.allowWarp = true --Whether or not players can use the option to warp to their home
-config.logging = true --If the script reports its own information to the server log
+config.allowWarp = false --Whether or not players can use the option to warp to their home
+config.logging = false --true --If the script reports its own information to the server log
 config.chatColor = "#00FF7F" --The color used for the script's chat messages
 
 config.AdminMainGUI = 31371
@@ -35,9 +40,11 @@ config.PlayerSellConfirmGUI = 31385
 
 -------------------
 jsonInterface = require("jsonInterface")
+eventHandler = require("eventHandler")
 inventoryHelper = require("inventoryHelper")
 color = require("color")
 local serverConfig = require("config")
+enumerations = require("enumerations")
 
 local Methods = {}
 --Forward Declarations:
@@ -52,21 +59,30 @@ local function doLog(text)
 	end
 end
 
+-- local function msg(pid, text)
+	-- tes3mp.SendMessage(pid, config.chatColor .. text .. "\n" .. color.Default)
+-- end
+
+-- Lear edit start - replaced above with below.
 local function msg(pid, text)
-	tes3mp.SendMessage(pid, config.chatColor .. text .. "\n" .. color.Default)
+    tes3mp.SendMessage(pid, config.chatColor .. text .. "\n" .. color.Default, false, false)
 end
+-- Lear edit end
 
 local function Save()
-	jsonInterface.save("custom/kanaHousing.json", housingData)
+	jsonInterface.save("kanaHousing.json", housingData)
 end
 
 local function Load()
-	housingData = jsonInterface.load("custom/kanaHousing.json")
+	housingData = jsonInterface.load("kanaHousing.json")
 end
 
 Methods.OnServerPostInit = function()
-	tes3mp.LogMessage(1, "[KANAHOUSING]: KanaHousing loaded.")
-	if jsonInterface.load("custom/kanaHousing.json") ~= nil then
+	--local file = io.open(os.getenv("MOD_DIR") .. "/kanaHousing.json", "r")
+	local file = io.open(tes3mp.GetModDir() .. "/kanaHousing.json", "r")
+	
+	if file ~= nil then
+		io.close()
 		Load()
 	else
 		Save()
@@ -79,19 +95,22 @@ end
 
 --Returns the amount of gold in a player's inventory
 local function getPlayerGold(playerName) --playerName is the name of the player (capitalization doesn't matter)
-	local player = logicHandler.GetPlayerByName(playerName)
-	
-	if player then
-		local goldLoc = inventoryHelper.getItemIndex(player.data.inventory, "gold_001", -1)
+
+	if playerName ~= nil then
+		local player = logicHandler.GetPlayerByName(playerName)
 		
-		if goldLoc then
-			return player.data.inventory[goldLoc].count
+		if player then
+			local goldLoc = inventoryHelper.getItemIndex(player.data.inventory, "gold_001", -1)
+			
+			if goldLoc then
+				return player.data.inventory[goldLoc].count
+			else
+				return 0
+			end
 		else
-			return 0
+			--Couldn't find the player
+			return false
 		end
-	else
-		--Couldn't find the player
-		return false
 	end
 end
 
@@ -206,7 +225,7 @@ end
 
 local function setHousePrice(houseName, price)
 	if housingData.houses[houseName] then
-		housingData.houses[houseName].price = tonumber(price) or config.defaultPrice --If the price somehow isn't a valid number, use the default price
+			housingData.houses[houseName].price = tonumber(price) or config.defaultPrice --If the price somehow isn't a valid number, use the default price
 		Save()
 	end
 end
@@ -370,11 +389,16 @@ local function getHouseInfoLong(houseName, toggleMeanings) --Used in GUI labels
 	end
 	
 	text = text .. "=" .. hdata.name .. "=\n"
-	local owner = "Nobody"
+	local owner = "nobody"
 	if getHouseOwnerName(hdata.name) then
 		owner = getHouseOwnerName(hdata.name)
+		-- added the below.
+		text = text .. color.Default .. "The house is worth " .. hdata.price .. " gold, but is currently " .. color.Red .. "owned " .. color.Default .."by " .. owner .. ".\n"
+	else
+		text = text .. color.Default .. "The house is worth " .. hdata.price .. " gold, and is " .. color.Green .. "available " .. color.Default .. "for purchase.\n"
+		-- added the above.
 	end
-	text = text .. "The house is worth " .. hdata.price .. " gold, currently owned by " .. owner .. ".\n"
+	-- text = text .. "The house is worth " .. hdata.price .. " gold, currently owned by " .. owner .. ".\n"
 	
 	local hasOwned, hasAccess, hasResets
 	text = text .. "The interior of the house consists of the following cells:\n"
@@ -403,13 +427,13 @@ local function getHouseInfoLong(houseName, toggleMeanings) --Used in GUI labels
 		if hasOwned or hasAccess or hasResets then
 			text = text .. "\n"
 			if hasOwned then
-				text = text .. "If a cell is marked with 'Contains Owned Containers' it means that some or all of the containers in the cell are designated as owned as an NPC. If you were to store and remove items from an owned containers, those items will be marked as stolen (though the stolen tag should disappear on relog in tes3mp 0.6.1). "
+				text = text .. "If a cell is marked with 'Contains Owned Containers' it means that some or all of the containers in the cell are designated as owned as an NPC. If you were to store and remove items from an owned containers, those items will be marked as stolen (though the stolen tag should disappear on relog). "
 			end
 			if hasAccess then
 				text = text .. "Required passages are cells that other players either need to access, or pass through in order to complete certain quests. Cells marked as such can still be entered by players, even if the house is locked. "
 			end
 			if hasResets then
-				text = text .. "Depending on how the server is run, cells marked as requiring resets may occasionally reset some, or all of their contents. Contact a server admin to ask how the current server handles cell resets."
+				text = text .. "Depending on how the server is run, cells marked as requiring resets may occasionally reset some, or all of their contents. Contact a server admin to ask how the current server handles cell resets. "
 			end
 		end
 	end
@@ -429,7 +453,7 @@ local function getHouseInfoShort(houseName) --Used as entries for lists
 	
 	text = text .. " - Worth " .. hdata.price
 	
-	local owner = "Nobody"
+	local owner = "nobody"
 	if getHouseOwnerName(hdata.name) then
 		owner = getHouseOwnerName(hdata.name)
 	end
@@ -513,12 +537,12 @@ local function isAllowedEnter(pid, cell)
 			return true, "owner"
 		elseif isCoOwner(pname, hdata.name) then
 			return true, "coowner"
-		elseif Players[pid].data.settings.staffRank > 0 then --Moderators/Admins should always be allowed to enter
+		elseif Players[pid].data.settings.staffRank >= 2 then --Moderators/Admins should always be allowed to enter
 			return true, "admin"
 		elseif cdata.requiredAccess then
 			return true, "access"
 		else
-			return false, "locked"
+			return false, "close"
 		end
 	elseif not getHouseOwnerName(hdata.name) then --There's no owner
 		return true, "unowned"
@@ -538,6 +562,8 @@ local function unlockChecks(cell)
 		for cellName, ddata in pairs(hdata.doors) do
 			if cellName == cell then
 				if LoadedCells[cell] == nil then
+					--eventHandler.LoadCell(cell)
+					-- lear edit replaced above with below
 					logicHandler.LoadCell(cell)
 				end
 				
@@ -564,6 +590,7 @@ local function unlockChecks(cell)
 		LoadedCells[cell]:Save()
 		for playerId, player in pairs(Players) do
 			if player:IsLoggedIn() then
+				--LoadedCells[cell]:SendObjectsLocked(playerId)
 				LoadedCells[cell]:LoadObjectsLocked(playerId, LoadedCells[cell].data.objectData, LoadedCells[cell].data.packets.lock)
 			end
 		end
@@ -612,7 +639,39 @@ end
 
 local function onDirtyThief(pid)
 	--Do nothing, for now. Future version could implement auto-banning if wanted, or a system that automatically returns the taken items.
-	tes3mp.MessageBox(pid, -1, "That doesn't belong to you. Put it back.")
+	-- Lear edit start
+	if Players[pid].data.customVariables.bypassHomeTheftDetection == 1 then 
+	
+	elseif Players[pid].data.settings.staffRank < 2 then
+		--tes3mp.MessageBox(pid, -1, "That doesn't belong to you. Put it back.")
+		--local karmaMessage = color.Default .. logicHandler.GetChatName(pid) .. " has received " .. 
+		--			color.Red .. " very bad " .. color.Default .. "karma for stealing from a player house.\n"
+				
+		--local targetKarma = Players[pid].data.customVariables.karmaAmount
+		--local addBounty =  Players[pid].data.fame.bounty
+		
+		if Players[pid].data.customVariables.stolenPlayerHomeItems == nil then
+			Players[pid].data.customVariables.stolenPlayerHomeItems = 0
+		end
+		
+		local stolenPHItemsAmount = Players[pid].data.customVariables.stolenPlayerHomeItems
+		--targetKarma = targetKarma - 5			
+		stolenPHItemsAmount = stolenPHItemsAmount + 1
+		--Players[pid].data.customVariables.karmaAmount = targetKarma
+		Players[pid].data.customVariables.stolenPlayerHomeItems = stolenPHItemsAmount
+		--tes3mp.SendMessage(pid, karmaMessage, true)
+				
+		--local bountyMultiplier = Players[pid].data.customVariables.stolenPlayerHomeItems
+		--local goldBountyValue = 1 * 375 * bountyMultiplier
+		
+		--addBounty = addBounty + goldBountyValue
+		
+		--Players[pid].data.fame.bounty = addBounty
+		
+	else
+		--tes3mp.MessageBox(pid, -1, "That doesn't belong to you. Put it back.")
+	end
+	-- Lear edit end
 end
 
 -------------------
@@ -657,14 +716,20 @@ end
 
 local function onPlayerSellHouseAndFurniture(pid)
 	removeHouseOwner(playerSelectedHouse[getName(pid)], true, "sell")
+	--
+	Players[pid].data.customVariables.ownsPlayerHouse = 0
 end
 
 local function onPlayerSellHouseAndCollect(pid)
 	removeHouseOwner(playerSelectedHouse[getName(pid)], true, "return")
+	--
+	Players[pid].data.customVariables.ownsPlayerHouse = 0
 end
 
 local function onPlayerSellHouse(pid)
 	removeHouseOwner(playerSelectedHouse[getName(pid)], true)
+	--
+	Players[pid].data.customVariables.ownsPlayerHouse = 0
 end
 
 -- PLAYER SETTINGS REMOVE CO-OWNER
@@ -698,7 +763,7 @@ end
 showPlayerSettingsAddPrompt = function(pid)
 	local message = "Type the name of the character to add as co-owner"
 	
-	return tes3mp.InputDialog(pid, config.PlayerAddCoOwnerGUI, message, "")
+	return tes3mp.InputDialog(pid, config.PlayerAddCoOwnerGUI, message, "add co-owner")
 end
 
 local function onPlayerSettingsAddPrompt(pid, data)
@@ -745,22 +810,22 @@ showPlayerSettingsMain = function(pid)
 		playerSelectedHouse[getName(pid)] = nil
 	end
 	
-	message = message .. "Currently selected house: " .. (playerSelectedHouse[getName(pid)] or "None") .. "\n"
+	message = message .. "#red ..House currently selected: " .. (playerSelectedHouse[getName(pid)] or "None") .. "\n\n\n"
 	
 	if playerSelectedHouse[getName(pid)] then
 		local hdata = housingData.houses[playerSelectedHouse[getName(pid)]]
 		
-		message = message .. "The house is currently "
+		message = message .. color.Default .. "The house is currently "
 		if isLocked(hdata.name) then
-			message = message .. "locked.\n"
+			message = message .. color.Red .. "locked" .. color.Default .. ".\n"
 		else
-			message = message .. "unlocked.\n"
+			message = message .. color.Green .. "unlocked" .. color.Default .. ".\n"
 		end
 		--TODO: More?
 	end
 	
 	message = message .. "\n"
-	message = message .. "Use 'Select Owned House' to select the house whose settings you want to edit. To add a Co-owner, use 'Add Co-owner', or remove one with 'Remove Co-owner'. Co-owners are allowed to enter your home while it's locked, and take or place items freely (as well as furniture, if supported). 'Toggle Lock' is used to lock/unlock the house. When locked, nobody except the house's owners, coowners, or admins can enter the house, unless the cell is marked as required access. 'Warp to House' will teleport you to the house if the option is enabled for the server. Use 'Sell House' if you want to sell it."
+	message = message .. "#cyan .Use 'Select Owned House' to select the house whose settings you want to edit.\n\n To add a Co-owner, use 'Add Co-owner', or remove one with 'Remove Co-owner'.Co-owners are allowed to enter your home while it's locked, and take or place items freely (as well as furniture, if supported). 'Toggle Lock' is used to lock/unlock the house. When locked, nobody except the house's owners, coowners, or admins can enter the house, unless the cell is marked as required access. 'Warp to House' will teleport you to the house if the option is enabled for the server. Use 'Sell House' if you want to sell it."
 	
 	return tes3mp.CustomMessageBox(pid, config.PlayerSettingGUI, message, "Select Owned House;Add Co-owner;Remove Co-owner;Toggle Lock;Warp to House;Sell House;Close")
 end
@@ -848,13 +913,31 @@ showAllHousesList = function(pid)
 	local list = "* CLOSE *\n"
 	
 	for houseName, v in pairs(housingData.houses) do
+
+
 		table.insert(options, houseName)
+
 	end
+	
+	
+	
+	
 	for i=1, #options do
+		
+		
+		-- -- Lear edit start.
+		--if getHouseOwnerName(houseName) ~= nil then
+		--	list = list .. color.Blue .. options[i]
+		--else
+		--	list = list .. color.Green .. options[i]
+		--end
+		-- -- Lear edit end.
+	
 		list = list .. options[i]
 		if not (i == #options) then
 			list = list .. "\n"
 		end
+
 	end
 	
 	playerAllHouseList[getName(pid)] = options
@@ -868,9 +951,8 @@ end
 
 -- PLAYER HOUSE CONTROL MAIN
 showUserMain = function(pid)
-	local message = "Welcome to the housing menu. Here you can use 'List All Houses' to view a list of all the houses available to buy on this server, as well as information about them and an option to purchase them. Use 'Edit House Settings' to configure the settings for the houses you currently own."
-	
-	tes3mp.CustomMessageBox(pid, config.PlayerMainGUI, message, "List All Houses;Edit House Settings;Close")
+	local message = "#red ..HOUSING MENU.\n\n\n#blue .Welcome to the housing menu. Here you can use 'List All Houses' to view a list of all the houses available to buy on this server, as well as information about them and an option to purchase them. Use 'Edit House Settings' to configure the settings for the houses you currently own."
+	tes3mp.CustomMessageBox(pid, config.PlayerMainGUI, message, "List All Houses;Edit House Settings;Exit")
 end
 
 local function onPlayerMainList(pid)
@@ -902,7 +984,7 @@ showHouseInfo = function(pid)
 		playerSelectedHouse[getName(pid)] = nil
 	end
 	
-	return tes3mp.CustomMessageBox(pid, config.HouseInfoGUI, message, "Buy;Close")
+	return tes3mp.CustomMessageBox(pid, config.HouseInfoGUI, message, "Buy;Back;Close")
 end
 
 local function onHouseInfoBuy(pid)
@@ -913,13 +995,23 @@ local function onHouseInfoBuy(pid)
 			return tes3mp.MessageBox(pid, -1, "Somebody already owns that house!")
 		elseif getHouseOwnerName(hdata.name) == getName(pid) then
 			return tes3mp.MessageBox(pid, -1, "You already own that house.")
+		elseif Players[pid].data.customVariables.ownsPlayerHouse == 1 then
+			return tes3mp.MessageBox(pid, -1, "You already own a house.")
 		else
 			if getPlayerGold(getName(pid)) < hdata.price then
 				return tes3mp.MessageBox(pid, -1, "You can't afford that house.")
 			end
+
+			-- Lear edit start Karma Req.
+			--[[if Players[pid].data.customVariables.karmaAmount < -5 then
+				return tes3mp.MessageBox(pid, -1, "Only respectable players can purchase houses. Raise your Karma.")
+			end--]]
+			-- Lear edit end Karma Req.
+			
 			--Do the actual selling
 			addGold(getName(pid), -hdata.price)
 			addHouseOwner(getName(pid), hdata.name)
+			Players[pid].data.customVariables.ownsPlayerHouse = 1
 			return tes3mp.MessageBox(pid, -1, "Congratulations, you are now the proud owner of " .. hdata.name .. "! Use the /house command to manage your house's settings.")
 		end
 	else
@@ -931,7 +1023,8 @@ end
 showHouseEditOwnerPrompt = function(pid)
 	local message = "Enter 'none' to remove current owner"
 	
-	return tes3mp.InputDialog(pid, config.HouseEditOwnerGUI, message, "")
+	-- return tes3mp.InputDialog(pid, config.HouseEditOwnerGUI, message, "current owner")
+	return tes3mp.InputDialog(pid, config.HouseEditOwnerGUI, message, "current owner")
 end
 
 local function onHouseEditOwnerPrompt(pid, data)
@@ -943,11 +1036,13 @@ local function onHouseEditOwnerPrompt(pid, data)
 			--Player already owns this house... do nothing
 		else
 			removeHouseOwner(adminSelectedHouse[getName(pid)], true, "return")
+			--removeHouseOwner(playerSelectedHouse[getName(pid)], true)
 			addHouseOwner(data, adminSelectedHouse[getName(pid)])
 		end
 	end
 	return showHouseEditMain(pid)
 end
+
 
 -- ADMIN EDIT HOUSE PRICE
 showHouseEditPricePrompt = function(pid)
@@ -988,9 +1083,9 @@ showHouseEditMain = function(pid)
 	else
 		message = message .. "Cell - " .. hdata.inside.cell .. " | Pos - " .. math.floor(hdata.inside.pos.x + 0.5) .. ", " .. math.floor(hdata.inside.pos.y + 0.5) .. ", " .. math.floor(hdata.inside.pos.z + 0.5) .."\n"
 	end
-	message = message .. "Assigned Exit: "
+	message = message .. "Asssigned Exit: "
 	if not hdata.outside.cell then
-		message = message .. "None\n"
+		message = message .. "Aucun\n"
 	else
 		message = message .. "Cell - " .. hdata.outside.cell .. " | Pos - " .. math.floor(hdata.outside.pos.x + 0.5) .. ", " .. math.floor(hdata.outside.pos.y + 0.5) .. ", " .. math.floor(hdata.outside.pos.z + 0.5) .."\n"
 	end
@@ -1044,7 +1139,7 @@ showCellEditMain = function(pid)
 	
 	--Cell name, Associated House, Owned Containers Status, Required Access Status. Description on buttons
 	message = message .. "Name: " .. cdata.name .. "\n"
-	message = message .. "Associated House: " .. (cdata.house or "none")  .. "\n"
+	message = message .. "Associated House: " .. (cdata.house or "no data")  .. "\n"
 	message = message .. "Owned Containers: " .. tostring(cdata.ownedContainers) .. "\n"
 	message = message .. "Required Access: " .. tostring(cdata.requiredAccess) .. "\n"
 	message = message .. "Requires Resets: " .. tostring(cdata.requiresResets) .. "\n"
@@ -1152,7 +1247,7 @@ end
 showHouseCreate = function(pid)
 	local message = "Enter a name for the house"
 	
-	return tes3mp.InputDialog(pid, config.AdminHouseCreateGUI, message, "")
+	return tes3mp.InputDialog(pid, config.AdminHouseCreateGUI, message, "House")
 end
 
 local function onHouseCreatePrompt(pid, data)
@@ -1166,10 +1261,10 @@ showAdminMain = function(pid)
 	local message = ""
 	if adminSelectedHouse[getName(pid)] then
 		--TODO: Check if still valid house
-		message = message .. "Currently Selected House: " .. adminSelectedHouse[getName(pid)] .. "\n\n"
+		message = message .. "#red ..Currently Selected House: " .. adminSelectedHouse[getName(pid)] .. "\n\n\n"
 	end
 	
-	message = message .. "Use 'Create New House' to create and select a new house, or 'Select House' to select an existing one. 'Edit Cell Data' is used to edit the cell information of the cell that you're currently in, if you have a house selected you can then assign that cell to the one you have selected. 'Edit House Data' is used to edit all manner of things about the house itself."
+	message = message .. "#cyan .Use 'Create New House' to create and select a new house, or 'Select House' to select an existing one. 'Edit Cell Data' is used to edit the cell information of the cell that you're currently in, if you have a house selected you can then assign that cell to the one you have selected. 'Edit House Data' is used to edit all manner of things about the house itself."
 	
 	return tes3mp.CustomMessageBox(pid, config.AdminMainGUI, message, "Create New House;Select House;Edit Cell Data;Edit House Data;Close")
 end
@@ -1201,7 +1296,6 @@ end
 Methods.OnGUIAction = function(pid, idGui, data)
 	if idGui == config.AdminMainGUI then --Admin Main
 		if tonumber(data) == 0 then --Create New House
-			print(tostring(pid))
 			onAdminMainCreate(pid)
 			return true
 		elseif tonumber(data) == 1 then --Select House
@@ -1286,6 +1380,11 @@ Methods.OnGUIAction = function(pid, idGui, data)
 		if tonumber(data) == 0 then --Buy
 			onHouseInfoBuy(pid)
 			return true
+		-- Lear edit start added back button
+		elseif tonumber(data) == 1 then --Back
+			showAllHousesList(pid)
+			return true
+		-- Lear edit end 
 		else
 			--Do nothing
 			return true
@@ -1386,8 +1485,7 @@ end
 
 Methods.OnAdminCommand = function(pid)
 	local rank = Players[pid].data.settings.staffRank
-	--if rank < config.requiredAdminRank then
-	if rank < 2 then
+	if rank < config.requiredAdminRank then
 		--Not high enough rank to use the admin menu
 		return false
 	end
@@ -1404,12 +1502,12 @@ Methods.OnPlayerCellChange = function(pid)
 		
 		--If they're entering a house cell
 		if housingData.cells[currentCell] and housingData.cells[currentCell].house ~= nil then
-			local hdata = housingData.houses[housingData.cells[currentCell].house]
+			hdata = housingData.houses[housingData.cells[currentCell].house]
 			
 			local canEnter, enterReason = isAllowedEnter(pid, currentCell)
 			if enterReason == "unowned" then --A player has entered a house without an owner
 				if lastEnteredHouse[getName(pid)] ~= hdata.name then --They've just entered the house
-					msg(pid, "You've entered " .. hdata.name .. ", which is a house available for purchase for " .. hdata.price .. " gold. Type /houseinfo for more info.")
+					msg(pid, color.Default .. "You've entered " .. hdata.name .. ", which is a house " .. color.Green .."available " .. color.Default .. "for purchase for " .. hdata.price .. " gold. Type " .. color.Yellow .."/houseinfo " .. color.Default .. "for more info.")
 				end
 				doLog(Players[pid].accountName .. " entered a cell in the unowned house " .. hdata.name)
 			elseif enterReason == "unlocked" then				
@@ -1426,7 +1524,7 @@ Methods.OnPlayerCellChange = function(pid)
 				if isOwner(getName(pid), hdata.name) then
 					logMessage = logMessage .. " as the owner"
 				elseif isCoOwner(getName(pid), hdata.name) then
-					logMessage = logMessage .. " as a co-owner"
+					logMessage = logMessage .. " as the co-owner"
 				else
 					logMessage = logMessage .. " as a visitor"
 				end
@@ -1435,24 +1533,34 @@ Methods.OnPlayerCellChange = function(pid)
 				
 			elseif enterReason == "owner" or enterReason == "coowner" then --An owner/coowner has entered
 				if lastEnteredHouse[getName(pid)] ~= hdata.name then --They've just entered the house
-					local message = "Welcome home, " .. Players[pid].accountName .. "."
+					local message = color.Default .. "Welcome home, " .. Players[pid].accountName .. ". "
 					if isLocked(hdata.name) then
-						message = message .. " The house is still locked to outsiders."
+						message = message .. "The house is still " .. color.Red .. "locked " .. color.Default .. "to outsiders."
 					end
 					msg(pid, message)
 				end
 				
 				doLog(Players[pid].accountName .. " entered a cell in the locked house " .. hdata.name .. " as an owner/co-owner")
-			elseif enterReason == "admin" then --An admin entered a locked house
-				msg(pid, "Welcome to " .. getHouseOwnerName(hdata.name) .. "'s house, oh mighty admin. The house is currently locked.")
+			elseif enterReason == "Admin" then --An admin entered a locked house
+				msg(pid, "Welcome to " .. getHouseOwnerName(hdata.name) .. "'s home, oh mighty admin. The house is currently locked.")
 				doLog(Players[pid].accountName .. " entered a cell in the locked house " .. hdata.name .. " as an admin")
 			elseif enterReason == "access" then
-				local message = "You've just entered part of " .. getHouseOwnerName(hdata.name) .. "'s house. The house is currently locked, but you're allowed in here because it's marked as important for a quest. Please respect " .. getHouseOwnerName(hdata.name) .. "'s property, and only do what you must for the quest."
+				local message = color.Default .. "You've just entered part of " .. getHouseOwnerName(hdata.name) .. "'s house. The house is currently " .. color.Red .. "locked" .. color.Default .. ", but you're allowed in here because it's marked as important for a quest. Please respect " .. getHouseOwnerName(hdata.name) .. "'s property, and only do what you must for the quest."
 				msg(pid, message)
 				tes3mp.MessageBox(pid, -1, message)
 				doLog(Players[pid].accountName .. " entered a cell in the locked house " .. hdata.name .. " as a visitor who's allowed in since the cell is marked as requiredAccess")
+			elseif Players[pid].data.customVariables.bypassHomeTheftDetection == 1 then
+				doLog(Players[pid].accountName .. " entered a cell in the locked house " .. hdata.name .. " via bypass variable.")
+			
+			-- Auctioneer start
+			elseif Players[pid].data.customVariables.auctioneer ~= nil and Players[pid].data.customVariables.auctioneer == 1 then
+				doLog(Players[pid].accountName .. " entered locked house " .. hdata.name .. " as the auctioneer character.")
+			elseif Players[pid].data.customVariables.houseAuctionBuyer ~= nil then
+				doLog(Players[pid].accountName .. " ported to locked house " .. hdata.name .. " via auctioneer character.")
+			-- Auctioneer end
+			
 			elseif canEnter == false then
-				msg(pid, "The owner has locked the house.")
+				msg(pid, color.Default .. "The owner has " .. color.Red .. "locked " .. color.Default .. "the house.")
 				local destinationCell, destinationPos
 				if hdata.outside.cell then --There's exit data saved for this house
 					destinationCell = hdata.outside.cell
@@ -1595,6 +1703,12 @@ Methods.OnObjectDelete = function (pid, cellDescription)
 	end
 end
 
+
+--Distinct from GetHouseData. Returns the whole data table used by kanaHousing. Use if you know what you're doing
+Methods.GetHousingData = function()
+    return housingData
+end
+
 -------------------
 
 Methods.GetCellData = function(cell)
@@ -1649,16 +1763,15 @@ end
 -------------------
 
 
-customCommandHooks.registerCommand("house", Methods.OnUserCommand)
-customCommandHooks.registerCommand("housing", Methods.OnUserCommand)
-
-customCommandHooks.registerCommand("adminhouse", Methods.OnAdminCommand)
-customCommandHooks.registerCommand("adminhousing", Methods.OnAdminCommand)
-
-customCommandHooks.registerCommand("houseinfo", Methods.OnInfoCommand)
+--Jakob
+customCommandHooks.registerCommand("house", function(pid, cmd) kanaHousing.OnUserCommand(pid) end)
+customCommandHooks.registerCommand("housing", function(pid, cmd) kanaHousing.OnUserCommand(pid) end)
+customCommandHooks.registerCommand("adminhouse", function(pid, cmd) kanaHousing.OnAdminCommand(pid) end)
+customCommandHooks.registerCommand("adminhousing", function(pid, cmd) kanaHousing.OnAdminCommand(pid) end)
+customCommandHooks.registerCommand("houseinfo", function(pid, cmd) kanaHousing.OnInfoCommand(pid) end)
 
 customEventHooks.registerHandler("OnGUIAction", function(eventStatus, pid, idGui, data)
-	if kanaHousing.OnGUIAction(pid, idGui, data) then return end
+	kanaHousing.OnGUIAction(pid, idGui, data)
 end)
 
 customEventHooks.registerHandler("OnServerPostInit", function(eventStatus)
@@ -1681,4 +1794,11 @@ customEventHooks.registerHandler("OnObjectDelete", function(eventStatus, pid, ce
 	kanaHousing.OnObjectDelete(pid, cellDescription)
 end)
 
+
+--[[
+
+]]
+
 return Methods
+
+

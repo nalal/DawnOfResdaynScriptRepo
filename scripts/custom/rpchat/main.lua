@@ -20,7 +20,7 @@ local rpchat = {}
 		message = message:gsub("^%l", string.upper)
 		local stringLength = string.len(message)
 		local punctuated = string.find(message, ".", stringLength, stringLength)
-		if punctuated == nil then
+		if string.find(message, ",", stringLength, stringLength) == nil and string.find(message, ".", stringLength, stringLength) == nil and string.find(message, "!", stringLength, stringLength) == nil and string.find(message, "?", stringLength, stringLength) == nil then
 			message = message .. "."
 		end
 		return message

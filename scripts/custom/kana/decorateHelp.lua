@@ -1,10 +1,13 @@
+-- MODIFIED BY JAKOB FOR USE WITH CUSTOM EVENT HANDLER
 
--- decorateHelp - Release 2 - For tes3mp v0.7.0-alpha
+-- decorateHelp - Release 1 - For tes3mp v0.7.0 for Ecarlate server
 -- Alter positions of items using a GUI
 
 --[[ INSTALLATION:
-1) Save this file as "decorateHelp.lua" in server/scripts/custom
-2) Add [ decorateHelp = require("custom.decorateHelp") ] to customScripts.lua
+1) Save this file as "decorateHelp.lua" in mp-stuff/scripts
+2) Add [ decorateHelp = require("decorateHelp") ] to customScripts.lua
+
+
 ]]
 
 ------
@@ -28,7 +31,8 @@ local function getObject(refIndex, cell)
 		return false
 	end
 
-	if LoadedCells[cell]:ContainsObject(refIndex) then
+	--if LoadedCells[cell]:ContainsObject(refIndex) then 
+	if LoadedCells[cell]:ContainsObject(refIndex) and refIndex ~= nil then
 		return LoadedCells[cell].data.objectData[refIndex]
 	else
 		return false
@@ -278,5 +282,8 @@ end)
 customEventHooks.registerHandler("OnPlayerCellChange", function(eventStatus, pid, previousCellDescription, currentCellDescription)
 	decorateHelp.OnPlayerCellChange(pid)
 end)
+
+--OnPlayerCellChange
+
 
 return Methods
