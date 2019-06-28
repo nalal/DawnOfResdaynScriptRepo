@@ -1,5 +1,6 @@
 -- Internally developed scripts
 rpchat = require("custom/rpchat/main")
+require("custom/FTCINIT/main")
 
 
 
