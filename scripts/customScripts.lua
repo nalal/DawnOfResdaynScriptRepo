@@ -1,6 +1,9 @@
 -- Internally developed scripts
-rpchat = require("custom/rpchat/main")
 require("custom/FTCINIT/main")
+rpchat = require("custom/rpchat/main")
+ftc = require("custom/ftclib/lib")
+motd = require("custom/motd/main")
+
 
 
 

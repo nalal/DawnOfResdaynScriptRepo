@@ -5,9 +5,6 @@ Menus["help player"] = {
             color.Yellow .. "(/msg)\n" ..
         color.Yellow .. "/me <text>\n" ..
             color.White .. "Send a message written in the third person\n" ..
-        color.Yellow .. "/local <text>\n" ..
-            color.White .. "Send a message that only players in your area can read " ..
-            color.Yellow .. "(/l)\n" ..
         color.Yellow .. "/list\n" ..
             color.White .. "List all players on the server\n" ..
         color.Yellow .. "/anim <animation>\n" ..
@@ -18,8 +15,12 @@ Menus["help player"] = {
             color.White .. "Play a certain speech on yourself, with a list of valid inputs being provided " ..
             "if you use invalid ones " ..
             color.Yellow .. "(/s)\n" ..
-        color.Yellow .. "/craft\n" ..
-            color.White .. "Open up a small crafting menu used as a scripting example\n" ..
+		color.Yellow "/ooc <message>" .. color.White .. "or " .. color.Yellow .. "// <message>\n" ..
+			color.White "Send a golbal out of character message.\n" 
+		color.Yellow "/looc <message>" .. color.White .. "or " .. color.Yellow .. "/// <message>\n" ..
+			color.White "Send a local out of character message.\n" ..
+		color.Yellow "/rpchat name <name>\n" ..
+			color.White "Sets your RP name, this shows up in normal chat.\n"
         color.Yellow .. "/help\n" ..
             color.White .. "Get the list of available commands",
     buttons = {
