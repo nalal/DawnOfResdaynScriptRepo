@@ -150,7 +150,6 @@ color.Yellow = "#FFFF00"
 color.YellowGreen = "#9ACD32"
 
 color.Default = color.White
-color.Default2 = color.Moccasin
 color.Error = color.Red
 color.Warning = color.GoldenRod
 color.GreenText = "#789922"

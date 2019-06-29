@@ -1,5 +1,3 @@
-require("enumerations")
-
 tableHelper = require("tableHelper")
 fileHelper = require("fileHelper")
 inventoryHelper = require("inventoryHelper")
@@ -27,7 +25,7 @@ logicHandler.InitializeWorld = function()
 
     -- If the world has a data entry, load it
     if WorldInstance:HasEntry() then
-        WorldInstance:Load()
+        WorldInstance:LoadFromDrive()
         WorldInstance:EnsureTimeDataExists()
 
         -- Get the current mpNum from the loaded world
@@ -76,6 +74,9 @@ end
 
 -- Get the "Name (pid)" representation of a player used in chat
 logicHandler.GetChatName = function(pid)
+    if pid == nil then
+        return "Unlogged player (nil)"
+    end
 
     if Players[pid] ~= nil then
         return Players[pid].name .. " (" .. pid .. ")"
@@ -168,7 +169,7 @@ logicHandler.GetPlayerByName = function(targetName)
     local targetPlayer = Player(nil, targetName)
 
     if targetPlayer:HasAccount() == true then
-        targetPlayer:Load()
+        targetPlayer:LoadFromDrive()
         return targetPlayer
     else
         return nil
@@ -314,17 +315,22 @@ logicHandler.PushPlayerList = function(pls)
 end
 
 logicHandler.AuthCheck = function(pid)
-    if Players[pid]:IsLoggedIn() then
-        return true
-    end
+	if Players[pid] ~= nil then
+		if Players[pid]:IsLoggedIn() then
+			return true
+		end
 
-    local playerName = tes3mp.GetName(pid)
-    local message = playerName .. " (" .. pid .. ") " .. "failed to log in.\n"
-    tes3mp.SendMessage(pid, message, true)
-    Players[pid]:Kick()
+		local playerName = logicHandler.GetChatName(pid)
 
-    Players[pid] = nil
-    return false
+		local message = playerName .. " failed to log in.\n"
+		tes3mp.SendMessage(pid, message, true)
+		Players[pid]:Kick()
+
+		Players[pid] = nil
+		return false
+	else
+		return false
+	end
 end
 
 logicHandler.DoesPacketOriginRequireLoadedCell = function(packetOrigin)
@@ -356,7 +362,7 @@ logicHandler.SendConfigCollisionOverrides = function(pid, forEveryone)
     tes3mp.SendWorldCollisionOverride(pid, forEveryone)
 end
 
-logicHandler.CreateObjectAtLocation = function(cell, location, refId, packetType)
+logicHandler.CreateObjectAtLocation = function(cellDescription, location, refId, packetType)
 
     local mpNum = WorldInstance:GetCurrentMpNum() + 1
     local uniqueIndex =  0 .. "-" .. mpNum
@@ -367,11 +373,11 @@ logicHandler.CreateObjectAtLocation = function(cell, location, refId, packetType
         local recordStore = logicHandler.GetRecordStoreByRecordId(refId)
 
         if recordStore ~= nil then
-            LoadedCells[cell]:AddLinkToRecord(recordStore.storeType, refId, uniqueIndex)
+            LoadedCells[cellDescription]:AddLinkToRecord(recordStore.storeType, refId, uniqueIndex)
 
             -- Do any of the visitors to this cell lack the generated record?
             -- If so, send it to them
-            for _, visitorPid in pairs(LoadedCells[cell].visitors) do
+            for _, visitorPid in pairs(LoadedCells[cellDescription].visitors) do
                 recordStore:LoadGeneratedRecords(visitorPid, recordStore.data.generatedRecords, { refId })
             end
         else
@@ -383,17 +389,17 @@ logicHandler.CreateObjectAtLocation = function(cell, location, refId, packetType
     WorldInstance:SetCurrentMpNum(mpNum)
     tes3mp.SetCurrentMpNum(mpNum)
 
-    LoadedCells[cell]:InitializeObjectData(uniqueIndex, refId)
-    LoadedCells[cell].data.objectData[uniqueIndex].location = location
+    LoadedCells[cellDescription]:InitializeObjectData(uniqueIndex, refId)
+    LoadedCells[cellDescription].data.objectData[uniqueIndex].location = location
 
     if packetType == "place" then
-        table.insert(LoadedCells[cell].data.packets.place, uniqueIndex)
+        table.insert(LoadedCells[cellDescription].data.packets.place, uniqueIndex)
     elseif packetType == "spawn" then
-        table.insert(LoadedCells[cell].data.packets.spawn, uniqueIndex)
-        table.insert(LoadedCells[cell].data.packets.actorList, uniqueIndex)
+        table.insert(LoadedCells[cellDescription].data.packets.spawn, uniqueIndex)
+        table.insert(LoadedCells[cellDescription].data.packets.actorList, uniqueIndex)
     end
 
-    LoadedCells[cell]:Save()
+    LoadedCells[cellDescription]:QuicksaveToDrive()
 
     -- Are there any players on the server? If so, initialize the object
     -- list for the first one we find and just send the corresponding packet
@@ -403,7 +409,7 @@ logicHandler.CreateObjectAtLocation = function(cell, location, refId, packetType
         local pid = tableHelper.getAnyValue(Players).pid
         tes3mp.ClearObjectList()
         tes3mp.SetObjectListPid(pid)
-        tes3mp.SetObjectListCell(cell)
+        tes3mp.SetObjectListCell(cellDescription)
         tes3mp.SetObjectRefId(refId)
         tes3mp.SetObjectRefNum(0)
         tes3mp.SetObjectMpNum(mpNum)
@@ -485,21 +491,37 @@ logicHandler.RunConsoleCommandOnPlayer = function(pid, consoleCommand, forEveryo
     tes3mp.SendConsoleCommand(forEveryone)
 end
 
-logicHandler.RunConsoleCommandOnObject = function(consoleCommand, cellDescription, refId, refNum, mpNum)
+logicHandler.RunConsoleCommandOnObjects = function(pid, consoleCommand, cellDescription, objectUniqueIndexes, forEveryone)
 
-    local pid = tableHelper.getAnyValue(Players).pid
+    tes3mp.LogMessage(enumerations.log.INFO, "Running " .. consoleCommand .. " in cell " .. cellDescription .. " on object(s) " ..
+        tableHelper.concatenateArrayValues(objectUniqueIndexes, 1, ", "))
+
     tes3mp.ClearObjectList()
     tes3mp.SetObjectListPid(pid)
     tes3mp.SetObjectListCell(cellDescription)
     tes3mp.SetObjectListConsoleCommand(consoleCommand)
-    tes3mp.SetObjectRefId(refId)
-    tes3mp.SetObjectRefNum(refNum)
-    tes3mp.SetObjectMpNum(mpNum)
-    tes3mp.AddObject()
 
-    -- Always send this to everyone
-    -- i.e. sendToOtherPlayers is true and skipAttachedPlayer is false
-    tes3mp.SendConsoleCommand(true, false)
+    -- Set the object state to deal with the oversight mentioned below
+    tes3mp.SetObjectState(true)
+
+    for _, uniqueIndex in pairs(objectUniqueIndexes) do
+        local splitIndex = uniqueIndex:split("-")
+        tes3mp.SetObjectRefNum(splitIndex[1])
+        tes3mp.SetObjectMpNum(splitIndex[2])
+
+        tes3mp.AddObject()
+    end
+
+    -- Due to an oversight, console command packets do not include the cell for their
+    -- associated objects; as a result, the last cell received by players in an unrelated
+    -- object packet is used instead, so send them a dummy packet for that sake
+    tes3mp.SendObjectState(forEveryone, false)
+
+    tes3mp.SendConsoleCommand(forEveryone, false)
+end
+
+logicHandler.RunConsoleCommandOnObject = function(pid, consoleCommand, cellDescription, objectUniqueIndex, forEveryone)
+    logicHandler.RunConsoleCommandOnObjects(pid, consoleCommand, cellDescription, {objectUniqueIndex}, forEveryone)
 end
 
 logicHandler.IsGeneratedRecord = function(recordId)
@@ -586,7 +608,7 @@ logicHandler.SetAIForActor = function(cell, actorUniqueIndex, action, targetPid,
 
             cell.data.objectData[actorUniqueIndex].ai = aiData
             tableHelper.insertValueIfMissing(cell.data.packets.ai, actorUniqueIndex)
-            cell:Save()
+            cell:QuicksaveToDrive()
         end
 
         -- Initialize the packet for the current cell authority
@@ -624,7 +646,7 @@ logicHandler.LoadRecordStore = function(storeType)
 
         -- If this record store has a data entry, load it
         if RecordStores[storeType]:HasEntry() then
-            RecordStores[storeType]:Load()
+            RecordStores[storeType]:LoadFromDrive()
         -- Otherwise, create a data file for it
         else
             RecordStores[storeType]:CreateEntry()
@@ -641,7 +663,7 @@ logicHandler.LoadCell = function(cellDescription)
 
         -- If this cell has a data entry, load it
         if LoadedCells[cellDescription]:HasEntry() then
-            LoadedCells[cellDescription]:Load()
+            LoadedCells[cellDescription]:LoadFromDrive()
         -- Otherwise, create a data file for it
         else
             LoadedCells[cellDescription]:CreateEntry()
@@ -680,7 +702,7 @@ logicHandler.UnloadCell = function(cellDescription)
 
     if LoadedCells[cellDescription] ~= nil then
 
-        LoadedCells[cellDescription]:Save()
+        LoadedCells[cellDescription]:SaveToDrive()
         LoadedCells[cellDescription] = nil
     end
 end
@@ -693,7 +715,7 @@ logicHandler.UnloadCellForPlayer = function(pid, cellDescription)
         LoadedCells[cellDescription]:RemoveVisitor(pid)
         LoadedCells[cellDescription]:SaveActorPositions()
         LoadedCells[cellDescription]:SaveActorStatsDynamic()
-        LoadedCells[cellDescription]:Save()
+        LoadedCells[cellDescription]:QuicksaveToDrive()
 
         -- If this player was the cell's authority, set another player
         -- as the authority

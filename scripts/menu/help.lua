@@ -5,9 +5,6 @@ Menus["help player"] = {
             color.Yellow .. "(/msg)\n" ..
         color.Yellow .. "/me <text>\n" ..
             color.White .. "Send a message written in the third person\n" ..
-        color.Yellow .. "/local <text>\n" ..
-            color.White .. "Send a message that only players in your area can read " ..
-            color.Yellow .. "(/l)\n" ..
         color.Yellow .. "/list\n" ..
             color.White .. "List all players on the server\n" ..
         color.Yellow .. "/anim <animation>\n" ..
@@ -18,16 +15,14 @@ Menus["help player"] = {
             color.White .. "Play a certain speech on yourself, with a list of valid inputs being provided " ..
             "if you use invalid ones " ..
             color.Yellow .. "(/s)\n" ..
-        color.Yellow .. "/craft\n" ..
-            color.White .. "Open up a small crafting menu used as a scripting example (This is disabled)\n" ..
+		color.Yellow "/ooc <message>" .. color.White .. "or " .. color.Yellow .. "// <message>\n" ..
+			color.White "Send a golbal out of character message.\n" 
+		color.Yellow "/looc <message>" .. color.White .. "or " .. color.Yellow .. "/// <message>\n" ..
+			color.White "Send a local out of character message.\n" ..
+		color.Yellow "/rpchat name <name>\n" ..
+			color.White "Sets your RP name, this shows up in normal chat.\n"
         color.Yellow .. "/help\n" ..
-            color.White .. "Get the list of available commands\n" ..
-		color.Yellow .. "/showneeds\n" ..
-			color.White .. "Shows your current hunger/thirst/fatigue\n" ..
-		color.Yellow .. "/debug <enabled/disabled>\n" ..
-			color.White .. "enables debug mode\n" .. 
-		color.Yellow .. "/debug hunger <enable/disable>\n" ..
-			color.White .. "Enables/disables hunger tracking",
+            color.White .. "Get the list of available commands",
     buttons = {
         { caption = "Admin help",
             displayConditions = {
@@ -119,6 +114,8 @@ Menus["help moderator page 1"] = {
 
 Menus["help moderator page 2"] = {
     text = color.Orange .. "Moderator command list page 2:\n" ..
+        color.Yellow .. "/resetkills\n" ..
+            color.White .. "Reset the kill counts for NPCs and creatures, to allow quests requiring a specific number of kills to be done again\n" ..
         color.Yellow .. "/teleport <pid>/all\n" ..
             color.White .. "Teleport another player to your position " ..
             color.Yellow .. "(/tp)\n" ..
@@ -137,10 +134,10 @@ Menus["help moderator page 2"] = {
             color.White .. "Set a player's momentum to certain values\n" ..
         color.Yellow .. "/setauthority <pid> <cell>\n" ..
             color.White .. "Forcibly set a certain player as the authority of a cell " ..
-            color.Yellow .. "(/setauth)\n",
- --[[       color.Yellow .. "/advancedexample\n" ..
+            color.Yellow .. "(/setauth)\n" ..
+        color.Yellow .. "/advancedexample\n" ..
             color.White .. "Display an example of an advanced menu using menuHelper " ..
-            color.Yellow .. "(/advex)",]]--
+            color.Yellow .. "(/advex)",
     buttons = {
         { caption = "Moderator help page 1",
             displayConditions = {
@@ -169,6 +166,8 @@ Menus["help moderator page 2"] = {
 
 Menus["help admin page 1"] = {
     text = color.Orange .. "Admin command list page 1:\n" ..
+        color.Yellow .. "/load <scriptName>\n" ..
+            color.White .. "Load or reload a script file on the fly\n" ..
         color.Yellow .. "/setai <uniqueIndex> activate/combat/follow <pid>/<uniqueIndex>\n" ..
             color.White .. "Make the actor with a certain uniqueIndex target a player or another uniqueIndex\n" ..
         color.Yellow .. "/setai <uniqueIndex> cancel\n" ..

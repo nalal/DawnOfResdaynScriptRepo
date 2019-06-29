@@ -1,8 +1,24 @@
 {
-  "generatedRecords":[],
   "general":{
     "currentGeneratedNum":0
   },
-  "permanentRecords":[],
+  "permanentRecords":{
+      "ingred_iron_1":{
+      "name":"Iron",
+      "value":1,
+      "weight":1,
+      "icon":"m/Tx_repair_A_01.tga",
+      "model":"m/misc_hammer10.nif"
+    },
+      "ingred_leather_1":{
+      "name":"Ragged Leather",
+      "value":1,
+      "weight":1,
+      "icon":"m/Tx_repair_A_01.tga",
+      "model":"m/misc_hammer10.nif"
+    }
+  },
+  
+  "generatedRecords":[],
   "recordLinks":[]
 }

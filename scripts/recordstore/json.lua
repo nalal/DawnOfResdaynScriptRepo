@@ -12,7 +12,7 @@ function RecordStore:__init(storeType)
     self.recordstoreFile = storeType .. ".json"
 
     if self.hasEntry == nil then
-        local home = tes3mp.GetModDir().."/recordstore/"
+        local home = tes3mp.GetDataPath() .. "/recordstore/"
         local file = io.open(home .. self.recordstoreFile, "r")
         if file ~= nil then
             io.close()
@@ -28,18 +28,33 @@ function RecordStore:CreateEntry()
     self.hasEntry = true
 end
 
-function RecordStore:Save()
+function RecordStore:SaveToDrive()
     if self.hasEntry then
         jsonInterface.save("recordstore/" .. self.recordstoreFile, self.data, config.recordstoreKeyOrder)
     end
 end
 
-function RecordStore:Load()
+function RecordStore:QuicksaveToDrive()
+    if self.hasEntry then
+        jsonInterface.quicksave("recordstore/" .. self.recordstoreFile, self.data)
+    end
+end
+
+function RecordStore:LoadFromDrive()
     self.data = jsonInterface.load("recordstore/" .. self.recordstoreFile)
 
     -- JSON doesn't allow numerical keys, but we use them, so convert
     -- all string number keys into numerical keys
     tableHelper.fixNumericalKeys(self.data)
+end
+
+-- Deprecated functions with confusing names, kept around for backwards compatibility
+function RecordStore:Save()
+    self:SaveToDrive()
+end
+
+function RecordStore:Load()
+    self:LoadFromDrive()
 end
 
 return RecordStore

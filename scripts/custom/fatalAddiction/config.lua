@@ -1,0 +1,3 @@
+fatalAddictionConfig = {}
+
+return fatalAddictionConfig
