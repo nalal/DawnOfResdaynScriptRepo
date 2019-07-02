@@ -20,10 +20,11 @@ Menus["help player"] = {
 		color.Yellow "/looc <message>" .. color.White .. "or " .. color.Yellow .. "/// <message>\n" ..
 			color.White "Send a local out of character message.\n" ..
 		color.Yellow "/rpchat name <name>\n" ..
-			color.White "Sets your RP name, this shows up in normal chat.\n"
+			color.White "Sets your RP name, this shows up in normal chat but not OOC.\n"
         color.Yellow .. "/help\n" ..
             color.White .. "Get the list of available commands",
     buttons = {
+		{ caption = "Housing Help", destinations = "help housing" },
         { caption = "Admin help",
             displayConditions = {
                 menuHelper.conditions.requireStaffRank(2)
@@ -43,7 +44,13 @@ Menus["help player"] = {
         { caption = "Exit", destinations = nil }
     }
 }
+--[[
+Menus["help housing"] = {
+	text = color.Orange .. "Housing Command List:\n" ..
+		color.Yellow .. ""
 
+}
+]]--
 -- Handle commands that only exist based on config options
 if config.allowSuicideCommand == true then
     Menus["help player"].text = Menus["help player"].text .. "\n" .. color.Yellow .. "/suicide\n" ..
